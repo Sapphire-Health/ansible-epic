@@ -8,4 +8,8 @@
       src: https://github.com/Sapphire-Health/ansible-epic-directories-and-permissions.git
       scm: 'git'
       version: origin/master
+    - name: ansible-epic-ssh-config
+      src: https://{{ GIT_TOKEN }}@github.com/Sapphire-Health/ansible-epic-ssh-config.git
+      scm: 'git'
+      version: origin/master
 ...

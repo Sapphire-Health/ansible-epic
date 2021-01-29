@@ -1,5 +1,7 @@
 ---
   - name: Provision Epic Server
+    vars:
+      playbook_user: "{{ lookup('env', 'USER')}}"
     hosts: "{{ match_host }}"
     tasks:
       - name: Create Users and Groups
@@ -8,3 +10,6 @@
       - name: Create Directories and Set Permissions
         include_role:
           name: ansible-epic-directories-and-permissions
+      - name: Configure SSH
+        include_role:
+          name: ansible-epic-ssh-config

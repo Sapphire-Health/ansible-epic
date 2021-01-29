@@ -1,7 +1,7 @@
 ---
   - name: Provision Epic Server
     vars:
-      playbook_user: "{{ tower_user_name | default(lookup('env', 'USER')) }}"
+      playbook_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
     hosts: "{{ match_host }}"
     tasks:
       - name: Create Users and Groups

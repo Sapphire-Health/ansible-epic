@@ -4,4 +4,8 @@
       src: https://github.com/Sapphire-Health/ansible-epic-users-and-groups.git
       scm: 'git'
       version: origin/master
+    - name: ansible-epic-directories-and-permissions
+      src: https://github.com/Sapphire-Health/ansible-epic-directories-and-permissions.git
+      scm: 'git'
+      version: origin/master
 ...

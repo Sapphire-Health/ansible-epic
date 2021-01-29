@@ -5,3 +5,6 @@
       - name: Create Users and Groups
         include_role:
           name: ansible-epic-users-and-groups
+      - name: Create Directories and Set Permissions
+        include_role:
+          name: ansible-epic-directories-and-permissions

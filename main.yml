@@ -13,3 +13,6 @@
       - name: Configure SSH
         include_role:
           name: ansible-epic-ssh-config
+      - name: Configure the firewall
+        include_role:
+          name: ansible-epic-firewalld

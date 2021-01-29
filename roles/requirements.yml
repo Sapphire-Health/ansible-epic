@@ -13,4 +13,8 @@
       src: https://github.com/Sapphire-Health/ansible-epic-ssh-config.git
       scm: 'git'
       version: origin/master
+    - name: ansible-epic-firewalld
+      src: https://github.com/Sapphire-Health/ansible-epic-firewalld.git
+      scm: 'git'
+      version: origin/master
 ...

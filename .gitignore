@@ -1,0 +1,4 @@
+roles/*
+!roles/requirements.yml
+hosts_test.yml
+vars_test.yml

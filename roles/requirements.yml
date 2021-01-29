@@ -1,0 +1,7 @@
+---
+  roles:
+    - name: ansible-epic-users-and-groups
+      src: https://github.com/Sapphire-Health/ansible-epic-users-and-groups.git
+      scm: 'git'
+      version: origin/master
+...

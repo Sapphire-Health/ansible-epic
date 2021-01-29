@@ -1,0 +1,7 @@
+---
+  - name: Provision Epic Server
+    hosts: "{{ match_host }}"
+    tasks:
+      - name: Create Users and Groups
+        include_role:
+          name: ansible-epic-users-and-groups

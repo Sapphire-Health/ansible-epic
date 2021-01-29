@@ -9,7 +9,8 @@
       scm: 'git'
       version: origin/master
     - name: ansible-epic-ssh-config
-      src: https://{{ GIT_TOKEN }}@github.com/Sapphire-Health/ansible-epic-ssh-config.git
+      #private repo
+      src: https://github.com/Sapphire-Health/ansible-epic-ssh-config.git
       scm: 'git'
       version: origin/master
 ...

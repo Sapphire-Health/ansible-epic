@@ -4,15 +4,13 @@
       playbook_user: "{{ ansible_user | default(lookup('env', 'USER')) }}"
     hosts: "{{ match_host }}"
     tasks:
-      - name: Create Users and Groups
+      - name: Get all roles
+        include_vars:
+          file: roles/requirements.yml
+          name: requirements
+      - name: Run playbook roles
         include_role:
-          name: ansible-epic-users-and-groups
-      - name: Create Directories and Set Permissions
-        include_role:
-          name: ansible-epic-directories-and-permissions
-      - name: Configure SSH
-        include_role:
-          name: ansible-epic-ssh-config
-      - name: Configure the firewall
-        include_role:
-          name: ansible-epic-firewalld
+          name: "{{ role.name }}"
+        loop: "{{ requirements.roles }}"
+        loop_control:
+          loop_var: role

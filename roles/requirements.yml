@@ -17,4 +17,8 @@
       src: https://github.com/Sapphire-Health/ansible-epic-firewalld.git
       scm: 'git'
       version: origin/master
+    - name: ansible-subscription-manager
+      src: https://github.com/Sapphire-Health/ansible-subscription-manager.git
+      scm: 'git'
+      version: origin/master
 ...

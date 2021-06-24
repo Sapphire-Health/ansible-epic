@@ -14,3 +14,6 @@
         loop: "{{ requirements.roles }}"
         loop_control:
           loop_var: role
+        when:
+          - limit_roles is defined
+          - role.name in limit_roles

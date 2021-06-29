@@ -15,5 +15,4 @@
         loop_control:
           loop_var: role
         when:
-          - limit_roles is defined
-          - role.name in limit_roles
+          - limit_roles is defined and role.name in limit_roles or 'all' in limit_roles

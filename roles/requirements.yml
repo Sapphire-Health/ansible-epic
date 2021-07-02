@@ -25,4 +25,8 @@
       src: https://github.com/Sapphire-Health/ansible-epic-instaserver.git
       scm: 'git'
       version: origin/master
+    - name: ansible-epic-tuned
+      src: https://github.com/Sapphire-Health/ansible-epic-tuned.git
+      scm: 'git'
+      version: origin/master
 ...

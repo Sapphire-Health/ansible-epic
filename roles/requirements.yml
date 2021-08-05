@@ -12,11 +12,10 @@
       src: https://github.com/Sapphire-Health/ansible-epic-directories-and-permissions.git
       scm: 'git'
       version: origin/master
-    - name: ansible-epic-ssh-config
-      #private repo
-      src: https://github.com/Sapphire-Health/ansible-epic-ssh-config.git
-      scm: 'git'
-      version: origin/master
+    #- name: ansible-epic-ssh-config
+    #  src: https://github.com/Sapphire-Health/ansible-epic-ssh-config.git
+    #  scm: 'git'
+    #  version: origin/master
     - name: ansible-epic-firewalld
       src: https://github.com/Sapphire-Health/ansible-epic-firewalld.git
       scm: 'git'

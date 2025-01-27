@@ -31,3 +31,8 @@ ansible -m ping -i inventory.aws_ec2.yml --limit='!_Windows' all
 ```
 ansible -m win_ping -i inventory.aws_ec2.yml --limit='_Windows' all
 ```
+
+## Provision Ansible host
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01* playbooks/deploy_rhel_ansible_vm.yml
+```

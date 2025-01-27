@@ -3,4 +3,6 @@
     - name: amazon.aws
     - name: community.aws
     - name: ansible.posix
+    - name: community.general
+    - name: ansible.windows
 ...

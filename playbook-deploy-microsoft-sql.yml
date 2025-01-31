@@ -1,0 +1,5 @@
+---
+- name: Install Microsoft SQL
+  hosts: all
+  roles:
+    - ansible-microsoft-sql

@@ -1,0 +1,5 @@
+volumes:
+  disk1:
+    letter: G
+  disk2:
+    letter: H

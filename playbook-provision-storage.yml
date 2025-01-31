@@ -1,0 +1,10 @@
+---
+- name: Provision Storage
+  hosts: all
+  roles:
+    # run the AWS linux/windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin
+    - role: "aws-windows-storage"
+      when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
+    # run the Azure linux/windows storage role if the host is in the default aws_ec2 group created by the Azure inventory plugin
+    - role: "aws-linux-storage"
+      when: "'azure_rm' in group_names and ansible_os_family == 'RedHat'"

@@ -1,8 +1,14 @@
 ---
   collections:
+    # required for AWS inventory and storage provisioning
     - name: amazon.aws
+    # required for AWS storage provisioning
     - name: community.aws
     - name: ansible.posix
     - name: community.general
     - name: ansible.windows
+    - name: community.windows
+    # required for Azure inventory
+    - name: azure.azcollection
+    - name: ansible.utils
 ...

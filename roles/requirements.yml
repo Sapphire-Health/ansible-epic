@@ -1,5 +1,11 @@
 ---
   roles:
+    # required by aws-linux-storage
     - name: linux-system-roles.storage
-    - name: another
+    - name: aws-linux-storage
+      src: https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git
+    - name: aws-windows-storage
+      src: https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git
+    - name: microsoft-sql
+      src: https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git
 ...

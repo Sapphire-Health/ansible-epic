@@ -4,6 +4,7 @@ volumes:
   disk2:
     letter: H
 
+sql_install_dir_http_url_path: https://sapphirefilerepo.blob.core.windows.net/public
 dsc_sqltempdbdir: 'H:\SQLDATA'
 dsc_sqltempdblogdir: 'H:\SQLDATA'
 dsc_installsqldatadir: 'G:'
@@ -14,5 +15,15 @@ dsc_sqlsyssdminaccounts:
   - sapphire\Domain Admins
   - .\ssm-user
 # dsc_features: SQL
-dsc_features: SQLENGINE
+ssms_install_exe: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28/SSMS-Setup-ENU.exe
+ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
+sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
 dsc_sapwd: mySApwd123
+
+sql_databases:
+  - name: 'DB1'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    recovery_model: 'FULL'
+  - name: 'DB2'
+    collation: 'SQL_Latin1_General_CP1_CI_AS'
+    recovery_model: 'FULL'

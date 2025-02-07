@@ -3,3 +3,16 @@ volumes:
     letter: G
   disk2:
     letter: H
+
+dsc_sqltempdbdir: 'H:\SQLDATA'
+dsc_sqltempdblogdir: 'H:\SQLDATA'
+dsc_installsqldatadir: 'G:'
+dsc_sqlbackupdir: 'H:\SQL_BACKUP'
+dsc_sqluserdbdir: 'G:\DATA'
+dsc_sqluserdblogdir: 'H:\LOG'
+dsc_sqlsyssdminaccounts: 
+  - sapphire\Domain Admins
+  - .\ssm-user
+# dsc_features: SQL
+dsc_features: SQLENGINE
+dsc_sapwd: mySApwd123

@@ -12,7 +12,7 @@ dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'
 dsc_sqluserdblogdir: 'H:\LOG'
 dsc_sqlsyssdminaccounts:
-  - sapphire\Domain Admins
+  - sapphire\sqladmin
   - .\ssm-user
 # dsc_features: SQL
 ssms_install_exe: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28/SSMS-Setup-ENU.exe
@@ -24,6 +24,10 @@ sql_databases:
   - name: 'DB1'
     collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'FULL'
+    users:
+      - sapphire\sqladmin
   - name: 'DB2'
     collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'FULL'
+    users:
+      - sapphire\sqladmin

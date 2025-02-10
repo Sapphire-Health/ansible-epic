@@ -1,0 +1,20 @@
+---
+- name: Install Microsoft SQL
+  hosts: all
+  vars:
+    domain_name: 'sapphire'
+    domain_admin: 'admin'
+    domain_admin_password: 'Loc@lPassw0rd'
+    domain_controller: 'sapphire.dev'
+  tasks:
+    - name: Check for ActiveDirectory Powershell Module
+      ansible.windows.win_feature:
+        name: "RSAT-AD-PowerShell"
+        state: present
+    - name: Remove computer from Active Directory using a windows machine
+      microsoft.ad.computer:
+        identity: "{{ computer }}$" # The $ is important
+        state: absent
+        domain_username: "{{ domain_name }}\\{{ domain_admin }}"
+        domain_password: "{{ domain_admin_password }}"
+        domain_server: "{{ domain_controller }}"

@@ -1,6 +1,25 @@
 # Ansible Azure Inventory
 
-## Install Prerequisites
+## Create venvs for Azure and AWS
+```
+mkdir -p ~/venv/aws
+mkdir -p ~/venv/azure
+python3 -m venv ~/venv/aws
+python3 -m venv ~/venv/azure
+```
+
+## Activate venv and Install Deps for AWS
+```
+source ~/venv/aws/bin/activate
+ansible-galaxy collection install amazon.aws community.aws
+pip3 install botocore boto3
+# deactivate
+```
+
+## Install Common Deps in Both venvs
+```
+pip3 install ansible-lint
+```
 
 ### Install Ansible Roles and Collections
 ```
@@ -8,11 +27,6 @@ ansible-galaxy collection install -r collections/requirements.yml
 ansible-galaxy role install -r roles/requirements.yml
 # install azure collection requirements
 pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
-```
-
-### Install Python Dependencies
-```
-pip3 install botocore boto3 ansible-lint
 ```
 
 ### Install the AWS SSM plugin

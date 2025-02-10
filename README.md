@@ -13,7 +13,7 @@ python3 -m venv ~/venv/azure
 source ~/venv/aws/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/aws/bin/activate
 pip3 install botocore boto3 ansible-lint
-ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general
+ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad
 # deactivate
 ```
 
@@ -22,17 +22,19 @@ ansible-galaxy collection install amazon.aws community.aws ansible.utils communi
 source ~/venv/azure/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/azure/bin/activate
 pip3 install ansible-lint
-ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general
+ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad
 pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
 # deactivate
 ```
 
-### Install Ansible Roles and Collections (DEPRECATED STEP)
+### Install Ansible Roles
 ```
-# ansible-galaxy collection install -r collections/requirements.yml
-# ansible-galaxy role install -r roles/requirements.yml
-# install azure collection requirements
-# pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
+# for dev
+git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git ./roles/aws_linux_storage
+git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
+git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
+# for prod
+ansible-galaxy role install -r roles/requirements.yml
 ```
 
 ### Install the AWS SSM plugin
@@ -78,12 +80,20 @@ ansible -m ping -i inventory.aws_ec2.yml --limit='!_Windows' all
 
 ## Ping Windows Hosts to Check Connectivity
 ```
-ansible -m win_ping -i inventory.aws_ec2.yml --limit='epic-kpr-sapph' all
+ansible -m win_ping -i inventory.aws_ec2.yml --limit='epic-sql-sapph' all
 ```
 
 ## Provision Ansible host
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01* playbook-deploy-rhel-ansible-vm.yml
+```
+
+## AD Provisioning
+```
+# set up users and groups
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
+# remove computer from AD
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
 ```
 
 ## Provision Storage

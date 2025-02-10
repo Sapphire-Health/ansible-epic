@@ -11,4 +11,6 @@
     # required for Azure inventory
     - name: azure.azcollection
     - name: ansible.utils
+    # required to manage AD
+    - name: microsoft.ad
 ...

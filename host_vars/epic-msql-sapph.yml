@@ -11,7 +11,7 @@ dsc_installsqldatadir: 'G:'
 dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'
 dsc_sqluserdblogdir: 'H:\LOG'
-dsc_sqlsyssdminaccounts: 
+dsc_sqlsyssdminaccounts:
   - sapphire\Domain Admins
   - .\ssm-user
 # dsc_features: SQL

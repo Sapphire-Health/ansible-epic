@@ -2,3 +2,10 @@ plugin: azure.azcollection.azure_rm
 # include_vm_resource_groups:
 #  - rg-myrg
 auth_source: cli
+conditional_groups:
+  azure_rm: true
+hostnames:
+  - name
+keyed_groups:
+  - prefix: azure_rm
+    key: os_profile.system

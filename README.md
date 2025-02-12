@@ -33,6 +33,7 @@ pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/re
 git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git ./roles/aws_linux_storage
 git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
+ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml
 ```
@@ -99,6 +100,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph -e computer=ep
 ## Provision Storage
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-storage.yml
+ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
 ```
 
 ## Install SQL

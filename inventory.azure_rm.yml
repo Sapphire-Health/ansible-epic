@@ -4,6 +4,7 @@ plugin: azure.azcollection.azure_rm
 auth_source: cli
 conditional_groups:
   azure_rm: true
+  has_managed_disks: "data_disks | count > 0"
 hostnames:
   - name
 keyed_groups:

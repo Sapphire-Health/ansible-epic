@@ -31,6 +31,7 @@ pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/re
 ```
 # for dev
 git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git ./roles/aws_linux_storage
+git clone https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git ./roles/azure_linux_storage
 git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
 ansible-galaxy role install linux-system-roles.storage

@@ -1,0 +1,7 @@
+ansible_shell_type: powershell
+# ansible_winrm_transport: ntlm
+ansible_user: azureuser
+ansible_password: Loc@lPassw0rd
+ansible_connection: psrp
+ansible_port: 5985
+ansible_psrp_proxy: socks5://localhost:12345

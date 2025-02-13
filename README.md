@@ -12,7 +12,7 @@ python3 -m venv ~/venv/azure
 ```
 source ~/venv/aws/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/aws/bin/activate
-pip3 install botocore boto3 ansible-lint
+pip3 install botocore boto3 ansible-lint pypsrp pywinrm requests[socks]
 ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad
 # deactivate
 ```
@@ -21,7 +21,7 @@ ansible-galaxy collection install amazon.aws community.aws ansible.utils communi
 ```
 source ~/venv/azure/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/azure/bin/activate
-pip3 install ansible-lint
+pip3 install ansible-lint pypsrp pywinrm requests[socks]
 ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad
 pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
 # deactivate
@@ -107,4 +107,12 @@ ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-pr
 ## Install SQL
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deploy-microsoft-sql.yml
+```
+
+## SSH into Linux Host
+```
+ssh azureuser@10.3.2.70 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p 
+-q azureuser@20.114.208.150"
+# create tunnel
+ssh -D 12345 azureuser@20.114.208.150
 ```

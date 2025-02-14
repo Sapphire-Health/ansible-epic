@@ -1,8 +1,8 @@
 volumes:
   disk1:
-    letter: G
+    DriveLetter: G
   disk2:
-    letter: H
+    DriveLetter: H
 
 sql_install_dir_http_url_path: https://sapphirefilerepo.blob.core.windows.net/public
 dsc_sqltempdbdir: 'H:\SQLDATA'
@@ -21,13 +21,17 @@ sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-2842
 dsc_sapwd: mySApwd123
 
 sql_databases:
-  - name: 'DB1'
+  - name: 'Kuiper'
     collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'FULL'
     users:
       - sapphire\sqladmin
-  - name: 'DB2'
+  - name: 'SystemPulse'
     collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'FULL'
     users:
       - sapphire\sqladmin
+
+# Local SQL accounts
+# SPAdmin
+# SPUser

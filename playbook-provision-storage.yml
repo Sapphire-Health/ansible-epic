@@ -9,8 +9,8 @@
     - role: "aws_linux_storage"
       when: "'aws_ec2' in group_names and ansible_os_family == 'RedHat'"
     # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
-    # - role: "azure_windows_storage"
-    #   when: "'azure_rm_windows' in group_names"
+    - role: "azure_windows_storage"
+      when: "'azure_rm_windows' in group_names"
     # run the Azure linux storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is linux
     - role: "azure_linux_storage"
       when: "'azure_rm_linux' in group_names"

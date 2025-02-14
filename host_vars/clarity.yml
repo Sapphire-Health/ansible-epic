@@ -1,0 +1,13 @@
+volumes:
+  disk1:
+    DriveLetter: G
+    FSFormat: NTFS
+  disk2:
+    DriveLetter: H
+    FSFormat: NTFS
+  disk3:
+    AccessPath: G:\disk3
+    FSFormat: NTFS
+  disk4:
+    AccessPath: H:\disk4
+    FSFormat: NTFS

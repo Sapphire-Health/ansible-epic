@@ -18,19 +18,62 @@ dsc_sqlsyssdminaccounts:
 ssms_install_exe: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28/SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
-dsc_sapwd: mySApwd123
+dsc_sapwd: mySApwd123 # can be defined as env var DSC_SAPWD=''
 
+# Create SQL accounts
+sql_users:
+  - name: spadmin
+    #password: spadmin123 # can be defined as env var SQLUSERSPADMINPASSWORD=''
+  - name: spuser
+    password: spuser123
+
+# Create Databases
 sql_databases:
   - name: 'Kuiper'
-    collation: 'SQL_Latin1_General_CP1_CI_AS'
-    recovery_model: 'FULL'
+    db_size: 256 MB
+    db_max_size: UNLIMITED
+    db_growth: 256 MB
+    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+    # recovery_model: 'FULL'
+    # log_path: 'H:\LOG'
+    # data_path: 'G:\DATA'
+    roles:
+      - name: db_datawriter
+        members:
+          - spuser
+      - name: db_datareader
+        members:
+          - spuser
+      - name: db_owner
+        members: 
+          - sapphire\sqladmin
+          - spadmin
     users:
       - sapphire\sqladmin
+      - spuser
+      - spadmin
   - name: 'SystemPulse'
-    collation: 'SQL_Latin1_General_CP1_CI_AS'
-    recovery_model: 'FULL'
+    db_size: 256 MB
+    db_max_size: UNLIMITED
+    db_growth: 256 MB
+    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+    # recovery_model: 'FULL'
+    # log_path: 'H:\LOG'
+    # data_path: 'G:\DATA'
+    roles:
+      - name: db_owner
+        members:
+          - spadmin
+      - name: db_datawriter
+        members:
+          - spuser
+      - name: db_datareader
+        members:
+          - spuser
     users:
-      - sapphire\sqladmin
+      # - sapphire\sqladmin
+      - spadmin
+      - spuser
 
 # Local SQL accounts
 # SPAdmin

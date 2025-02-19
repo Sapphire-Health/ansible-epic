@@ -1,5 +1,5 @@
 ---
-- name: Install Microsoft SQL
+- name: Remove a computer from AD
   hosts: all
   vars:
     domain_name: 'sapphire'

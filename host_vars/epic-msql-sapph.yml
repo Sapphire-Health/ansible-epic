@@ -33,6 +33,9 @@ sql_databases:
     db_size: 256 MB
     db_max_size: UNLIMITED
     db_growth: 256 MB
+    log_size: 64 MB
+    log_max_size: UNLIMITED
+    log_growth: 128 MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
     # recovery_model: 'FULL'
     # log_path: 'H:\LOG'
@@ -56,6 +59,9 @@ sql_databases:
     db_size: 256 MB
     db_max_size: UNLIMITED
     db_growth: 256 MB
+    log_size: 64 MB
+    log_max_size: UNLIMITED
+    log_growth: 128 MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
     # recovery_model: 'FULL'
     # log_path: 'H:\LOG'

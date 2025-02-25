@@ -30,38 +30,29 @@ sql_users:
 # Create Databases
 sql_databases:
   - name: 'Kuiper'
-    db_size: 256 MB
-    db_max_size: UNLIMITED
+    db_size: 4096 MB
+    db_max_size: 10240 MB
     db_growth: 256 MB
-    log_size: 64 MB
-    log_max_size: UNLIMITED
-    log_growth: 128 MB
+    log_size: 1024 MB
+    log_max_size: 10240 MB
+    log_growth: 500 MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
     # recovery_model: 'FULL'
     # log_path: 'H:\LOG'
     # data_path: 'G:\DATA'
     roles:
-      - name: db_datawriter
-        members:
-          - spuser
-      - name: db_datareader
-        members:
-          - spuser
       - name: db_owner
         members: 
           - sapphire\sqladmin
-          - spadmin
     users:
       - sapphire\sqladmin
-      - spuser
-      - spadmin
   - name: 'SystemPulse'
-    db_size: 256 MB
-    db_max_size: UNLIMITED
+    db_size: 4096 MB
+    db_max_size: 10240 MB
     db_growth: 256 MB
-    log_size: 64 MB
-    log_max_size: UNLIMITED
-    log_growth: 128 MB
+    log_size: 1024 MB
+    log_max_size: 10240 MB
+    log_growth: 500 MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
     # recovery_model: 'FULL'
     # log_path: 'H:\LOG'
@@ -74,6 +65,9 @@ sql_databases:
         members:
           - spuser
       - name: db_datareader
+        members:
+          - spuser
+      - name: sp_user
         members:
           - spuser
     users:

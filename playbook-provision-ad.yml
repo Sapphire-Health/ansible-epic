@@ -2,12 +2,12 @@
 - name: Install Microsoft SQL
   hosts: all
   vars:
-    sql_admin: 'sqladmin'
-    sql_admin_password: 'SQL@dmin123!'
+    kpr_domain_user: 'sqladmin'
+    # kpr_domain_user_password: # can be defined as env var KPR_DOMAIN_PASSWORD=''
     sqladmin_group: 'Epic SQL Admins'
     domain_name: 'sapphire'
     domain_admin: 'admin'
-    domain_admin_password: 'Loc@lPassw0rd'
+    # domain_admin_password: # can be defined as env var DOMAIN_ADMIN_PASSWORD=''
     domain_controller: 'sapphire.dev'
   tasks:
     - name: Check for ActiveDirectory Powershell Module
@@ -21,17 +21,17 @@
         category: security
         path: ou=Users,ou=sapphire,dc=sapphire,dc=dev
         domain_username: "{{ domain_name }}\\{{ domain_admin }}"
-        domain_password: "{{ domain_admin_password }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{ domain_controller }}"
         state: present
     - name: Create AD User
       microsoft.ad.user:
-        name: "{{ sql_admin }}"
-        password: "{{ sql_admin_password }}"
+        name: "{{ kpr_domain_user }}"
+        password: "{{ lookup('ansible.builtin.env', 'KPR_DOMAIN_PASSWORD', default=kpr_domain_user_password) }}"
         update_password: on_create
         state: present
         domain_username: "{{ domain_name }}\\{{ domain_admin }}"
-        domain_password: "{{ domain_admin_password }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{ domain_controller }}"
         path: ou=Users,ou=sapphire,dc=sapphire,dc=dev
         groups:

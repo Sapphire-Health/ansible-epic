@@ -4,7 +4,7 @@ kpr_install_source_file: Epic November 2024 Kuiper Fix Package 6.msi
 kpr_install_files_path: C:\Temp
 # kpr_product_id: "{AB6C7518-3EAD-45AE-996F-9288F9EF170D}"
 kpr_domain_user: 'sapphire\sqladmin'
-kpr_domain_user_password: 'SQL@dmin123!'
+# kpr_domain_user_password: # can be defined as env var KPR_DOMAIN_PASSWORD=''
 kpr_msi_args: >-
   SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated Security=True"
   APPPOOLNAME="sapphire\sqladmin"

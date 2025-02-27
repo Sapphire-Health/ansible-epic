@@ -38,6 +38,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git 
 git clone https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git ./roles/azure_linux_storage
 git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
+git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git ./roles/kuiper
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml
@@ -114,10 +115,19 @@ ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-st
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deploy-microsoft-sql.yml
 ```
 
+## Install Kuiper
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-kuiper.yml
+```
+
+## Deploy Prometheus
+```
+ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become
+```
+
 ## SSH into Linux Host
 ```
-ssh azureuser@10.3.2.70 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p 
--q azureuser@20.114.208.150"
+ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q azureuser@20.114.208.150"
 # create tunnel
 ssh -D 12345 azureuser@20.114.208.150
 ```

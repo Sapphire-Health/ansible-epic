@@ -1,13 +1,14 @@
 ---
-  roles:
-    # required by aws-linux-storage
-    - name: linux-system-roles.storage
-    - name: aws_linux_storage
-      src: https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git
-    - name: azure_linux_storage
-      src: https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git
-    - name: aws_windows_storage
-      src: https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git
-    - name: microsoft_sql
-      src: https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git
-...
+roles:
+  # required by aws-linux-storage
+  - name: linux-system-roles.storage
+  - name: aws_linux_storage
+    src: https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git
+  - name: azure_linux_storage
+    src: https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git
+  - name: aws_windows_storage
+    src: https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git
+  - name: microsoft_sql
+    src: https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git
+  - name: kuiper
+    src: https://github.com/Sapphire-Health/ansible-role-kuiper.git

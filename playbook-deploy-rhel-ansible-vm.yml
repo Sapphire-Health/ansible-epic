@@ -2,15 +2,6 @@
 - name: Get route info
   hosts: all
   vars:
-    # ansible_collections:
-    #   - amazon.aws
-    #   - community.aws
-    #   - community.general
-    #   - community.windows
-    #   - ansible.posix
-    #   - ansible.windows
-    # ansible_roles:
-    #   - linux-system-roles.storage
   tasks:
     - name: Install ansible and other dependencies
       ansible.builtin.dnf:
@@ -28,24 +19,6 @@
         - krb5-workstation
         - vim
       become: true
-    # - name: Install pip python dependencies
-    #   ansible.builtin.pip:
-    #     name: "{{ item }}"
-    #     state: present
-    #   loop:
-    #     - boto3
-    #     - pywinrm
-    #     - pykerberos
-    # - name: Install collections
-    #   community.general.ansible_galaxy_install:
-    #     type: collection
-    #     name: "{{ item }}"
-    #   loop: "{{ ansible_collections }}"
-    # - name: Install roles
-    #   community.general.ansible_galaxy_install:
-    #     type: role
-    #     name: "{{ item }}"
-    #   loop: "{{ ansible_roles }}"
     - name: Create users
       ansible.builtin.user:
         name: "{{ item.name }}"

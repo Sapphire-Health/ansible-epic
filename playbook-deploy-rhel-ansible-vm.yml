@@ -1,7 +1,6 @@
 ---
 - name: Get route info
   hosts: all
-  vars:
   tasks:
     - name: Install ansible and other dependencies
       ansible.builtin.dnf:

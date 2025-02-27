@@ -23,7 +23,7 @@ dsc_sapwd: mySApwd123 # can be defined as env var DSC_SAPWD=''
 # Create SQL accounts
 sql_users:
   - name: spadmin
-    #password: spadmin123 # can be defined as env var SQLUSERSPADMINPASSWORD=''
+    # password: spadmin123 # can be defined as env var SQLUSERSPADMINPASSWORD=''
   - name: spuser
     password: spuser123
 
@@ -42,7 +42,7 @@ sql_databases:
     # data_path: 'G:\DATA'
     roles:
       - name: db_owner
-        members: 
+        members:
           - sapphire\sqladmin
     users:
       - sapphire\sqladmin

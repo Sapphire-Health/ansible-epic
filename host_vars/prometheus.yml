@@ -1,0 +1,44 @@
+users:
+  - name: lyasspiehler
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUjpRGqqXd4z1tGR1fXVyk86n8RGpCzGs75OQBdKDK4TsMus7faoaBZtoWK86j9PPcVWPegGq31ftWXtONj8AqrtsBaN/Qn/jpYiYMXTkixTp09aXDZlSS/NCwYPIxybnj8npVua73BGQH5u34PpZXSB07ioTgKOC87Tas48iOKQArHuPpCmancAV7qWDkv51ALOijQZjydPHr/TPSzq4yXg3q+KD52DXoiusLShAHqmzmtQjNmW3FFxBAzrEP7yJfKctiRZpb7qm0wgvaS4E+XSyredwUbAuZr0O23OLGFTUupuuw2YQNBGJUEp1WgD+LRizTyW+sb3DUVivNS5GtYlbOHImfj0B/ecx9ztJreNR1N+e8jCpAGuDv0nbDD7I6rU5vKuK2IRorUKbVZuah8CRn6wmhRKsPNfYBGPSkInwcU7AebxF10ROzBQcf6bdSCXWhAHFAvKxWDq0jJJvnabsn9VSLd4AEOMLoOrNWPKm4lGsNndEXIdMSaQH/vyM= EPC-lyasAWSKP-C
+  - name: taylorwegener
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRYME99FAZMwH4yOvDZ/l1EF21HAsILZFH9BxlP2rwqo2IBjh1oX/10JPzcKzy9tK8gTkyhSpuSpKs65lJj/77Cn81JsD/u01TphakePMu0a8JQsw7ymhXj+QGdBB7x6ZHUM+oj6HZElf5W2CykuG4cbKoEcA6JnqCPBN/TdBvgrUKekpio165H8d3yvrQPEmqXU90qf4M4zJowAtGB5nTSil9oKS8+5i3WjO3wCq52BpTEx0pU6352Jw9Ksm7rpnDGaNe/kgYppBWTTqD8L027UHN4anvbG01PCoXy7OVpSvCZrb9NRT+xHvfVwKjrdmaOA+MYGqsyUjNjgrKfdzqfY9rqobXJRwHQDHFlujmJe9BUJBxQU4gKRuQZZsB3M7B19jWKiCfKEMX+GNzQjvTZzLk5Q3N9a7L1rzQRs4iQlOOXCrcX5EkNijHbFMeujBFdNxT8nzMNs8OwVFjVKfhuW+WonW/uqugA1Z35/m7CyUpEI4/O9jliMfsuFf+ofc= azuread\taylorwegener@SHLT-0Y1P
+  - name: giannirubio
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHj7JSm/ZSD7WwjnUAg1o1l4cJU61OhhhkM38tx5lfV5FSCBMdx7GyxrwWd0FmZwVlpn26p7OZlSLRtvGuo639cixe4UGnn5TI8gDB6Fm6SNictuL+WtHegqoE7Um0ZU95pEl5U9eEvrvpQdh0UZGj/u1S4XrLO7kZk2iDDFAJrL5RFvxsCsL+zHaDHch6Q8APf60ZCLVDr0dwO5ZiXzdgaEMocTFarCGp2Y82o8iwXpNMW/aXDgR1SJDIv2c8oPhZXa+mX0F8KZQ2m7DYVYxhIj9q+KoNxpntYkv1nhkyY0aWUEA/3Qb4H2XtuxzmrDuKCMBY8t4YjKRjNMQ6zrjDmiCsakKAtUSVgJKk9qrGUr3OFqpGOvX66xlXzeu8RuAUSmsu5aPXazaFymrxc/8dEWJARANNO7USVir2jVL8UFlpcxEJPC5pG8SXeRpaS+Lw3YdiFdf690N1UpcuUsUAMaY1+l1UhhbWH9zGSwYl7klMCTu2Y8qbHjBmSIgXd2c= azuread\giannirubio@SH-4306
+  - name: tylerjordan
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvjEOXFf2iSvsndFrAm6pNxrB1Dzwg/IFGDj0WraYmS9a+z5fphH+VtNguS301L05mKZpIg8RmHZnMLBEyAjRPTdlIQHzTMjvspPtYpyaamWFMWQTL2B6f10f2W5tEY6Tc7A4TludR517lY3jFNSU/dQ1ZV/dHTHWyZx0MnWiNb165Y5pMd4MYfORX6JAolQUWMttqFejHVRT6hSAlAzJUAQMJtvIv1sFxrUELpGzBmWAuxzRO8z4UA1awRsgr7foadaYIU2odDkSqsPP+mQHe4/ejHDxH5I12ePUa0aBA5FidKYIQFCdcs/XH3A1O87RBEczuMObSy6sCmGDhoUZqX/w3r+89hm2Exbmtgdyzn8ReCtHK/nv4i4c2s37nG7lpMDayI7feYvjeKG0xEQsmsWnkWKurPT+6FibDnRAiLmFO03gsrlQTiJ22IQqDBhX395dU9i/9ef3k/hqltT3/PV9aiZNYrQnb8crOnXiHuVcoWleHfOIX+1F/o/4X8sU= azuread\tylerjordan@Sapphy
+  - name: kristomaine
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDKvkJO6Q7iSM9X7gondTJN2h25rl/Y0lFTZjpDT/wUB tomainek92@gmail.com
+storage_safe_mode: true # set to false when resizing PVs
+storage_layout:
+  - name: data
+    grow_to_fill: false # set to true when resizing PVs
+    type: lvm
+    disks:
+      - prometheus_data
+    volumes:
+      - name: prometheus
+        size: "80g"
+        mount_point: "/epic"
+        fs_type: xfs
+        state: present

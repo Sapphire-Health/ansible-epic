@@ -1,25 +1,25 @@
 storage_safe_mode: true # set to false when resizing PVs
 storage_layout:
-- name: epic
-  grow_to_fill: false # set to true when resizing PVs
-  type: lvm
-  disks:
-    - inst
-    - mpeodb
-  volumes:
-    - name: shared
-      size: "80g"
-      raid_level: striped
-      #verify striping with this command "lvs -o+lv_layout,stripes"
-      mount_point: "/epic"
-      fs_type: xfs
-      state: present
-- name: db
-  disks:
-    - oldtstodb
-  volumes:
-    - name: users
-      size: "20g"
-      fs_type: xfs
-      state: present
-      mount_point: "/mnt/app/users"
+  - name: epic
+    grow_to_fill: false # set to true when resizing PVs
+    type: lvm
+    disks:
+      - inst
+      - mpeodb
+    volumes:
+      - name: shared
+        size: "80g"
+        raid_level: striped
+        # verify striping with this command "lvs -o+lv_layout,stripes"
+        mount_point: "/epic"
+        fs_type: xfs
+        state: present
+  - name: db
+    disks:
+      - oldtstodb
+    volumes:
+      - name: users
+        size: "20g"
+        fs_type: xfs
+        state: present
+        mount_point: "/mnt/app/users"

@@ -1,0 +1,86 @@
+---
+- name: Deploy PKIaaS.io
+  hosts: all
+  tasks:
+    - name: Install all updates
+      ansible.builtin.apt:
+        name: "*"
+        cache_valid_time: 3600
+        update_cache: true
+        state: present
+      register: update_output
+    - name: Show installed updates
+      ansible.builtin.debug:
+        var: update_output
+    - name: Install dependencies
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        cache_valid_time: 3600
+        update_cache: true
+        state: present
+    - name: Add Docker repo using key from URL.
+      ansible.builtin.deb822_repository:
+        name: docker
+        types: deb
+        uris: "https://download.docker.com/linux/ubuntu"
+        architectures: amd64
+        suites: '{{ ansible_distribution_release }}'
+        components: stable
+        signed_by: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        enabled: true
+    - name: Install Docker
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+          - python3-docker
+        update_cache: true
+        state: present
+    - name: "Add ansible user to docker group ({{ ansible_user }})"
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: true
+    - name: Install Docker
+      ansible.builtin.apt:
+        pkg:
+          - apache2
+          - apache2-utils
+        update_cache: true
+        state: present
+    - name: Enable multiple apache2 modules
+      community.general.apache2_module:
+        name: "{{ item }}"
+        state: present
+        warn_mpm_absent: false
+        ignore_configcheck: true
+      loop:
+        - proxy_wstunnel
+        - proxy_scgi
+        - lbmethod_heartbeat
+        - lbmethod_bytraffic
+        - lbmethod_byrequests
+        # - lbmethod_bybusyness
+        # - proxy_connect
+        # - proxy_hcheck
+        # - proxy_http
+        # - proxy_balancer
+        # - ssl
+        # - rewrite
+        # - headers
+      notify:
+        - Restart apache
+
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
+        name: apache2
+        state: restarted

@@ -7,6 +7,8 @@ kpr_domain_user: 'sapphire\sqladmin'
 # kpr_domain_user_password: # can be defined as env var KPR_DOMAIN_PASSWORD=''
 kpr_msi_args: >-
   SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated Security=True"
-  APPPOOLNAME="sapphire\sqladmin"
-  APPPOOLPASS="SQL@dmin123!"
   ADDLOCAL="ALL"
+  
+# add below options for load balanced kuiper
+# AES_PASSWORD=""
+# AES_PASSWORD_CONFIRM=""

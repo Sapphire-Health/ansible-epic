@@ -2,4 +2,10 @@
 - name: Install Microsoft SQL
   hosts: all
   roles:
-    - microsoft_sql
+    # run the AWS windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is windows
+    - role: "aws_windows_storage"
+      when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
+    # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
+    - role: "azure_windows_storage"
+      when: "'azure_rm_windows' in group_names"
+    - role: microsoft_sql

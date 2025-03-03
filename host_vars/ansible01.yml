@@ -35,3 +35,9 @@ users:
     shell: /bin/bash
     create_home: true
     ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDt09jKwMF+DzkRKfYsCBfWJBV3/vAbR+/NKFyPrkpVHo76QBp8CUH7K4XaPB6nMlt8cssggbsX9FINK5lMu+In8tnZxqY4ROntp+bKaH07R9jZmsb6TjThaKi0qM8XzGiO+Sc1RyHXu22sVgIgogsh4p4g20A1qxdLrIIgaU/VPcMN+OJMVhRvHz8RK/u+J0BQt3jkzJ1t1y4F1U6b/mB7F3LE6Ms5RobWQZa3qfhs706JbJ/KeFv3Wdf9IaTcla6hJVh0KzvITRpSgnVziLkNz/4MceqZWHvyBkFyOxbMaHNbVAt0+G3HvdTLjikDK+3g4UX9E5k0XhB60AQIij9Qj5Lh2dC5aaLXo0L8BUwP6Cl/24/yMXn+1S2P2yxvHmnZIkOscJFRDYudqrlDlC/6s2HjfbYM/EF+BsFv0GtMhBGhSKfGwh5TCsMW4EliIfkmkCpUZ8G9arFlPUno9QhI0KwMKA0wbLr+4V8Nw/dtxBaHBhNcFa/Bk1key/LwR88= azuread\chadaiena@SH-4474
+  - name: andresrealpozo
+    groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZX+fLW+YiH1o9iVFddfAqkFYkkkMKFO5/YHzxLnWcu azuread\andresrealpozo@DESKTOP-FRTT9VQ

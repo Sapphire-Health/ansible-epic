@@ -4,7 +4,8 @@ volumes:
   disk2:
     DriveLetter: H
 
-sql_install_dir_http_url_path: https://sapphirefilerepo.blob.core.windows.net/public
+sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
 dsc_sqltempdbdir: 'H:\SQLDATA'
 dsc_sqltempdblogdir: 'H:\SQLDATA'
 dsc_installsqldatadir: 'G:'
@@ -15,9 +16,9 @@ dsc_sqlsyssdminaccounts:
   - sapphire\sqladmin
   - .\ssm-user
 # dsc_features: SQL
-ssms_install_exe: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28/SSMS-Setup-ENU.exe
+smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28
+smss_install_file: SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
-sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
 # dsc_sapwd: # can be defined as env var SQL_SA_PASSWORD=''
 
 # Create SQL accounts

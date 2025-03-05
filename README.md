@@ -40,7 +40,8 @@ git clone https://github.com/Sapphire-Health/ansible-role-azure-windows-storage.
 git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
 git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git ./roles/kuiper
-ansible-galaxy role install linux-system-roles.storage prometheus
+git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
+ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml
 ```

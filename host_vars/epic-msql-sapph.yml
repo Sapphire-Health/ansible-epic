@@ -12,14 +12,14 @@ dsc_installsqldatadir: 'G:'
 dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'
 dsc_sqluserdblogdir: 'H:\LOG'
-dsc_sqlsyssdminaccounts:
+dsc_sqlsysadminaccounts:
   - sapphire\sqladmin
-  - .\ssm-user
+  # - .\ssm-user
 # dsc_features: SQL
 smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28
 smss_install_file: SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
-# dsc_sapwd: # can be defined as env var SQL_SA_PASSWORD=''
+# sql_sa_password: # can be defined as env var SQL_SA_PASSWORD=''
 
 # Create SQL accounts
 sql_users:

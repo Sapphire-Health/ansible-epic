@@ -89,7 +89,7 @@ ansible -m ping -i inventory.aws_ec2.yml --limit='!_Windows' all
 
 ## Ping Windows Hosts to Check Connectivity
 ```
-ansible -m win_ping -i inventory.aws_ec2.yml --limit='epic-sql-sapph' all
+ansible -m win_ping -i inventory.aws_ec2.yml --limit='epic-msql-sapph' all
 ```
 
 ## Provision Ansible host

@@ -2,11 +2,11 @@
 - name: Install Microsoft SQL
   hosts: all
   vars:
-    # kpr_domain_user: 'sapphire\sqladmin'
+    # epic_domain_user: 'sapphire\sqladmin'
     backslash: '\'
-    # domain_user: "{{ lookup('ansible.builtin.env', 'KPR_DOMAIN_USER', default=kpr_domain_user) }}"
-    # kpr_domain_user_password: # can be defined as env var KPR_DOMAIN_PASSWORD=''
-    sqladmin_group: 'Epic SQL Admins'
+    # domain_user: "{{ lookup('ansible.builtin.env', 'EPIC_DOMAIN_USER', default=epic_domain_user) }}"
+    # epic_domain_user_password: # can be defined as env var EPIC_DOMAIN_PASSWORD=''
+    epic_admin_group: 'Epic SQL Admins'
     # domain_name: 'sapphire'
     # domain_admin_user: 'admin' # can be defined as env var DOMAIN_ADMIN_USER=''
     # domain_admin_password: # can be defined as env var DOMAIN_ADMIN_PASSWORD=''
@@ -15,8 +15,8 @@
     - name: Make sure required variables are defined
       ansible.builtin.assert:
         that:
-          - "lookup('ansible.builtin.env', 'KPR_DOMAIN_USER', default=kpr_domain_user) is defined"
-          - "lookup('ansible.builtin.env', 'KPR_DOMAIN_PASSWORD', default=kpr_domain_user_password) is defined"
+          - "lookup('ansible.builtin.env', 'EPIC_DOMAIN_USER', default=epic_domain_user) is defined"
+          - "lookup('ansible.builtin.env', 'EPIC_DOMAIN_PASSWORD', default=epic_domain_user_password) is defined"
           - "lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) is defined"
           - "lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) is defined"
     - name: Check for ActiveDirectory Powershell Module
@@ -25,7 +25,7 @@
         state: present
     - name: Create group
       microsoft.ad.group:
-        name: "{{ sqladmin_group }}"
+        name: "{{ epic_admin_group }}"
         scope: global
         category: security
         path: ou=Users,ou=sapphire,dc=sapphire,dc=dev
@@ -35,8 +35,8 @@
         state: present
     - name: Create AD User
       microsoft.ad.user:
-        name: "{{ (lookup('ansible.builtin.env', 'KPR_DOMAIN_USER', default=kpr_domain_user) | split(backslash))[1] }}"
-        password: "{{ lookup('ansible.builtin.env', 'KPR_DOMAIN_PASSWORD', default=kpr_domain_user_password) }}"
+        name: "{{ (lookup('ansible.builtin.env', 'EPIC_DOMAIN_USER', default=epic_domain_user) | split(backslash))[1] }}"
+        password: "{{ lookup('ansible.builtin.env', 'EPIC_DOMAIN_PASSWORD', default=epic_domain_user_password) }}"
         update_password: on_create
         state: present
         domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
@@ -45,5 +45,5 @@
         path: ou=Users,ou=sapphire,dc=sapphire,dc=dev
         groups:
           add:
-            - "{{ sqladmin_group }}"
+            - "{{ epic_admin_group }}"
         description: "SQL Admin Account"

@@ -2,7 +2,7 @@
 - name: Install Microsoft SQL
   hosts: all
   vars:
-    # epic_domain_user: 'sapphire\sqladmin'
+    # epic_domain_user: 'sapphire\epicadmin'
     backslash: '\'
     # domain_user: "{{ lookup('ansible.builtin.env', 'EPIC_DOMAIN_USER', default=epic_domain_user) }}"
     # epic_domain_user_password: # can be defined as env var EPIC_DOMAIN_PASSWORD=''

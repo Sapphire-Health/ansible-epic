@@ -13,7 +13,7 @@ dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'
 dsc_sqluserdblogdir: 'H:\LOG'
 dsc_sqlsysadminaccounts:
-  - sapphire\sqladmin
+  - sapphire\epicadmin
   # - .\ssm-user
 # dsc_features: SQL
 smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28
@@ -44,9 +44,9 @@ sql_databases:
     roles:
       - name: db_owner
         members:
-          - sapphire\sqladmin
+          - sapphire\epicadmin
     users:
-      - sapphire\sqladmin
+      - sapphire\epicadmin
   - name: 'SystemPulse'
     db_size: 4096 MB
     db_max_size: 10240 MB
@@ -72,7 +72,7 @@ sql_databases:
         members:
           - spuser
     users:
-      # - sapphire\sqladmin
+      # - sapphire\epicadmin
       - spadmin
       - spuser
 

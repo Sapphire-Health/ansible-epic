@@ -1,0 +1,12 @@
+sp_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+# sp_install_source_dir: files
+sp_install_source_file: Epic November 2024 System Pulse Fix Package 1.msi
+sp_install_files_path: C:\Temp
+sp_product_id: "{D70EB964-AA40-4689-9C0C-260E1FEE36F3}"
+sp_msi_args: >-
+  SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated Security=True"
+  ADDLOCAL="ALL"
+  
+# add below options for load balanced kuiper
+# AES_PASSWORD=""
+# AES_PASSWORD_CONFIRM=""

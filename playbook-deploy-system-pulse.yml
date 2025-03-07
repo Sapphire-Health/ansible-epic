@@ -1,0 +1,5 @@
+---
+- name: Install System Pulse
+  hosts: all
+  roles:
+    - system_pulse

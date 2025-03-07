@@ -40,6 +40,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-azure-windows-storage.
 git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git ./roles/aws_windows_storage
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
 git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git ./roles/kuiper
+git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git ./roles/system_pulse
 git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
 ansible-galaxy role install linux-system-roles.storage
 # for prod
@@ -120,6 +121,11 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deplo
 ## Install Kuiper
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-kuiper.yml
+```
+
+## Install System Pulse
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-sp-sapph playbook-deploy-system-pulse.yml
 ```
 
 ## Deploy Prometheus

@@ -12,3 +12,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git
   - name: kuiper
     src: https://github.com/Sapphire-Health/ansible-role-kuiper.git
+  - name: system_pulse
+    src: https://github.com/Sapphire-Health/ansible-role-system-pulse.git

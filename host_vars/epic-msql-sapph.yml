@@ -21,13 +21,6 @@ smss_install_file: SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 # sql_sa_password: # can be defined as env var SQL_SA_PASSWORD=''
 
-# Create SQL accounts
-sql_users:
-  - name: spadmin
-    # password: # can be defined as env var SQL_SPADMIN_PASSWORD=''
-  - name: spuser
-    # password: # can be defined as env var SQL_SPUSER_PASSWORD=''
-
 # Create Databases
 sql_databases:
   - name: 'Kuiper'

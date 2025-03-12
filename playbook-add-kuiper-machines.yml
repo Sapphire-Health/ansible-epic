@@ -9,9 +9,9 @@
         method: POST
         body:
           username: "{{ lookup('ansible.builtin.env', 'KPR_API_USER', default=kpr_api_user) }}"
-          password: "{{ lookup('ansible.builtin.env', 'KPR_API_USER', default=kpr_api_password) }}"
+          password: "{{ lookup('ansible.builtin.env', 'KPR_API_PASSWORD', default=kpr_api_password) }}"
           grant_type: password
-          client_id: d0bb03bd-5734-461a-8f22-8c453195da4b
+          client_id: "{{ lookup('ansible.builtin.env', 'KPR_API_CLIENT_ID', default=kpr_api_client_id) }}"
         body_format: json
         validate_certs: false
       run_once: true

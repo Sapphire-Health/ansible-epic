@@ -9,7 +9,7 @@
       loop:
         # - ansible-core
         - git
-        - rhel-system-roles
+        # - rhel-system-roles
         - python3-pip
         - gcc
         - python3-devel

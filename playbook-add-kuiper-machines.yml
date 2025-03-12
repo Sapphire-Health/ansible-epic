@@ -1,0 +1,60 @@
+---
+- name: Add account to local admins
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Authenticate to the Kuiper API
+      ansible.builtin.uri:
+        url: "{{ lookup('ansible.builtin.env', 'KPR_API_URL', default=kpr_api_url) }}/Kuiper/api/v1/auth"
+        method: POST
+        body:
+          username: "{{ lookup('ansible.builtin.env', 'KPR_API_USER', default=kpr_api_user) }}"
+          password: "{{ lookup('ansible.builtin.env', 'KPR_API_USER', default=kpr_api_password) }}"
+          grant_type: password
+          client_id: d0bb03bd-5734-461a-8f22-8c453195da4b
+        body_format: json
+        validate_certs: false
+      run_once: true
+      delegate_to: localhost
+      register: kuiper_auth
+
+    - name: Show the response
+      ansible.builtin.debug:
+        var: kuiper_auth.json.token
+      run_once: true
+      delegate_to: localhost
+
+    - name: Get machines from Kuiper
+      ansible.builtin.uri:
+        url: "{{ lookup('ansible.builtin.env', 'KPR_API_URL', default=kpr_api_url) }}/Kuiper/api/v1/servers"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ kuiper_auth.json.token }}"
+        validate_certs: false
+      delegate_to: localhost
+      register: kuiper_machines
+      run_once: true
+
+    - name: Show the response
+      ansible.builtin.debug:
+        var: kuiper_machines.json
+      run_once: true
+      delegate_to: localhost
+
+    # - name: Add machines to Kuiper
+    #   ansible.builtin.uri:
+    #     url: "{{ lookup('ansible.builtin.env', 'KPR_API_URL', default=kpr_api_url) }}/Kuiper/api/v1/servers"
+    #     method: POST
+    #     body:
+    #       attributes:
+    #         name: "{{ inventory_hostname }}"
+    #         # associatedApplications: [
+    #         #   "Hyperspace Web"
+    #         # ]
+    #     body_format: json
+    #     headers:
+    #       Authorization: "Bearer {{ kuiper_auth.json.token }}"
+    #     status_code:
+    #       - 201
+    #     validate_certs: false
+    #   delegate_to: localhost

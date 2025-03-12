@@ -1,5 +1,5 @@
 ---
-- name: Install Microsoft SQL
+- name: Provision AD
   hosts: all
   vars:
     # epic_domain_user: 'sapphire\epicadmin'

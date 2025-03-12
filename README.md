@@ -128,6 +128,11 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-sp-sapph playbook-deploy-system-pulse.yml
 ```
 
+## Add domain user to local admins
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-admins.ym
+```
+
 ## Deploy Prometheus
 ```
 ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become

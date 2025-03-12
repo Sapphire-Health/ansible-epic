@@ -1,0 +1,10 @@
+---
+- name: Add account to local admins
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Add domain user to local Administrators group
+      ansible.windows.win_group_membership:
+        name: 'Administrators'
+        members: "{{ lookup('ansible.builtin.env', 'EPIC_DOMAIN_USER', default=epic_domain_user) }}"
+        state: present

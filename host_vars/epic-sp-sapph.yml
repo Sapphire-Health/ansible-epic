@@ -4,6 +4,8 @@ sp_install_source_file: Epic November 2024 System Pulse Fix Package 1.msi
 sp_install_files_path: C:\Temp
 sp_product_id: "{D70EB964-AA40-4689-9C0C-260E1FEE36F3}"
 sp_configuration_editor_exe: "C:\\Program Files (x86)\\Epic\\System Pulse\\ConfigurationEditor\\SystemPulseConfigurationEditor.exe"
+sp_certificate_source_file: systempulse.pfx 
+sp_certificate_common_name: epic-sp-sapph.sapphire.dev
 # add below options for load balanced kuiper
 # AES_PASSWORD=""
 # AES_PASSWORD_CONFIRM=""

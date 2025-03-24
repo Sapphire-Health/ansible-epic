@@ -1,0 +1,65 @@
+name: List Ansible Inventory
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select an environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - nonprod
+          - prod
+          - prometheus
+          - tiny
+
+jobs:
+  list-inventory:
+    name: List AWS EC2 Inventory (${{ github.event.inputs.environment }})
+    runs-on: [self-hosted, linux]
+    environment: ${{ github.event.inputs.environment }}
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create and Activate Python venv
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install botocore boto3 ansible-lint pypsrp pywinrm "requests[socks]"
+
+      - name: Install Ansible Collections
+        run: |
+          source venv/bin/activate
+          ansible-galaxy collection install \
+            amazon.aws community.aws ansible.utils community.windows \
+            ansible.windows ansible.posix community.general microsoft.ad
+
+      - name: Install Ansible Roles
+        run: |
+          mkdir -p roles
+          cd roles
+          git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git aws_linux_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git azure_linux_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-azure-windows-storage.git azure_windows_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git aws_windows_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git microsoft_sql
+          git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git kuiper
+          git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git system_pulse
+          git clone https://github.com/Sapphire-Health/ansible-role-smtp.git smtp
+          git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
+          ansible-galaxy role install linux-system-roles.storage
+
+      - name: List Ansible Inventory
+        run: |
+          source venv/bin/activate
+          ansible-inventory -i inventory.aws_ec2.yml --list --yaml

@@ -1,0 +1,23 @@
+---
+- name: Remove a computer from AD
+  hosts: all
+  vars:
+    domain_name: 'sapphire'
+    domain_admin: 'admin'
+    domain_admin_password: 'Loc@lPassw0rd'
+    domain_controller: 'sapphire.dev'
+  tasks:
+    - name: Remove computer from Active Directory using a windows machine
+      microsoft.ad.membership:
+        # identity: "{{ computer }}$" # The $ is important
+        # state: present
+        # domain_username: "{{ domain_name }}\\{{ domain_admin }}"
+        # domain_password: "{{ domain_admin_password }}"
+        # domain_server: "{{ domain_controller }}"
+        dns_domain_name: ansible.vagrant
+        hostname: mydomainclient
+        domain_admin_user: testguy@ansible.vagrant
+        domain_admin_password: password123!
+        # domain_ou_path: "OU=Windows,OU=Servers,DC=ansible,DC=vagrant"
+        state: domain
+        reboot: true

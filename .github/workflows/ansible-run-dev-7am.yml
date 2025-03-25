@@ -1,0 +1,105 @@
+name: "Ansible Run Dev 7 AM Mon - Fri"
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  run-ansible:
+    name: Run Ansible Scheduled Build (dev)
+    runs-on: [self-hosted, linux]
+    environment: dev
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+      SQL_SPADMIN_PASSWORD: ${{ secrets.SQL_SPADMIN_PASSWORD }}
+      SQL_SPUSER_PASSWORD: ${{ secrets.SQL_SPUSER_PASSWORD }}
+      SQL_SPADMIN_USER: ${{ vars.SQL_SPADMIN_USER }}
+      SQL_SPUSER_USER: ${{ vars.SQL_SPUSER_USER }}
+      SQL_SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+      EPIC_DOMAIN_USER: ${{ vars.EPIC_DOMAIN_USER }}
+      EPIC_DOMAIN_PASSWORD: ${{ secrets.EPIC_DOMAIN_PASSWORD }}
+      DOMAIN_ADMIN_USER: ${{ vars.DOMAIN_ADMIN_USER }}
+      DOMAIN_ADMIN_PASSWORD: ${{ secrets.DOMAIN_ADMIN_PASSWORD }}
+      CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create and Activate Python venv
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install botocore boto3 ansible-lint pypsrp pywinrm "requests[socks]"
+          
+      - name: Install Ansible Collections
+        run: |
+          source venv/bin/activate
+          ansible-galaxy collection install \
+            amazon.aws community.aws ansible.utils community.windows \
+            ansible.windows ansible.posix community.general microsoft.ad
+            
+      - name: Install Ansible Roles
+        run: |
+          mkdir -p roles
+          cd roles
+          git clone https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git aws_linux_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git azure_linux_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-azure-windows-storage.git azure_windows_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git aws_windows_storage
+          git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git microsoft_sql
+          git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git kuiper
+          git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git system_pulse
+          git clone https://github.com/Sapphire-Health/ansible-role-smtp.git smtp
+          git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
+          ansible-galaxy role install linux-system-roles.storage
+          
+      - name: View Ansible Inventory
+        run: |
+          source venv/bin/activate
+          ansible-inventory -i inventory.aws_ec2.yml --list --yaml
+
+      - name: Run Ansible Playbook-Provision-AD.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
+
+      - name: Run Ansible Playbook-Provision-Storage.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-storage.yml
+
+      - name: Run Ansible Playbook-Deploy-Microsoft-SQL.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deploy-microsoft-sql.yml
+
+      - name: Run Ansible Playbook-Deploy-Kuiper.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-kuiper.yml
+
+      - name: Run Ansible Playbook-Deploy-System-Pulse.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-sp-sapph playbook-deploy-system-pulse.yml
+
+      - name: Run Ansible Playbook-Deploy-SMTP.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-smtp-sapph playbook-deploy-smtp.yml
+
+      - name: Run Ansible Playbook-ADD-Local-Admins.yml on HSW Machines
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-admins.yml
+
+      - name: Run Ansible Playbook-Deploy-Prometheus.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become

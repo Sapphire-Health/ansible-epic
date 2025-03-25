@@ -44,7 +44,7 @@ on:
 
 jobs:
   run-ansible:
-    name: Run ${{ github.event.inputs.playbook }} (${{ github.event.inputs.environment }})
+    name: Run playbook-${{ github.event.inputs.playbook }}.yml (${{ github.event.inputs.environment }})
     runs-on: [self-hosted, linux]
     environment: ${{ github.event.inputs.environment }}
 
@@ -96,7 +96,7 @@ jobs:
           git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
           ansible-galaxy role install linux-system-roles.storage
 
-      - name: Run Ansible Playbook
+      - name: Run Ansible Playbook (playbook-${{ github.event.inputs.playbook }}.yml)
         run: |
           source venv/bin/activate
           LIMIT_FLAG=""

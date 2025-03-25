@@ -86,6 +86,11 @@ jobs:
           git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
           ansible-galaxy role install linux-system-roles.storage
 
+      - name: List Ansible Inventory
+        run: |
+          source venv/bin/activate
+          ansible-inventory -i inventory.aws_ec2.yml --list --yaml
+
       - name: Run Ansible Playbook
         run: |
           source venv/bin/activate

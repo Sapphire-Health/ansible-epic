@@ -96,7 +96,7 @@ jobs:
           source venv/bin/activate
           LIMIT_FLAG=""
           if [ -n "${{ github.event.inputs.limit }}" ]; then
-            LIMIT_FLAG="--limit '${{ github.event.inputs.limit }}'"
+            LIMIT_FLAG="--limit=${{ github.event.inputs.limit }}"
           fi
 
           if [ "${{ github.event.inputs.check_mode }}" = "true" ]; then

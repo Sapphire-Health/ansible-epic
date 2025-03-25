@@ -52,6 +52,16 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1
+      SQL_SPADMIN_PASSWORD: ${{ secrets.SQL_SPADMIN_PASSWORD }}
+      SQL_SPUSER_PASSWORD: ${{ secrets.SQL_SPUSER_PASSWORD }}
+      SQL_SPADMIN_USER: ${{ vars.SQL_SPADMIN_USER }}
+      SQL_SPUSER_USER: ${{ vars.SQL_SPUSER_USER }}
+      SQL_SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+      EPIC_DOMAIN_USER: ${{ vars.EPIC_DOMAIN_USER }}
+      EPIC_DOMAIN_PASSWORD: ${{ secrets.EPIC_DOMAIN_PASSWORD }}
+      DOMAIN_ADMIN_USER: ${{ vars.DOMAIN_ADMIN_USER }}
+      DOMAIN_ADMIN_PASSWORD: ${{ secrets.DOMAIN_ADMIN_PASSWORD }}
+      CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
 
     steps:
       - name: Checkout Repository
@@ -85,11 +95,6 @@ jobs:
           git clone https://github.com/Sapphire-Health/ansible-role-smtp.git smtp
           git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
           ansible-galaxy role install linux-system-roles.storage
-
-      - name: List Ansible Inventory
-        run: |
-          source venv/bin/activate
-          ansible-inventory -i inventory.aws_ec2.yml --list --yaml
 
       - name: Run Ansible Playbook
         run: |

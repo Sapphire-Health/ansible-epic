@@ -21,7 +21,7 @@ on:
         default: "provision-ad"
         type: choice
         options:
-          - deploy-microsofy-sql
+          - deploy-microsoft-sql
           - provision-ad
           - add-local-admins
           - deploy-system-pulse

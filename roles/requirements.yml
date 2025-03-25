@@ -14,3 +14,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-kuiper.git
   - name: system_pulse
     src: https://github.com/Sapphire-Health/ansible-role-system-pulse.git
+  - name: smtp
+    src: https://github.com/Sapphire-Health/ansible-role-smtp.git

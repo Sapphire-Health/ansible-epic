@@ -1,0 +1,5 @@
+---
+- name: Install SMTP Forwarder
+  hosts: all
+  roles:
+    - smtp

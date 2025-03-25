@@ -41,6 +41,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.gi
 git clone https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git ./roles/microsoft_sql
 git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git ./roles/kuiper
 git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git ./roles/system_pulse
+git clone https://github.com/Sapphire-Health/ansible-role-smtp.git ./roles/smtp
 git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
 ansible-galaxy role install linux-system-roles.storage
 # for prod
@@ -128,9 +129,14 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-sp-sapph playbook-deploy-system-pulse.yml
 ```
 
+## Install SMTP Forwarder
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-smtp-sapph playbook-deploy-smtp.yml
+```
+
 ## Add domain user to local admins
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-admins.ym
+ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-admins.yml
 ```
 
 ## Deploy Prometheus

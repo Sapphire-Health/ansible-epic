@@ -44,7 +44,7 @@ on:
 
 jobs:
   run-ansible:
-    name: Run ${{ github.event.inputs.playbook }} (${{ github.event.inputs.environment }})
+    name: Run playbook-${{ github.event.inputs.playbook }}.yml (${{ github.event.inputs.environment }})
     runs-on: [self-hosted, linux]
     environment: ${{ github.event.inputs.environment }}
 
@@ -52,6 +52,16 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1
+      SQL_SPADMIN_PASSWORD: ${{ secrets.SQL_SPADMIN_PASSWORD }}
+      SQL_SPUSER_PASSWORD: ${{ secrets.SQL_SPUSER_PASSWORD }}
+      SQL_SPADMIN_USER: ${{ vars.SQL_SPADMIN_USER }}
+      SQL_SPUSER_USER: ${{ vars.SQL_SPUSER_USER }}
+      SQL_SA_PASSWORD: ${{ secrets.SQL_SA_PASSWORD }}
+      EPIC_DOMAIN_USER: ${{ vars.EPIC_DOMAIN_USER }}
+      EPIC_DOMAIN_PASSWORD: ${{ secrets.EPIC_DOMAIN_PASSWORD }}
+      DOMAIN_ADMIN_USER: ${{ vars.DOMAIN_ADMIN_USER }}
+      DOMAIN_ADMIN_PASSWORD: ${{ secrets.DOMAIN_ADMIN_PASSWORD }}
+      CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
 
     steps:
       - name: Checkout Repository
@@ -86,12 +96,12 @@ jobs:
           git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
           ansible-galaxy role install linux-system-roles.storage
 
-      - name: Run Ansible Playbook
+      - name: Run Ansible Playbook (playbook-${{ github.event.inputs.playbook }}.yml)
         run: |
           source venv/bin/activate
           LIMIT_FLAG=""
           if [ -n "${{ github.event.inputs.limit }}" ]; then
-            LIMIT_FLAG="--limit '${{ github.event.inputs.limit }}'"
+            LIMIT_FLAG="--limit=${{ github.event.inputs.limit }}"
           fi
 
           if [ "${{ github.event.inputs.check_mode }}" = "true" ]; then

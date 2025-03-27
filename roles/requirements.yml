@@ -16,3 +16,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-system-pulse.git
   - name: smtp
     src: https://github.com/Sapphire-Health/ansible-role-smtp.git
+  - name: certificate_authority
+    src: https://github.com/Sapphire-Health/ansible-role-certificate-authority.git

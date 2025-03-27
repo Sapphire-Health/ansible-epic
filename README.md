@@ -43,6 +43,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-kuiper.git ./roles/kui
 git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git ./roles/system_pulse
 git clone https://github.com/Sapphire-Health/ansible-role-smtp.git ./roles/smtp
 git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
+git clone https://github.com/Sapphire-Health/ansible-role-certificate-authority.git ./roles/certificate_authority
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml
@@ -150,4 +151,5 @@ ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o User
 # create tunnel
 ssh -D 12345 azureuser@20.114.208.150
 ssh -D 12346 lyasspiehler@34.208.130.180
+ssh ec2-user@10.248.13.13 -i ~/.ssh/id_rsa_provision
 ```

@@ -1,20 +1,30 @@
 ---
 - name: Provision Storage
   hosts: all
-  roles:
+  tasks:
     # run the AWS windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is windows
-    - role: "aws_windows_storage"
+    - name: Provision AWS windows storage
+      ansible.builtin.include_role:
+        name: "aws_windows_storage"
       when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
     # run the AWS linux storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is linux
-    - role: "aws_linux_storage"
-      vars:
-        ansible_become: true
+    - name: Become block for Linux
+      become: true
       when: "'aws_ec2' in group_names and ansible_os_family == 'RedHat'"
+      block:
+        - name: Provision AWS linux storage
+          ansible.builtin.include_role:
+            name: "aws_linux_storage"
     # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
-    - role: "azure_windows_storage"
+    - name: Provision Azure windows storage
+      ansible.builtin.include_role:
+        name: "azure_windows_storage"
       when: "'azure_rm_windows' in group_names"
     # run the Azure linux storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is linux
-    - role: "azure_linux_storage"
-      vars:
-        ansible_become: true
+    - name: Become block for Linux
+      become: true
       when: "'azure_rm_linux' in group_names"
+      block:
+        - name: Provision Azure linux storage
+          ansible.builtin.include_role:
+            name: "azure_linux_storage"

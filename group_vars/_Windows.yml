@@ -1,3 +1,4 @@
+# AWS Windows group vars
 ansible_shell_type: powershell
 
 # ansible_user:

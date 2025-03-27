@@ -1,3 +1,4 @@
+# Azure Linux group vars
 ansible_user: azureuser
 # ansible_ssh_private_key_file: "~/.ssh/lyas_id_rsa"
 # ansible_ssh_private_key_file: '{{ hostvars["ansible01"]["ansible_ssh_private_key_file"] }}'

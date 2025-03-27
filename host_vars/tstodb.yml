@@ -1,25 +1,56 @@
 storage_safe_mode: true # set to false when resizing PVs
 storage_layout:
-  - name: epic
-    grow_to_fill: false # set to true when resizing PVs
-    type: lvm
+  - name: epic_vg
     disks:
-      - inst
-      - mpeodb
+      - tstodb.epic
     volumes:
-      - name: shared
-        size: "80g"
-        raid_level: striped
-        # verify striping with this command "lvs -o+lv_layout,stripes"
-        mount_point: "/epic"
+      - name: epic_lv
+        size: "35g"
         fs_type: xfs
         state: present
-  - name: db
-    disks:
-      - oldtstodb
-    volumes:
-      - name: users
+        mount_point: "/epic"
+      - name: epictmp_lv
+        size: "10g"
+        fs_type: xfs
+        state: present
+        mount_point: "/epic/tmp"
+      - name: epic_core_lv
+        size: "5g"
+        fs_type: xfs
+        state: present
+        mount_point: "/epic_core"
+      - name: tst_lv
         size: "20g"
         fs_type: xfs
         state: present
-        mount_point: "/mnt/app/users"
+        mount_point: "/epic/tst"
+  - name: tst_vg
+    grow_to_fill: false # set to true when resizing PVs
+    type: lvm
+    disks:
+      - tstodb.inst_tst_01
+      - tstodb.inst_tst_02
+      - tstodb.inst_tst_03
+      - tstodb.inst_tst_04
+    volumes:
+      - name: tst01_lv
+        size: "500g"
+        raid_level: striped
+        # verify striping with this command "lvs -o+lv_layout,stripes"
+        mount_point: "/epic/tst01"
+        fs_type: xfs
+        state: present
+  - name: jrn_vg
+    disks:
+      - tstodb.nonprdfiles
+    volumes:
+      - name: jrn_lv
+        size: "20g"
+        fs_type: xfs
+        state: present
+        mount_point: "/epic/jrn"
+      - name: epictmp_lv
+        size: "60g"
+        fs_type: xfs
+        state: present
+        mount_point: "/epicfiles/nonprdfiles"

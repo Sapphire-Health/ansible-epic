@@ -109,9 +109,9 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph -e computer=ep
 
 ## Provision Storage
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-storage.yml --become
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb*,epic-msql-sapph playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
-ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml --become
+ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml
 ```
 
 ## Install SQL

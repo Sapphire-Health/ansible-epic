@@ -1,0 +1,6 @@
+---
+- name: Install windows_exporter
+  hosts: all
+  gather_facts: false
+  roles:
+    - windows_exporter

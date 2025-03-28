@@ -142,7 +142,12 @@ ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-adm
 
 ## Deploy Prometheus
 ```
-ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become
+ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01 playbook-deploy-prometheus.yml --become
+```
+
+## Deploy Prometheus windows_exporter
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-windows_exporter.yml
 ```
 
 ## SSH into Linux Host

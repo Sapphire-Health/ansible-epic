@@ -44,6 +44,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git ./rol
 git clone https://github.com/Sapphire-Health/ansible-role-smtp.git ./roles/smtp
 git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
 git clone https://github.com/Sapphire-Health/ansible-role-certificate-authority.git ./roles/certificate_authority
+git clone https://github.com/Sapphire-Health/ansible-role-windows-exporter.git ./roles/windows_exporter
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml

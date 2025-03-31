@@ -45,6 +45,8 @@ git clone https://github.com/Sapphire-Health/ansible-role-smtp.git ./roles/smtp
 git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git ./roles/prometheus
 git clone https://github.com/Sapphire-Health/ansible-role-certificate-authority.git ./roles/certificate_authority
 git clone https://github.com/Sapphire-Health/ansible-role-windows-exporter.git ./roles/windows_exporter
+git clone https://github.com/Sapphire-Health/ansible-role-linux-exporter.git ./roles/linux_exporter
+ansible-galaxy collection install prometheus.prometheus
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml
@@ -148,7 +150,12 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01 playbook-deploy-prom
 
 ## Deploy Prometheus windows_exporter
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-windows_exporter.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-deploy-windows_exporter.yml
+```
+
+## Deploy Prometheus node_exporter
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_exporter.yml --become
 ```
 
 ## SSH into Linux Host
@@ -157,5 +164,5 @@ ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o User
 # create tunnel
 ssh -D 12345 azureuser@20.114.208.150
 ssh -D 12346 lyasspiehler@34.208.130.180
-ssh ec2-user@10.248.13.13 -i ~/.ssh/id_rsa_provision
+ssh ec2-user@10.248.13.10 -i ~/.ssh/id_rsa_provision
 ```

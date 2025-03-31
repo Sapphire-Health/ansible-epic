@@ -9,17 +9,16 @@
 
     # Mapping of types (from hostname) to OU paths
     ou_map:
-      msql: "OU=SQL,OU=Servers,DC=corp,DC=example,DC=com"
-      hsweb: "OU=HSWeb,OU=Servers,DC=corp,DC=example,DC=com"
-      kpr: "OU=Shared,OU=Servers,DC=corp,DC=example,DC=com"
-      default: "OU=Default,OU=Servers,DC=corp,DC=example,DC=com"
+      nonprod: "OU=NON-PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
+      prod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
+      altprod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
+      default: "OU=New Computers,DC=corp,DC=example,DC=com"
 
   tasks:
 
-    - name: Extract type from hostname
+    - name: Extract environment from hostname
       ansible.builtin.set_fact:
-        machine_type: "{{ ansible_hostname.split('-')[1] | lower }}"
-      when: ansible_hostname is match('.*-.*-.*')
+        machine_type: "{{ ansible_hostname.split('-')[0] | lower }}"
 
     - name: Set target OU based on machine type
       ansible.builtin.set_fact:
@@ -29,6 +28,8 @@
       ansible.builtin.debug:
         msg: "Joining {{ ansible_hostname }} (type: {{ machine_type }}) to OU: {{ target_ou }}"
 
+    # Disable AllSigned code execution?
+
     - name: Join the domain
       microsoft.ad.membership:
         dns_domain_name: "{{ domain_name }}"
@@ -37,3 +38,5 @@
         ou_path: "{{ target_ou }}"
         state: domain
         reboot: true
+
+    # TODO: Diable AllSigned code execution?

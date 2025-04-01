@@ -25,6 +25,7 @@ jobs:
       DOMAIN_ADMIN_USER: ${{ vars.DOMAIN_ADMIN_USER }}
       DOMAIN_ADMIN_PASSWORD: ${{ secrets.DOMAIN_ADMIN_PASSWORD }}
       CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+      CA_PASSPHRASE: ${{ secrets.CA_PASSPHRASE }}
 
     steps:
       - name: Checkout Repository
@@ -42,7 +43,8 @@ jobs:
           source venv/bin/activate
           ansible-galaxy collection install \
             amazon.aws community.aws ansible.utils community.windows \
-            ansible.windows ansible.posix community.general microsoft.ad
+            ansible.windows ansible.posix community.general microsoft.ad \
+            community.crypto prometheus.prometheus
             
       - name: Install Ansible Roles
         run: |
@@ -57,6 +59,9 @@ jobs:
           git clone https://github.com/Sapphire-Health/ansible-role-system-pulse.git system_pulse
           git clone https://github.com/Sapphire-Health/ansible-role-smtp.git smtp
           git clone https://github.com/Sapphire-Health/ansible-role-prometheus.git prometheus
+          git clone https://github.com/Sapphire-Health/ansible-role-certificate-authority.git certificate_authority
+          git clone https://github.com/Sapphire-Health/ansible-role-windows-exporter.git windows_exporter
+          git clone https://github.com/Sapphire-Health/ansible-role-linux-exporter.git linux_exporter
           ansible-galaxy role install linux-system-roles.storage
           
       - name: View Ansible Inventory
@@ -98,3 +103,13 @@ jobs:
         run: |
           source venv/bin/activate
           ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become
+
+      - name: Run Ansible playbook-deploy-windows_exporter.yml on all Windows instances
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-deploy-windows_exporter.yml
+
+      - name: Run Ansible playbook-deploy-node_exporter.yml
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_exporter.yml --become

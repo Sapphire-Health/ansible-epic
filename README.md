@@ -157,6 +157,16 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-deploy-windo
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_exporter.yml --become
 ```
 
+## Deploy Iris
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.yml --become
+```
+
+## Delete VM and attached disks WARNING: INTENDED FOR DEVELOPMENT, USE WITH CAUTION
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-delete-vm-and-disks.yml
+```
+
 ## SSH into Linux Host
 ```
 ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q azureuser@20.114.208.150"

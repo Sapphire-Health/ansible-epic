@@ -23,3 +23,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-windows-exporter.git
   - name: linux_exporter
     src: https://github.com/Sapphire-Health/ansible-role-linux-exporter.git
+  - name: iris
+    src: https://github.com/Sapphire-Health/ansible-role-iris.git

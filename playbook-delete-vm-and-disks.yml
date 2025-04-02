@@ -1,0 +1,63 @@
+---
+- name: Delete VM and disks
+  hosts: all
+  vars_prompt:
+    - name: continue
+      prompt: "WARNING: This will delete VMs and disks. Press enter to continue or Ctrl-C to cancel"
+  tasks:
+    - name: Show EC2 volume info
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname_short }}"
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Get EC2 instance info
+      amazon.aws.ec2_instance_info:
+        filters:
+          "tag:Name": "{{ inventory_hostname_short }}"
+          instance-state-name: ["running"]
+        region: "{{ hostvars[inventory_hostname].placement.region }}"
+      register: ec2_instance
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Show EC2 instance info
+      ansible.builtin.debug:
+        msg: "{{ ec2_instance.instances[0].instance_id }}"
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Make sure one instance was returned
+      ansible.builtin.fail:
+        msg: "No instance found for {{ inventory_hostname_short }}"
+      when: ec2_instance.instances | length == 0 or ec2_instance.instances | length > 1
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Gather EC2 volume info
+      amazon.aws.ec2_vol_info:
+        filters:
+          attachment.instance_id: "{{ ec2_instance.instances[0].instance_id }}"
+        region: "{{ hostvars[inventory_hostname].placement.region }}"
+      register: ec2_vol_info
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Terminate instance
+      amazon.aws.ec2_instance:
+        state: absent
+        instance_ids: "{{ [ec2_instance.instances[0].instance_id] }}"
+        region: "{{ hostvars[inventory_hostname].placement.region }}"
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+    - name: Show EC2 volume info
+      amazon.aws.ec2_vol:
+        id: "{{ item.id }}"
+        state: absent
+        region: "{{ hostvars[inventory_hostname].placement.region }}"
+      delegate_to: localhost
+      vars:
+        ansible_connection: local
+      when: not item.attachment_set[0].delete_on_termination
+      loop: "{{ ec2_vol_info.volumes }}"

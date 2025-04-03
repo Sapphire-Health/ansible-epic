@@ -24,7 +24,7 @@
 
     - name: Extract environment from hostname
       ansible.builtin.set_fact:
-        machine_type: "{{ ansible_hostname.split('-')[0] | lower }}"
+        machine_type: "{{ (ansible_hostname | regex_search('^[^pn]*[pn]')) | lower }}"
 
     - name: Set target OU based on machine type
       ansible.builtin.set_fact:
@@ -41,7 +41,7 @@
         dns_domain_name: "{{ domain_name }}"
         domain_admin_user: "{{ domain_user }}"
         domain_admin_password: "{{ domain_password }}"
-        ou_path: "{{ target_ou }}"
+        domain_ou_path: "{{ target_ou }}"
         state: domain
         reboot: true
 

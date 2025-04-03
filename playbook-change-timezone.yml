@@ -1,9 +1,8 @@
 ---
 - name: Set time zone on Windows servers
   hosts: all
-  become: true
 
   tasks:
     - name: Set time zone
       community.windows.win_timezone:
-        timezone: "{{ lookup('ansible.builtin.env', 'TIMEZONE', default=Mountain Standard Time) }}"
+        timezone: "{{ lookup('ansible.builtin.env', 'TIMEZONE', default='Mountain Standard Time') }}"

@@ -3,16 +3,22 @@
   hosts: windows
 
   vars:
-    domain_name: "sapphire.dev"
+    domain_name: "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=sapphire.dev) }}"
     domain_user: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
     domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
+    
+    # Break the domain into DC components
+    domain_dc_parts: "{{ domain_name.split('.') | map('regex_replace', '^(.*)$', 'DC=\\1') | list }}"
 
-    # Mapping of types (from hostname) to OU paths
+    # Common suffix for all OUs
+    dc_suffix: "{{ domain_dc_parts | join(',') }}"
+
+    # Mapping of types to OU paths, using the domain dynamically
     ou_map:
-      nonprod: "OU=NON-PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
-      prod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
-      altprod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,DC=corp,DC=example,DC=com"
-      default: "OU=New Computers,DC=corp,DC=example,DC=com"
+      nonprod: "OU=NON-PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      prod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      altprod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      default: "OU=New Computers,{{ dc_suffix }}"
 
   tasks:
 

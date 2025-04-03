@@ -49,7 +49,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-linux-exporter.git ./r
 git clone https://github.com/Sapphire-Health/ansible-role-iris.git ./roles/iris
 ansible-galaxy role install linux-system-roles.storage
 # for prod
-ansible-galaxy role install -r roles/requirements.yml
+ansible-galaxy role install -r roles/requirements.yml --force
 ```
 
 ### Install the AWS SSM plugin

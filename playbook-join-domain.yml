@@ -1,6 +1,6 @@
 ---
 - name: Join computer to domain and place in appropriate OU
-  hosts: windows
+  hosts: all
 
   vars:
     domain_name: "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=sapphire.dev) }}"
@@ -15,9 +15,9 @@
 
     # Mapping of types to OU paths, using the domain dynamically
     ou_map:
-      nonprod: "OU=NON-PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
-      prod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
-      altprod: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      azwu2n: "OU=NON-PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      azwu2p: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
+      azcup: "OU=PRD,OU=EpicAZURE,OU=Servers,OU=BZN,{{ dc_suffix }}"
       default: "OU=New Computers,{{ dc_suffix }}"
 
   tasks:

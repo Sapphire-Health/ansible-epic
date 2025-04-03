@@ -2,7 +2,6 @@
 roles:
   # required by aws-linux-storage
   - name: linux-system-roles.storage
-  - name: prometheus.prometheus
   - name: aws_linux_storage
     src: https://github.com/Sapphire-Health/ansible-role-aws-linux-storage.git
   - name: azure_linux_storage

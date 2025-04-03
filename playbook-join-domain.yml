@@ -6,7 +6,7 @@
     domain_name: "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=sapphire.dev) }}"
     domain_user: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
     domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
-    
+
     # Break the domain into DC components
     domain_dc_parts: "{{ domain_name.split('.') | map('regex_replace', '^(.*)$', 'DC=\\1') | list }}"
 

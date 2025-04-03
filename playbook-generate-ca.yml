@@ -1,0 +1,6 @@
+---
+- name: Generate CA
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - certificate_authority

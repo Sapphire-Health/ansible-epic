@@ -176,3 +176,11 @@ ssh -D 12345 azureuser@20.114.208.150
 ssh -D 12346 lyasspiehler@34.208.130.180
 ssh ec2-user@10.248.13.10 -i ~/.ssh/id_rsa_provision
 ```
+
+# VSCode Tunnel Notes
+```
+https://code.visualstudio.com/docs/setup/linux#_install-vs-code-on-linux
+https://dev.to/dorinandreidragan/work-from-anywhere-with-vscode-remote-tunnels-4o5i
+https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/security
+code tunnel user login --provider microsoft
+```

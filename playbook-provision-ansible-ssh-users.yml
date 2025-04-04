@@ -1,5 +1,5 @@
 ---
-- name: Install Kuiper
+- name: Provision Ansible SSH Users
   hosts: all
   tasks:
     - name: Create users
@@ -7,7 +7,7 @@
         name: "{{ item.name }}"
         create_home: "{{ item.create_home }}"
         shell: "{{ item.shell }}"
-        groups: "{{ item.groups }}"
+        groups: "{{ item.groups | default(omit) }}"
         append: "{{ item.append }}"
       loop: "{{ users }}"
     - name: Set authorized keys

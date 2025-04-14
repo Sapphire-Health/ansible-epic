@@ -99,10 +99,10 @@ jobs:
           source venv/bin/activate
           ansible-playbook -i inventory.aws_ec2.yml --limit='*hsw*' playbook-add-local-admins.yml
 
-      - name: Run Ansible Playbook-Deploy-Prometheus.yml
-        run: |
-          source venv/bin/activate
-          ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become
+      # - name: Run Ansible Playbook-Deploy-Prometheus.yml
+      #   run: |
+      #     source venv/bin/activate
+      #     ansible-playbook -i inventory.azure_rm.yml --limit=prometheus playbook-deploy-prometheus.yml --become
 
       - name: Run Ansible playbook-deploy-windows_exporter.yml on all Windows instances
         run: |

@@ -1,8 +1,8 @@
 name: "Ansible Run Dev 7 AM Mon - Fri"
 
 on:
-  schedule:
-    - cron: "0 12 * * 1-5"
+  # schedule:
+  #   - cron: "0 12 * * 1-5"
   workflow_dispatch:
 
 jobs:
@@ -82,7 +82,7 @@ jobs:
       - name: Run Ansible Playbook-Deploy-Kuiper.yml
         run: |
           source venv/bin/activate
-          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-kuiper.yml
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph* playbook-deploy-kuiper.yml
 
       - name: Run Ansible Playbook-Deploy-System-Pulse.yml
         run: |

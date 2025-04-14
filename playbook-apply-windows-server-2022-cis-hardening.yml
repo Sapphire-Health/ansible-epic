@@ -1,0 +1,27 @@
+# install dependencies: ansible-galaxy collection install community.windows ansible.windows trippsc2.cis chocolatey.chocolatey
+---
+- name: Add account to local admins
+  hosts: all
+  roles:
+    - role: trippsc2.cis.windows2022
+      # tags: level1-memberserver
+      vars:
+      # set required vars or disable features requiring them
+        # w2022cis_login_message_text: |
+        #   This is a private computer system managed by Sapphire Health.
+
+        #   Unauthorized access is prohibited. All activity is monitored and recorded.
+
+        #   By using this system, you consent to such monitoring and recording.
+
+        #   If you do not agree to these terms, please log off immediately."
+        # w2022cis_login_message_title: "Sapphire Health - Unauthorized Access Prohibited"
+        # w2022cis_admin_username: "sapphadmin"
+        # w2022cis_guest_username: "sapphguest"
+        w2022cis_level: 1
+        w2022cis_rule_9_3_4_enabled: false # Allow local firewall rules
+        w2022cis_rule_9_3_5_enabled: false # Allow local connection security rules
+        w2022cis_rule_2_3_1_4_enabled: false # don't rename the administrator account
+        w2022cis_rule_2_3_1_5_enabled: false # don't rename the guest account
+        w2022cis_rule_2_3_7_4_enabled: false # don't enable 'Interactive logon: Message text for users attempting to log on
+        w2022cis_rule_2_3_7_5_enabled: false # don't enable 'Interactive logon: Message text for users attempting to log on

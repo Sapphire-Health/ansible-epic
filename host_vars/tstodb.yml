@@ -1,3 +1,9 @@
+iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
+iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
+iris_key_file: iris.key.20250213
+iris_install_files_path: /epic/tmp
+
 storage_safe_mode: true # set to false when resizing PVs
 storage_layout:
   - name: epic_vg

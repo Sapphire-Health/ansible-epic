@@ -26,6 +26,7 @@ jobs:
       DOMAIN_ADMIN_PASSWORD: ${{ secrets.DOMAIN_ADMIN_PASSWORD }}
       CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
       CA_PASSPHRASE: ${{ secrets.CA_PASSPHRASE }}
+      AES_PASSWORD: ${{ secrets.AES_PASSWORD }}
 
     steps:
       - name: Checkout Repository

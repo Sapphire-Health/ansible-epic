@@ -12,7 +12,7 @@ dsc_installsqldatadir: 'G:'
 dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'
 dsc_sqluserdblogdir: 'H:\LOG'
-dsc_sqlsysadminaccounts:
+dsc_sqlsysadminaccounts: # The SQL setup requires at least one system administrator account
   - sapphire\epicadmin
   # - .\ssm-user
 # dsc_features: SQL
@@ -38,8 +38,11 @@ sql_databases:
       - name: db_owner
         members:
           - sapphire\epicadmin
+          - sapphire\testgmsa$
     users:
       - sapphire\epicadmin
+      - spadmin
+      - sapphire\testgmsa$
   - name: 'SystemPulse'
     db_size: 4096 MB
     db_max_size: 10240 MB

@@ -108,7 +108,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01* playbook-deploy-rhe
 # set up users and groups
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
 # remove computer from AD
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
 ```
 
 ## Provision Storage
@@ -125,7 +125,8 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deplo
 
 ## Install Kuiper
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph playbook-deploy-kuiper.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph1 playbook-deploy-kuiper.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph2 playbook-deploy-kuiper.yml
 ```
 
 ## Install System Pulse
@@ -165,7 +166,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.ym
 
 ## Delete VM and attached disks WARNING: INTENDED FOR ITERATIVE DEVELOPMENT TESTING, USE WITH CAUTION
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-delete-aws-instance-and-disks.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-delete-aws-instance-and-disks.yml
 ```
 
 ## SSH into Linux Host

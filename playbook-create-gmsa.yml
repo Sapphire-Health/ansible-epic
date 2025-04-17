@@ -1,0 +1,62 @@
+---
+- name: Configure gMSA's in AD
+  hosts: all
+
+  vars:
+    domain: sapphire.dev
+
+    gmsa_definitions:
+      - name: kuiper-gmsa
+        group: KuiperAllowedHosts
+        members:
+          - epic-kpr-sapph1
+          - epic-kpr-sapph2
+
+      - name: wbs-gmsa
+        group: WbsAllowedHosts
+        members:
+          - epic-msql-sapph
+
+  tasks:
+
+    - name: Install RSAT Active Directory PowerShell module (Windows Server)
+      ansible.windows.win_feature:
+        name: RSAT-AD-PowerShell
+        state: present
+
+    - name: Create gMSA host group and add this server
+      microsoft.ad.group:
+        name: "{{ item.group }}"
+        scope: global
+        category: security
+        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_server: "{{ domain }}"
+        members:
+          add: "{{ item.members | map('regex_replace', '\\$', '') | map('regex_replace', '^(.*)$', '\\1$') | list }}"
+        state: present
+      loop: "{{ gmsa_definitions }}"
+      register: group_create_results
+
+    - name: Build dictionary of group DNs
+      ansible.builtin.set_fact:
+        group_dns: >-
+          {{
+            dict(group_create_results.results | map(attribute='item.group') | zip(
+              group_create_results.results | map(attribute='distinguished_name')
+            ))
+          }}
+
+    - name: Create the gMSA
+      microsoft.ad.service_account:
+        name: "{{ item.name }}"
+        description: "Group Managed Service Account for {{ item.name }}"
+        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_server: "{{ domain }}"
+        dns_hostname: "{{ item.name }}.{{ domain }}"
+        allowed_to_retrieve_password:
+          add:
+            - "{{ group_dns[item.group] }}"
+        state: present
+      loop: "{{ gmsa_definitions }}"

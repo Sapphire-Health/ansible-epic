@@ -38,6 +38,14 @@ sql_databases:
       - name: db_owner
         members:
           - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
+      - name: db_ddladmin
+        members:
+          - sapphire\kuiper-gmsa$
+      - name: db_datawriter
+        members:
+          - sapphire\kuiper-gmsa$
+      - name: db_datareader
+        members:
           - sapphire\kuiper-gmsa$
     users:
       - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed

@@ -37,12 +37,11 @@ sql_databases:
     roles:
       - name: db_owner
         members:
-          - sapphire\epicadmin
-          - sapphire\testgmsa$
+          - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
+          - sapphire\kuiper-gmsa$
     users:
-      - sapphire\epicadmin
-      - spadmin
-      - sapphire\testgmsa$
+      - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
+      - sapphire\kuiper-gmsa$
   - name: 'SystemPulse'
     db_size: 4096 MB
     db_max_size: 10240 MB

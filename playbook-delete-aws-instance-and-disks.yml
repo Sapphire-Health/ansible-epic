@@ -1,6 +1,7 @@
 ---
 - name: Delete VM and disks
   hosts: all
+  gather_facts: false
   vars_prompt:
     - name: continue
       prompt: "WARNING: This will delete VMs and disks. Press enter to continue or Ctrl-C to cancel"

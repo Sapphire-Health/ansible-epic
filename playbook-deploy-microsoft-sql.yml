@@ -3,16 +3,119 @@
   hosts: all
   tasks:
     # run the AWS windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is windows
-    - name: Include AWS Windows Storage
-      ansible.builtin.include_role:
-        name: aws_windows_storage
-      when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
-    # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
-    - name: Include Azure Windows Storage
-      ansible.builtin.include_role:
-        name: azure_windows_storage
-      when: "'azure_rm_windows' in group_names"
+    # - name: Include AWS Windows Storage
+    #   ansible.builtin.include_role:
+    #     name: aws_windows_storage
+    #   when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
+    # # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
+    # - name: Include Azure Windows Storage
+    #   ansible.builtin.include_role:
+    #     name: azure_windows_storage
+    #   when: "'azure_rm_windows' in group_names"
 
-    - name: Install Microsoft SQL
-      ansible.builtin.include_role:
-        name: microsoft_sql
+    - name: Created required role
+      ansible.windows.win_dsc:
+        resource_name: SqlScriptQuery
+        Id: "ConfigureDatabaseFiles"
+        InstanceName: "{{ dsc_instancename }}"
+        Variable: "ROLE_NAME=ASPStateAdmin"
+        Encrypt: Optional
+        SetQuery: |
+          USE [msdb]
+          GO
+          CREATE ROLE [$(ROLE_NAME)] AUTHORIZATION [dbo]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_add_category] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_add_job] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_add_jobschedule] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_add_jobserver] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_add_jobstep] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_delete_job] TO [$(ROLE_NAME)]
+          GO
+          use [msdb]
+          GO
+          GRANT EXECUTE ON [dbo].[sp_update_job] TO [$(ROLE_NAME)]
+          GO
+        GetQuery: |
+          USE [msdb]
+          GO
+          SELECT name, type_desc
+          FROM sys.database_principals
+          WHERE name = '$(ROLE_NAME)';
+          GO
+        TestQuery: |
+          USE [msdb]
+          GO
+          IF EXISTS (
+            SELECT 1
+            FROM sys.database_principals
+            WHERE name = '$(ROLE_NAME)'
+          )
+            PRINT 'Found $(ROLE_NAME) role'
+          ELSE
+            RAISERROR ('Did not find $(ROLE_NAME) role', 16, 1)
+          GO
+
+    # - name: Install Microsoft SQL
+    #   ansible.builtin.include_role:
+    #     name: microsoft_sql
+
+    - name: Grant required permissions to the Kuiper service account
+      ansible.windows.win_dsc:
+        resource_name: SqlScriptQuery
+        Id: "ConfigureDatabaseFiles"
+        InstanceName: "{{ dsc_instancename }}"
+        Variable: "SERVICE_USERNAME={{ service_username }}"
+        Encrypt: Optional
+        SetQuery: |
+          USE [master]
+          GO
+          GRANT EXECUTE ON SCHEMA::dbo TO "$(SERVICE_USERNAME)"
+          GO
+        GetQuery: |
+          USE [master]
+          GO
+          SELECT
+            dp.grantee_principal_id,
+            USER_NAME(dp.grantee_principal_id) AS grantee_username,
+            dp.permission_name,
+            dp.state_desc,
+            dp.class,
+            dp.major_id,
+            dp.minor_id
+          FROM
+            sys.database_permissions dp
+          WHERE USER_NAME(dp.grantee_principal_id) = '$(SERVICE_USERNAME)'
+          GO
+        TestQuery: |
+          USE [master]
+          GO
+          IF EXISTS (
+            SELECT 1
+            FROM sys.database_permissions dp
+            WHERE dp.permission_name = 'EXECUTE'
+              AND dp.class = 3 -- class 3 = SCHEMA
+              AND dp.major_id = SCHEMA_ID('dbo')
+              AND USER_NAME(dp.grantee_principal_id) = '$(SERVICE_USERNAME)'
+          )
+            PRINT 'Found grant permission for $(SERVICE_USERNAME)'
+          ELSE
+            RAISERROR ('Did not find grant permission for $(SERVICE_USERNAME)', 16, 1)
+          GO

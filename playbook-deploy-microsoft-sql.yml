@@ -3,15 +3,15 @@
   hosts: all
   tasks:
     # run the AWS windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is windows
-    # - name: Include AWS Windows Storage
-    #   ansible.builtin.include_role:
-    #     name: aws_windows_storage
-    #   when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
-    # # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
-    # - name: Include Azure Windows Storage
-    #   ansible.builtin.include_role:
-    #     name: azure_windows_storage
-    #   when: "'azure_rm_windows' in group_names"
+    - name: Include AWS Windows Storage
+      ansible.builtin.include_role:
+        name: aws_windows_storage
+      when: "'aws_ec2' in group_names and ansible_os_family == 'Windows'"
+    # run the Azure windows storage role if the host is in the default azure_rm group created by the Azure inventory plugin and os is windows
+    - name: Include Azure Windows Storage
+      ansible.builtin.include_role:
+        name: azure_windows_storage
+      when: "'azure_rm_windows' in group_names"
 
     - name: Created required role
       ansible.windows.win_dsc:
@@ -73,9 +73,9 @@
             RAISERROR ('Did not find $(ROLE_NAME) role', 16, 1)
           GO
 
-    # - name: Install Microsoft SQL
-    #   ansible.builtin.include_role:
-    #     name: microsoft_sql
+    - name: Install Microsoft SQL
+      ansible.builtin.include_role:
+        name: microsoft_sql
 
     - name: Grant required permissions to the Kuiper service account
       ansible.windows.win_dsc:

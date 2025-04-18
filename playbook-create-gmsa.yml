@@ -47,6 +47,10 @@
             ))
           }}
 
+    - name: Pause for 1 minute(s) to wait for replication
+      ansible.builtin.pause:
+        minutes: 1
+
     - name: Create the gMSA
       microsoft.ad.service_account:
         name: "{{ item.name }}"

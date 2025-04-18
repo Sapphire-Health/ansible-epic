@@ -8,6 +8,8 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-azure-linux-storage.git
   - name: aws_windows_storage
     src: https://github.com/Sapphire-Health/ansible-role-aws-windows-storage.git
+  - name: azure_windows_storage
+    src: https://github.com/Sapphire-Health/ansible-role-azure-windows-storage.git
   - name: microsoft_sql
     src: https://github.com/Sapphire-Health/ansible-role-microsoft-sql.git
   - name: kuiper

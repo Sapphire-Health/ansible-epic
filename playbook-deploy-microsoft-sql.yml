@@ -13,6 +13,10 @@
         name: azure_windows_storage
       when: "'azure_rm_windows' in group_names"
 
+    - name: Install Microsoft SQL
+      ansible.builtin.include_role:
+        name: microsoft_sql
+
     - name: Created required role
       ansible.windows.win_dsc:
         resource_name: SqlScriptQuery
@@ -72,10 +76,6 @@
           ELSE
             RAISERROR ('Did not find $(ROLE_NAME) role', 16, 1)
           GO
-
-    - name: Install Microsoft SQL
-      ansible.builtin.include_role:
-        name: microsoft_sql
 
     - name: Grant required permissions to the Kuiper service account
       ansible.windows.win_dsc:

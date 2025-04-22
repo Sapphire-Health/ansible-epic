@@ -25,3 +25,4 @@
         w2022cis_rule_2_3_1_5_enabled: false # don't rename the guest account # noqa: var-naming[no-role-prefix]
         w2022cis_rule_2_3_7_4_enabled: false # don't enable 'Interactive logon: Message text for users attempting to log on # noqa: var-naming[no-role-prefix]
         w2022cis_rule_2_3_7_5_enabled: false # don't enable 'Interactive logon: Message text for users attempting to log on # noqa: var-naming[no-role-prefix]
+        w2022cis_rule_2_3_11_4_enabled: false # don't enable Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types']

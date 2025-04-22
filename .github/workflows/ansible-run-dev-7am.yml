@@ -43,7 +43,7 @@ jobs:
           ansible-galaxy collection install \
             amazon.aws community.aws ansible.utils community.windows \
             ansible.windows ansible.posix community.general microsoft.ad \
-            community.crypto prometheus.prometheus --force
+            community.crypto prometheus.prometheus trippsc2.cis --force
             
       - name: Install Ansible Roles
         run: |
@@ -72,6 +72,11 @@ jobs:
         run: |
           source venv/bin/activate
           ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
+
+      - name: Run CIS hardening playbook on Windows VMs
+        run: |
+          source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-apply-windows-server-2022-cis-hardening.yml
 
       - name: Run Ansible Playbook-Deploy-Microsoft-SQL.yml
         run: |

@@ -17,7 +17,7 @@ python3 -m venv ~/venv/azure
 source ~/venv/aws/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/aws/bin/activate
 pip3 install botocore boto3 ansible-lint pypsrp pywinrm requests[socks]
-ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus
+ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus trippsc2.cis
 # deactivate
 ```
 
@@ -26,7 +26,7 @@ ansible-galaxy collection install amazon.aws community.aws ansible.utils communi
 source ~/venv/azure/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/azure/bin/activate
 pip3 install ansible-lint pypsrp pywinrm requests[socks]
-ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus
+ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus trippsc2.cis
 pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
 # deactivate
 ```
@@ -95,7 +95,7 @@ ansible -m ping -i inventory.aws_ec2.yml --limit='!_Windows' all
 
 ## Ping Windows Hosts to Check Connectivity
 ```
-ansible -m win_ping -i inventory.aws_ec2.yml --limit='epic-msql-sapph' all
+ansible -m win_ping -i inventory.aws_ec2.yml --limit='_Windows' all
 ```
 
 ## Provision Ansible host
@@ -113,7 +113,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epi
 
 ## Provision Storage
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb*,epic-msql-sapph playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
 ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml
 ```
@@ -162,6 +162,11 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_ex
 ## Deploy Iris
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.yml --become
+```
+
+## Apply CIS remediations to Windows machines
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-apply-windows-server-2022-cis-hardening.yml
 ```
 
 ## Delete VM and attached disks WARNING: INTENDED FOR ITERATIVE DEVELOPMENT TESTING, USE WITH CAUTION

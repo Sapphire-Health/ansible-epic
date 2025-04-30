@@ -71,6 +71,7 @@ jobs:
       - name: Run Ansible Playbook-Provision-AD.yml
         run: |
           source venv/bin/activate
+          ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-create-gmsa.yml
           ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
 
       - name: Run CIS hardening playbook on Windows VMs

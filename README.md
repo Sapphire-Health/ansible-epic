@@ -188,5 +188,14 @@ ssh ec2-user@10.248.13.10 -i ~/.ssh/id_rsa_provision
 https://code.visualstudio.com/docs/setup/linux#_install-vs-code-on-linux
 https://dev.to/dorinandreidragan/work-from-anywhere-with-vscode-remote-tunnels-4o5i
 https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/security
+apt install code
+or
+curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
+tar -xf vscode_cli.tar.gz
+cp code /usr/share/bin/
+
 code tunnel user login --provider microsoft
+code tunnel
+or
+code tunnel service install
 ```

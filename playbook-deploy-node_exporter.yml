@@ -2,5 +2,12 @@
 - name: Install node_exporter
   hosts: all
   gather_facts: true
+  pre_tasks:
+    - name: Allow Prometheus traffic on TCP port 9100
+      ansible.posix.firewalld:
+        port: 9100/tcp
+        permanent: true
+        state: enabled
+        immediate: true
   roles:
     - linux_exporter

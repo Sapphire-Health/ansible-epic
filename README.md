@@ -47,6 +47,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-certificate-authority.
 git clone https://github.com/Sapphire-Health/ansible-role-windows-exporter.git ./roles/windows_exporter
 git clone https://github.com/Sapphire-Health/ansible-role-linux-exporter.git ./roles/linux_exporter
 git clone https://github.com/Sapphire-Health/ansible-role-iris.git ./roles/iris
+git clone https://github.com/Sapphire-Health/ansible-role-domain-join.git ./roles/domain_join
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml --force

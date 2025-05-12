@@ -26,3 +26,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-linux-exporter.git
   - name: iris
     src: https://github.com/Sapphire-Health/ansible-role-iris.git
+  - name: domain_join
+    src: https://github.com/Sapphire-Health/ansible-role-domain-join.git

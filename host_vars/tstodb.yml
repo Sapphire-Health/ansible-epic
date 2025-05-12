@@ -4,6 +4,8 @@ iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
 iris_key_file: iris.key.20250213
 iris_install_files_path: /epic/tmp
 
+ou_path: OU=Computers,DC=sapphire,DC=dev
+
 storage_safe_mode: true # set to false when resizing PVs
 storage_layout:
   - name: epic_vg

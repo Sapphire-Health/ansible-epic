@@ -1,12 +1,12 @@
 ---
-  - name: Playbook to configure network
-    hosts: all
-    become: yes
-    vars:
-      network_state:
-        dns-resolver:
-          config:
-            search:
-              - lcmchealth.org
-    roles:
-      - linux-system-roles.network
+- name: Playbook to configure network
+  hosts: all
+  become: true
+  vars:
+    network_state:
+      dns-resolver:
+        config:
+          search:
+            - "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}"
+  roles:
+    - linux-system-roles.network

@@ -1,0 +1,31 @@
+[sssd]
+domains = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}
+config_file_version = 2
+services = nss, pam
+
+[domain/{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}]
+ignore_group_members = True
+ad_enabled_domains = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}
+override_gid = 1101
+ad_gpo_access_control = disabled
+ad_gpo_ignore_unreadable = True
+override_homedir = /home/%u
+default_shell = /bin/bash
+krb5_store_password_if_offline = True
+cache_credentials = True
+krb5_realm = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | upper }}
+realmd_tags = manages-system joined-with-adcli
+id_provider = ad
+ad_domain = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}
+use_fully_qualified_names = False
+ldap_id_mapping = True
+access_provider = ad
+simple_allow_groups = {{ domain_groups | join(',') }}
+timeout = 30
+case_sensitive = False
+dyndns_update = True
+dyndns_refresh_interval = 43200
+dyndns_ttl = 3600
+dyndns_auth = none
+ad_hostname = {{ inventory_hostname }}
+dyndns_iface = ens160

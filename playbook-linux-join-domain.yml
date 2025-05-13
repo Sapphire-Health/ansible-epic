@@ -1,0 +1,6 @@
+---
+  - name: Playbook to join Linux machines to an AD domain
+    hosts: all
+    become: yes
+    roles:
+      - domain_join

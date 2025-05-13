@@ -16,10 +16,12 @@ cache_credentials = True
 krb5_realm = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | upper }}
 realmd_tags = manages-system joined-with-adcli
 id_provider = ad
+access_provider = ad
+chpass_provider = ad
+access_provider = ad
 ad_domain = {{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=domain_name) | lower }}
 use_fully_qualified_names = False
 ldap_id_mapping = True
-access_provider = ad
 simple_allow_groups = {{ domain_groups | join(',') }}
 timeout = 30
 case_sensitive = False

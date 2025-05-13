@@ -1,0 +1,6 @@
+---
+  - name: Playbook to register hosts with Satellite
+    hosts: all
+    become: yes
+    roles:
+      - subscription_manager

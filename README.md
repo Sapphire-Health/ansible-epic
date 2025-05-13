@@ -176,6 +176,12 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=_Windows playbook-apply-window
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-delete-aws-instance-and-disks.yml
 ```
 
+## Configure Linux Search Suffix
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-configure-linux-search-suffix.yml
+
+## Linux Join Domain
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml
+
 ## SSH into Linux Host
 ```
 ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q azureuser@20.114.208.150"

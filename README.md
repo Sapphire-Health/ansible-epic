@@ -179,6 +179,9 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-delet
 ## Configure Linux Search Suffix
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-configure-linux-search-suffix.yml
 
+## Linux Create Local Users and Groups
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' -e @extra_vars/users.yml playbook-linux-provision-users-and-groups.yml
+
 ## Linux Join Domain
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml
 

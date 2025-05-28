@@ -1,0 +1,49 @@
+# install mkpassword and use the command "mkpasswd --method=SHA-512" to generate the passwords
+# root_pw: $6$UmG3SBDt4XEBpUSy$B/JU8PK0ar.MPSXjeayUNo4qkRF8e7BigQKincDRl1.JCU.LpCeInccOGMJBGx3HMevfiSJAqNFadCC/QIFyx/
+create_groups:
+  - { name: 'epicsys', gid: '1100' }
+  - { name: 'epicuser', gid: '1101' }
+  - { name: 'irisusr', gid: '1102' }
+  - { name: 'cachegrp', gid: '1103' }
+  - { name: 'dmngrp', gid: '1104' }
+  - { name: 'iscagent', gid: '1105' }
+  #- { name: 'analyst', gid: '1106' }
+  #- { name: 'epicis', gid: '1107' }
+  #- { name: 'epicts', gid: '1108' }
+  #- { name: 'epicssts', gid: '1109' }
+create_users:
+  - name: epicadm
+    password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
+    uid: 1100
+    group: epicsys
+    groups: epicuser, cachegrp, dmngrp, irisusr
+    append: yes
+    shell: /bin/bash
+  - name: epicdmn
+    password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
+    uid: 1101
+    group: epicuser
+    groups: dmngrp
+    append: yes
+    shell: /bin/bash
+  - name: epicsupt
+    password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
+    uid: 1102
+    group: epicuser
+    groups: 
+    append: yes
+    shell: /bin/bash
+  - name: epictxt
+    # password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
+    uid: 1103
+    group: epicuser
+    groups: 
+    append: yes
+    shell: /bin/bash
+  - name: iscagent
+    password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
+    uid: 1104
+    group: iscagent
+    groups: 
+    append: yes
+    shell: /bin/bash

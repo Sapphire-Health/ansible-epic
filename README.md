@@ -164,6 +164,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_ex
 ## Deploy Iris
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.yml --become
+dev command
 ansible-playbook -i inventory.yml --limit=tstodb.sapphire.dev playbook-deploy-iris.yml --become -e @extra_vars/users.yml
 ```
 
@@ -179,6 +180,9 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-delet
 
 ## Configure Linux Search Suffix
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-configure-linux-search-suffix.yml
+
+## Linux Create Local Users and Groups
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags users,groups
 
 ## Linux Join Domain
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml

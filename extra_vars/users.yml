@@ -1,6 +1,6 @@
 # install mkpassword and use the command "mkpasswd --method=SHA-512" to generate the passwords
 # root_pw: $6$UmG3SBDt4XEBpUSy$B/JU8PK0ar.MPSXjeayUNo4qkRF8e7BigQKincDRl1.JCU.LpCeInccOGMJBGx3HMevfiSJAqNFadCC/QIFyx/
-create_groups:
+iris_groups:
   - { name: 'epicsys', gid: '1100' }
   - { name: 'epicuser', gid: '1101' }
   - { name: 'irisusr', gid: '1102' }
@@ -11,7 +11,7 @@ create_groups:
   #- { name: 'epicis', gid: '1107' }
   #- { name: 'epicts', gid: '1108' }
   #- { name: 'epicssts', gid: '1109' }
-create_users:
+iris_users:
   - name: epicadm
     password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
     uid: 1100

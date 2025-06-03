@@ -187,6 +187,11 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-d
 ## Linux Join Domain
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml
 
+## Populate known_hosts on all targeted Linux machines
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
+```
+
 ## SSH into Linux Host
 ```
 ssh azureuser@10.3.2.69 -o ProxyCommand="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p -q azureuser@20.114.208.150"
@@ -212,3 +217,11 @@ code tunnel
 or
 code tunnel service install
 ```
+
+
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags keys

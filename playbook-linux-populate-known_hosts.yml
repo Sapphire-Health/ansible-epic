@@ -1,0 +1,76 @@
+---
+- name: Playbook to join Linux machines to an AD domain
+  hosts: all
+  tasks:
+    - name: Get known hosts
+      ansible.builtin.command:
+        cmd: "ssh-keyscan {{ hostvars[current_host]['ansible_host'] }}"
+      delegate_to: "{{ current_host }}"
+      loop: "{{ ansible_play_hosts }}"
+      register: keyscan
+      changed_when: false
+      loop_control:
+        loop_var: current_host
+      when: inventory_hostname != current_host
+
+    - name: Set fact for known hosts
+      ansible.builtin.set_fact:
+        host_aliases: "{{ host_aliases | default({}) | combine({ hostvars[current_host]['ansible_host'] | lower: aliases | unique }) }}"
+      vars:
+        aliases:
+          - "{{ hostvars[current_host]['ansible_host'] | lower }}"
+          - "{{ hostvars[current_host]['inventory_hostname'] | lower }}"
+          - "{{ hostvars[current_host]['inventory_hostname_short'] | lower }}"
+      loop: "{{ ansible_play_hosts }}"
+      loop_control:
+        loop_var: current_host
+      when: inventory_hostname != current_host
+
+    - name: Show host aliases
+      ansible.builtin.debug:
+        msg: "{{ host_aliases }}"
+      when: host_aliases is defined
+
+    # convert this to set_fact
+    - name: Flatten known hosts
+      ansible.builtin.set_fact:
+        known_hosts: "{{ known_hosts | default([]) + parsed_known_hosts }}"
+      vars:
+        # per user known_hosts
+        # parsed_known_hosts: >-
+        #   {%- set parsed_lines = [] -%}
+        #   {%- for user in iris_users -%}
+        #     {%- for line in item.stdout_lines -%}
+        #       {%- if user.populate_known_hosts is defined and user.populate_known_hosts == true -%}
+        #         {%- set split_line = line.split(' ') -%}
+        #         {%- set parsed_lines = parsed_lines.append({'user': user.name, 'aliases': host_aliases[split_line[0] | lower], 'key': split_line[1] + ' ' + split_line[2]}) -%}
+        #       {%- endif -%}
+        #     {% endfor -%}
+        #   {%- endfor -%}
+        #   {{ parsed_lines }}
+        # per host known_hosts
+        parsed_known_hosts: >-
+          {%- set parsed_lines = [] -%}
+            {%- for line in item.stdout_lines -%}
+              {%- set split_line = line.split(' ') -%}
+              {%- set parsed_lines = parsed_lines.append({'aliases': host_aliases[split_line[0] | lower], 'key': split_line[1] + ' ' + split_line[2]}) -%}
+            {% endfor -%}
+          {{ parsed_lines }}
+      when: keyscan is defined and keyscan.results | length > 0 and 'stdout_lines' in item
+      loop: "{{ keyscan.results }}"
+
+    - name: Show hosts
+      ansible.builtin.debug:
+        msg: "{{ known_hosts }}"
+
+    - name: Populate known_hosts file
+      ansible.builtin.known_hosts:
+        name: "{{ known_host.aliases[0] }}"
+        key: "{{ known_host.aliases | join(',') }} {{ known_host.key }}"
+        path: /etc/ssh/ssh_known_hosts
+        state: present
+      become: true
+      loop: "{{ known_hosts }}"
+      loop_control:
+        loop_var: known_host
+      when: known_hosts is defined and known_hosts | length > 0

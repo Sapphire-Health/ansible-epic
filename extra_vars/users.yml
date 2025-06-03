@@ -20,6 +20,9 @@ iris_users:
     append: yes
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
+    generate_keys: true
+    distribute_keys: true
+    # populate_known_hosts: true
   - name: epicdmn
     password: $6$eRGlsWkTLv6hRUIo$zvG7HusgiOWPqpDW5FPN.O.FXsZWTkH.lJfqd7hAWtpBgT3tGQi/H0Nx.4fzt.Jvkryl0fnJjPMWonvRE0YXT1
     uid: 1101

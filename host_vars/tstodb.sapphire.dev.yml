@@ -44,7 +44,8 @@ storage_layout:
       - name: tst01_lv
         size: "500g"
         raid_level: striped
-        # verify striping with this command "lvs -o+lv_layout,stripes"
+        raid_stripe_size: 4M
+        # verify striping and stripe sixe with this command "lvs -o+lv_layout,stripes,stripe_size"
         mount_point: "/epic/tst01"
         fs_type: xfs
         state: present

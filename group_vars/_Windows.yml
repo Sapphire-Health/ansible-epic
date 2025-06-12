@@ -1,7 +1,7 @@
 # AWS Windows group vars
 ansible_shell_type: powershell
 
-# ansible_user:
-# ansible_password:
-# ansible_connection: psrp
-# ansible_port: 5985
+ansible_user: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER') }}"
+ansible_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD') }}"
+ansible_connection: psrp
+ansible_port: 5985

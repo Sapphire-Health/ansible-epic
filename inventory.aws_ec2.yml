@@ -5,18 +5,18 @@ regions:
   - us-west-1
   - us-west-2
 hostnames:
-  # - name: 'sapphire.dev'
-  #   separator: '.'
-  #   prefix: tag:Name
-  - name: tag:Name
+  - name: 'sapphire.dev'
+    separator: '.'
+    prefix: tag:Name
+  # - name: tag:Name
 keyed_groups:
   - key: state.name
   - key: platform_details
 compose:
   # ansible_host: private_ip_address
   # ansible_host: tags['Name']
-  ansible_host: instance_id
+  # ansible_host: instance_id
   # ansible_host: omit if platform_details == 'Windows' else public_ip_address | default(private_ip_address)
-  # ansible_host: private_ip_address
+  ansible_host: private_ip_address
   # ansible_host: public_ip_address if tags.Name == "bastion" else private_ip_address
   # ansible_user: login_profile | default('ec2-user')

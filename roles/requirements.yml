@@ -30,3 +30,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-domain-join.git
   - name: subscription_manager
     src: https://github.com/Sapphire-Health/ansible-role-subscription-manager.git
+  - name: cogito
+    src: https://github.com/Sapphire-Health/ansible-role-cogito.git

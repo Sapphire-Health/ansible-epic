@@ -49,6 +49,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-linux-exporter.git ./r
 git clone https://github.com/Sapphire-Health/ansible-role-iris.git ./roles/iris
 git clone https://github.com/Sapphire-Health/ansible-role-domain-join.git ./roles/domain_join
 git clone https://github.com/Sapphire-Health/ansible-role-subscription-manager.git ./roles/subscription_manager
+git clone https://github.com/Sapphire-Health/ansible-role-cogito.git ./roles/cogito
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml --force
@@ -103,6 +104,8 @@ ansible -m win_ping -i inventory.aws_ec2.yml --limit='_Windows' all
 ## Provision Ansible host
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01* playbook-deploy-rhel-ansible-vm.yml
+# provision ansible users
+ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01.sapphire.dev -e "ansible_connection=local" playbook-provision-ansible-ssh-users.yml --become
 ```
 
 ## AD Provisioning
@@ -226,6 +229,5 @@ ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-s
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags users,groups
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags keys,known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags users,groups,keys,known_hosts
 instaserver.sh --variable_build

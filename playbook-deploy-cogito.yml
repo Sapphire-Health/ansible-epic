@@ -1,0 +1,5 @@
+---
+- name: Deploy Cogito
+  hosts: all
+  roles:
+    - cogito

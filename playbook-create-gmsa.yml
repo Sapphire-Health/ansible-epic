@@ -3,7 +3,13 @@
   hosts: all
 
   vars:
-    domain: sapphire.dev
+    domain: "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=sapphire.dev) }}"
+
+    managed_by: "CN=Sapphire Admin Group,OU=Security,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }"
+
+    security_group_path: "OU=Security,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }}"
+
+    service_account_path: "OU=Service Accounts,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }}"
 
     gmsa_definitions:
       - name: kuiper-gmsa
@@ -24,21 +30,23 @@
         name: RSAT-AD-PowerShell
         state: present
 
-    - name: Create gMSA host group and add this server
+    - name: Create security groups and servers
       microsoft.ad.group:
         name: "{{ item.group }}"
+        managed_by: "{{managed_by}}"
         scope: global
         category: security
-        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
-        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_username: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{ domain }}"
+        path: "{{security_group_path}}"
         members:
           add: "{{ item.members | map('regex_replace', '\\$', '') | map('regex_replace', '^(.*)$', '\\1$') | list }}"
         state: present
       loop: "{{ gmsa_definitions }}"
       register: group_create_results
 
-    - name: Build dictionary of group DNs
+    - name: Build dictionary of group DNs for lookup
       ansible.builtin.set_fact:
         group_dns: >-
           {{
@@ -47,20 +55,17 @@
             ))
           }}
 
-    - name: Pause for 1 minute(s) to wait for replication
-      ansible.builtin.pause:
-        minutes: 1
-
     - name: Create the gMSA
       microsoft.ad.service_account:
         name: "{{ item.name }}"
         description: "Group Managed Service Account for {{ item.name }}"
-        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
-        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
-        domain_server: "{{ domain }}"
-        dns_hostname: "{{ item.name }}.{{ domain }}"
+        domain_username: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_server: "{{domain}}"
+        dns_hostname: "{{ item.name }}{{domain}}"
+        path: "{{service_account_path}}"
         allowed_to_retrieve_password:
-          add:
+          set:
             - "{{ group_dns[item.group] }}"
         state: present
       loop: "{{ gmsa_definitions }}"

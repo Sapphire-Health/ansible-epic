@@ -1,11 +1,8 @@
 plugin: amazon.aws.aws_ec2
 regions:
   - us-east-1
-  - us-east-2
-  - us-west-1
-  - us-west-2
 hostnames:
-  - name: 'sapphire.dev'
+  - name: 'ire.chop.edu'
     separator: '.'
     prefix: tag:Name
   # - name: tag:Name

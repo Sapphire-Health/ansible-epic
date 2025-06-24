@@ -3,19 +3,50 @@
   hosts: all
 
   vars:
-    domain: sapphire.dev
+    domain: ire.chop.edu
 
     gmsa_definitions:
       - name: kuiper-gmsa
         group: KuiperAllowedHosts
         members:
-          - epic-kpr-sapph1
-          - epic-kpr-sapph2
-
-      - name: wbs-gmsa
-        group: WbsAllowedHosts
+          - epcawssqlp01
+          - epcawskprp01
+      
+      - name: hsw-gmsa
+        group: HSWAllowedHosts
         members:
-          - epic-msql-sapph
+          - epcawshswp01
+          - epcawshswp02
+          - epcawshswp03
+          - epcawshswp04
+          - epcawshswp05
+          - epcawshswp06
+          - epcawshswp07
+          - epcawshswp08
+          - epcawshswp09
+          - epcawshswp10
+          - epcawshswp11
+          - epcawshswp12
+          - epcawshswp13
+          - epcawshswp14
+          - epcawshswp15
+          - epcawshswp16
+          - epcawshswp17
+          - epcawshswp18
+          - epcawshswp19
+          - epcawshswp20
+          - epcawshswp21
+          - epcawshswp22
+          - epcawshswp23
+          - epcawshswp24
+          - epcawshswp25
+          - epcawshswp26
+          - epcawshswp27
+
+      # - name: wbs-gmsa
+      #   group: WbsAllowedHosts
+      #   members:
+      #     - epic-msql-sapph
 
   tasks:
 

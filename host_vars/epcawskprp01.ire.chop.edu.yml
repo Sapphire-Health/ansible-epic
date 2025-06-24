@@ -1,13 +1,13 @@
 # kpr_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
 kpr_install_source_dir: files
-kpr_install_source_file: Epic November 2024 Kuiper Fix Package 6.msi
+kpr_install_source_file: Epic February 2025 Kuiper Fix Package 5.msi
 kpr_install_files_path: C:\Temp
-kpr_gmsa_user: sapphire\kuiper-gmsa$
+kpr_gmsa_user: ire\kuiper-gmsa$
 # kpr_product_id: "{AB6C7518-3EAD-45AE-996F-9288F9EF170D}"
 # epic_domain_user: # can be defined as env var EPIC_DOMAIN_USER=''
 # epic_domain_password: # can be defined as env var EPIC_DOMAIN_PASSWORD=''
 kpr_msi_args: >-
-  SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated Security=True"
+  SQL_STRING="Server=epcawssqlp01.ire.chop.edu;Database=Kuiper;Integrated Security=True"
   ADDLOCAL="ALL"
   
 # add below options for load balanced kuiper

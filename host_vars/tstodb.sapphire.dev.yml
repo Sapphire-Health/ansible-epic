@@ -40,6 +40,11 @@ storage_layout:
       - tstodb.inst_tst_02
       - tstodb.inst_tst_03
       - tstodb.inst_tst_04
+      - tstodb.inst_tst_05
+      - tstodb.inst_tst_06
+      - tstodb.inst_tst_07
+      - tstodb.inst_tst_08
+      - tstodb.inst_tst_09
     volumes:
       - name: tst01_lv
         size: "500g"

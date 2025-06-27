@@ -10,6 +10,7 @@
     windows_cert_path: "C:\\temp\\certs"
     key_usage:
       - digitalSignature
+      - keyEncipherment
     key_usage_critical: true
     extended_key_usage:
       - serverAuth

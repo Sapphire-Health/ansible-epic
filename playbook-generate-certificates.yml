@@ -12,7 +12,7 @@
       - digitalSignature
     key_usage_critical: true
     extended_key_usage:
-      - clientAuth
+      - serverAuth
     not_after: +3650d
 
   tasks:

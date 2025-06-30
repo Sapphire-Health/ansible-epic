@@ -118,7 +118,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epi
 
 ## Provision Storage
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
 ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml
 ```
@@ -189,6 +189,11 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-d
 
 ## Linux Join Domain
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml
+
+## Logoff disconnected Windows sessions
+```
+ansible-playbook -i inventory.azure_rm.yml --limit '_Windows' playbook-logoff-disconnected-sessions.yml
+```
 
 ## Populate known_hosts on all targeted Linux machines
 ```

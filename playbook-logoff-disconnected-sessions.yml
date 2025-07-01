@@ -1,10 +1,13 @@
 ---
 - name: Logoff disconnected sessions
   hosts: all
+  gather_facts: false
+  strategy: ansible.builtin.free # allow tasks to be executed on hosts as soon as they become available, without waiting for all hosts to complete the previous task
   tasks:
     - name: Get a list of user sessions
       ansible.windows.win_shell: quser
       changed_when: false
+      failed_when: false
       register: quser_result
 
     - name: Create array of disconnected sessions
@@ -19,7 +22,7 @@
         - name: Show disconnected sessions
           ansible.builtin.debug:
             msg: "Disconnected sessions: {{ disconnected_sessions }}"
-
+            
         - name: Force logoff of disconnected sessions
           ansible.windows.win_shell: logoff {{ item }}
           loop: "{{ disconnected_sessions }}"

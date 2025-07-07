@@ -53,3 +53,33 @@ users:
     shell: /bin/bash
     create_home: true
     ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJj8qevdlEm8bNWhbbHZtAVPwxCdq0cAJL/lBMfgPYTO AzureAD+JoseLopez@SH-4304
+  - name: kimberlytodaro
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxL5FgLgYBIm8AVdS1RXF46RaNq/vE0dMCLkUPxQjN1jIZP8SKhvLwWYcUOMJWlYqQN06LBapjsyXf4qz/1IH3mo8su3K4H7puM7kTERM0fX5dYMMJmO7+UFDc3YAKLVa777h5rACijtN6L6rrQEAdVIfq1RkeFMSMN5abUjUiS/i7qZdnJSzysvVVox8b3kkrMWzTQypIZhKU3pq42cSQ8joi2Sol6kWMNuZ7aLlkPdMf8a5WD/ocnQqyu8K4OgDVRhadIHui0wxro7bVK4VdX/H20tvM6wrCdMxETeWYKsZQIHTAWcro1EeP/ey7ITZ9NaRgwNOJmwjlV9ma0x+UO8DqU20b2KF9TSsfguoFpOJLww9g3l6enm8rt2Hz92PFRxV2GzhauzX5j6ZM+I3IaTRgPLIuipGGe86Vjh/33mn1iqQCXip5MXMFZxa9p+eKtFakamSuHcMOfNfp8q/nCs8MA5yWKcnA8ZG7+5EdD1t1mnC/0GW3SGV+axwonbM= kimbe@kit-desktop
+  - name: willstrayer
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICubLg9sLW2392Ec1NKtRkigd/IHCAv2lj60XyK+lXrC azuread\willstrayer@SH-4040
+  - name: kristomaine
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDKvkJO6Q7iSM9X7gondTJN2h25rl/Y0lFTZjpDT/wUB tomainek92@gmail.com
+  - name: christopherlamb
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDupSKJoHeicTdlqYkNprhA2YT/+eqxZ3lXS4GNaPBXT azuread\christopherlamb@SH-4035 ssh-ed25519
+  - name: aprilchien
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrgOYUn33guVHwDF9xcjp8Ue+dLbXNJk0LZThF2RzeC azuread\aprilchien@SH-4029

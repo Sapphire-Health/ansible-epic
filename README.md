@@ -165,6 +165,8 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_ex
 ```
 
 ## Deploy Iris
+1. Define storage, user, domain_join and Iris variables for Iris hosts (domain_groups, sssd_template, etc)
+2. Update the SSH and SSSD templates
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.yml --become
 dev command
@@ -234,5 +236,5 @@ ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-s
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags users,groups,keys,known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags iris
 instaserver.sh --variable_build

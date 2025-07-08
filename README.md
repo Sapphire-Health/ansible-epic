@@ -50,6 +50,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-iris.git ./roles/iris
 git clone https://github.com/Sapphire-Health/ansible-role-domain-join.git ./roles/domain_join
 git clone https://github.com/Sapphire-Health/ansible-role-subscription-manager.git ./roles/subscription_manager
 git clone https://github.com/Sapphire-Health/ansible-role-cogito.git ./roles/cogito
+git clone https://github.com/Sapphire-Health/ansible-role-ssh-ca.git ./roles/ssh_ca
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml --force
@@ -200,6 +201,14 @@ ansible-playbook -i inventory.azure_rm.yml --limit '_Windows' playbook-logoff-di
 ## Populate known_hosts on all targeted Linux machines
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
+```
+
+## Create SSH Host Certificates
+```
+# force create SSH host certificates
+ansible-playbook -i inventory.aws_ec2.yml --limit *odb* playbook-ssh-ca.yml -e force=true [--tags trust_ssh_ca,sign_host_keys] // exclude tags to do all tasks
+# Create SSH CA on ansible host
+ansible-playbook -i inventory.aws_ec2.yml --limit "$(hostname)*" --connection=local playbook-ssh-ca.yml --tags create_ssh_ca
 ```
 
 ## SSH into Linux Host

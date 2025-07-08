@@ -4,6 +4,10 @@ iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
 iris_key_file: iris.key.20250213
 hugepages: 2048
 
+ssh_ca_additional_certificate_aliases:
+  - epictst.sapphire.dev
+  - epictst
+
 # ou_path: OU=Computers,DC=sapphire,DC=dev
 
 storage_safe_mode: true # set to false when resizing PVs

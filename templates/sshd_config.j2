@@ -129,3 +129,11 @@ Subsystem       sftp    /usr/libexec/openssh/sftp-server
 #       PermitTTY no
 #       ForceCommand cvs server
 PasswordAuthentication no
+# BEGIN ANSIBLE MANAGED SSH CERTIFICATE BLOCK
+HostKey /etc/ssh/ssh_host_rsa_key
+HostCertificate /etc/ssh/ssh_host_rsa_key-cert.pub
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostCertificate /etc/ssh/ssh_host_ecdsa_key-cert.pub
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
+# END ANSIBLE MANAGED SSH CERTIFICATE BLOCK

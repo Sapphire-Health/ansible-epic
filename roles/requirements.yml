@@ -32,3 +32,5 @@ roles:
     src: https://github.com/Sapphire-Health/ansible-role-subscription-manager.git
   - name: cogito
     src: https://github.com/Sapphire-Health/ansible-role-cogito.git
+  - name: ssh_ca
+    src: https://github.com/Sapphire-Health/ansible-role-ssh-ca.git

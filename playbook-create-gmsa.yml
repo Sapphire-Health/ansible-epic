@@ -4,12 +4,10 @@
 
   vars:
     domain: "{{ lookup('ansible.builtin.env', 'DOMAIN_NAME', default=sapphire.dev) }}"
-
-    managed_by: "CN=Sapphire Admin Group,OU=Security,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }"
-
-    security_group_path: "OU=Security,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }}"
-
-    service_account_path: "OU=Service Accounts,OU=Groups,{{ domain | map('split', '.') | map('map', 'regex_replace', '^(.*)$', 'DC=\\1') | map('join', ',') | list }}"
+    # Optional parameters:
+    # security_group_path:
+    # service_account_path:
+    # managed_by:
 
     gmsa_definitions:
       - name: kuiper-gmsa
@@ -33,13 +31,13 @@
     - name: Create security groups and servers
       microsoft.ad.group:
         name: "{{ item.group }}"
-        managed_by: "{{managed_by}}"
+        managed_by: "{{managed_by | default(omit) }}"
         scope: global
         category: security
         domain_username: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_USER', default=domain_admin_user) }}"
         domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{ domain }}"
-        path: "{{security_group_path}}"
+        path: "{{ security_group_path | default(omit) }}"
         members:
           add: "{{ item.members | map('regex_replace', '\\$', '') | map('regex_replace', '^(.*)$', '\\1$') | list }}"
         state: present
@@ -63,7 +61,7 @@
         domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{domain}}"
         dns_hostname: "{{ item.name }}{{domain}}"
-        path: "{{service_account_path}}"
+        path: "{{ service_account_path | default(omit) }}"
         allowed_to_retrieve_password:
           set:
             - "{{ group_dns[item.group] }}"

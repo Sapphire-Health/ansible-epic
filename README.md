@@ -237,13 +237,16 @@ or
 code tunnel service install
 ```
 
+```
 # activate venv
 # authenticate aws
 # define env vars
+. devnotes.txt
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-storage.yml
 # ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags iris
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags iris,known_hosts
 instaserver.sh --variable_build
+```

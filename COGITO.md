@@ -20,9 +20,9 @@ ansible -m win_ping -i inventory.aws_ec2.yml --limit='_Windows' all
 ## AD Provisioning (likely not needed for Cogito dev)
 ```
 # set up users and groups
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-cog-sapph1.sapphire.dev playbook-provision-ad.yml
 # remove computer from AD
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-cog-sapph1.sapphire.dev -e computer=epic-cog-sapph1 playbook-remove-computer-ad.yml
 ```
 
 ## Provision Storage
@@ -34,7 +34,7 @@ ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-st
 
 ## Install SQL
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deploy-microsoft-sql.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-cog-sapph1.sapphire.dev playbook-deploy-microsoft-sql.yml
 ```
 
 ## Install Cogito

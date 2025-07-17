@@ -1,0 +1,77 @@
+user_sqlengine: sapphire\admin
+user_sqlagent: sapphire\admin
+
+
+volumes:
+  disk1:
+    DriveLetter: G
+    FSFormat: NTFS
+  disk2:
+    DriveLetter: H
+    FSFormat: NTFS
+  disk3:
+    AccessPath: G:\disk3
+    FSFormat: NTFS
+  disk4:
+    AccessPath: H:\disk4
+    FSFormat: NTFS
+  clarsql00:
+    DriveLetter: S
+    FSLabel: Clarity_SQL
+  clarmount00:
+    DriveLetter: M
+    AllocationUnitSize: 65536
+    FSLabel: null
+  clarrpt00:
+    AccessPath: M:\Clarity_Report1
+    FSLabel: Clarity_Report1
+    AllocationUnitSize: 65536
+  clarrpt01:
+    AccessPath: M:\Clarity_Report2
+    FSLabel: Clarity_Report2
+    AllocationUnitSize: 65536
+  clarrpt02:
+    AccessPath: M:\Clarity_Report3
+    FSLabel: Clarity_Report3
+    AllocationUnitSize: 65536
+  clarrpt03:
+    AccessPath: M:\Clarity_Report4
+    FSLabel: Clarity_Report4
+    AllocationUnitSize: 65536
+  clarrpt04:
+    AccessPath: M:\Clarity_Report5
+    FSLabel: Clarity_Report5
+    AllocationUnitSize: 65536
+  clarrpt05:
+    AccessPath: M:\Clarity_Report6
+    FSLabel: Clarity_Report6
+    AllocationUnitSize: 65536
+  clarrpt06:
+    AccessPath: M:\Clarity_Report7
+    FSLabel: Clarity_Report7
+    AllocationUnitSize: 65536
+  clarrpt07:
+    AccessPath: M:\Clarity_Report8
+    FSLabel: Clarity_Report8
+    AllocationUnitSize: 65536
+  clarlog00:
+    AccessPath: M:\Clarity_ReportLog
+    FSLabel: Clarity_ReportLog
+    AllocationUnitSize: 65536
+  clarstg00:
+    AccessPath: M:\Clarity_Stage1
+    FSLabel: Clarity_Stage1
+    AllocationUnitSize: 65536
+  clarstg01:
+    AccessPath: M:\Clarity_Stage2
+    FSLabel: Clarity_Stage2
+    AllocationUnitSize: 65536
+  clarlog01:
+    AccessPath: M:\Clarity_StageLog
+    FSLabel: Clarity_StageLog
+    AllocationUnitSize: 65536
+  claraudit00:
+    DriveLetter: F
+    FSLabel: Clarity_Audit
+    AllocationUnitSize: 65536
+

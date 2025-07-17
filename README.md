@@ -50,6 +50,7 @@ git clone https://github.com/Sapphire-Health/ansible-role-iris.git ./roles/iris
 git clone https://github.com/Sapphire-Health/ansible-role-domain-join.git ./roles/domain_join
 git clone https://github.com/Sapphire-Health/ansible-role-subscription-manager.git ./roles/subscription_manager
 git clone https://github.com/Sapphire-Health/ansible-role-cogito.git ./roles/cogito
+git clone https://github.com/Sapphire-Health/ansible-role-ssh-ca.git ./roles/ssh_ca
 ansible-galaxy role install linux-system-roles.storage
 # for prod
 ansible-galaxy role install -r roles/requirements.yml --force
@@ -118,7 +119,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epi
 
 ## Provision Storage
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
 ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml
 ```
@@ -165,6 +166,8 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-node_ex
 ```
 
 ## Deploy Iris
+1. Define storage, user, domain_join and Iris variables for Iris hosts (domain_groups, sssd_template, etc)
+2. Update the SSH and SSSD templates
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb playbook-deploy-iris.yml --become
 dev command
@@ -190,9 +193,22 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-d
 ## Linux Join Domain
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-linux-join-domain.yml
 
+## Logoff disconnected Windows sessions
+```
+ansible-playbook -i inventory.azure_rm.yml --limit '_Windows' playbook-logoff-disconnected-sessions.yml
+```
+
 ## Populate known_hosts on all targeted Linux machines
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
+```
+
+## Create SSH Host Certificates
+```
+# force create SSH host certificates
+ansible-playbook -i inventory.aws_ec2.yml --limit *odb* playbook-ssh-ca.yml -e force=true [--tags trust_ssh_ca,sign_host_keys] // exclude tags to do all tasks
+# Create SSH CA on ansible host
+ansible-playbook -i inventory.aws_ec2.yml --limit "$(hostname)*" --connection=local playbook-ssh-ca.yml --tags create_ssh_ca
 ```
 
 ## SSH into Linux Host
@@ -221,13 +237,16 @@ or
 code tunnel service install
 ```
 
+```
 # activate venv
 # authenticate aws
 # define env vars
+. devnotes.txt
 ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-storage.yml
 # ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --tags users,groups,keys,known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags iris,known_hosts
 instaserver.sh --variable_build
+```

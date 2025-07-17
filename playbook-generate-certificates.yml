@@ -1,0 +1,26 @@
+- name: Issue and deploy certificates to Windows hosts
+  hosts: all
+  gather_facts: false
+  vars:
+    san_groups:
+      - [ "DNS:prometheus", "DNS:prometheus.local" ]
+      - [ "DNS:node_exporter", "DNS:node_exporter.local" ]
+    pfx_password: "{{ lookup('ansible.builtin.env', 'PFX_PASSWORD') }}"
+    cert_output_dir: "/tmp/generated_certs"
+    windows_cert_path: "C:\\temp\\certs"
+    key_usage:
+      - digitalSignature
+      - keyEncipherment
+    key_usage_critical: true
+    extended_key_usage:
+      - serverAuth
+    not_after: +3650d
+
+  tasks:
+    - name: Issue and deploy cert for each SAN group
+      ansible.builtin.include_role:
+        name: certificate_authority
+        tasks_from: package_and_deploy_pfx.yml
+      loop: "{{ san_groups }}"
+      loop_control:
+        loop_var: sans

@@ -1,0 +1,22 @@
+name: Add Issues/PRs to Cloud Team Project
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Add to Project
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/Sapphire-Health/projects/2
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}

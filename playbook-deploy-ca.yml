@@ -1,0 +1,20 @@
+- name: Deploy CA Certificate
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Save CA certificate to a temp file on the Windows host
+      win_copy:
+        content: "{{ ca_certificate }}"
+        dest: C:\Temp\ca_cert.cer
+
+    - name: Add CA certificate to Trusted Root Certification Authorities
+      ansible.windows.win_certificate_store:
+        path: C:\Temp\ca_cert.cer
+        store_name: Root
+        state: present
+
+    - name: Remove the temporary CA cert file
+      win_file:
+        path: C:\Temp\ca_cert.cer
+        state: absent

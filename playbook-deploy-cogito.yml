@@ -3,5 +3,5 @@
   hosts: all
   roles:
     - aws_windows_storage
-    - cogito_os
+    - cogito
     - microsoft_sql

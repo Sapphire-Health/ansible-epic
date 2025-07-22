@@ -2,6 +2,6 @@
 - name: Deploy Cogito
   hosts: all
   roles:
-#    - aws_windows_storage
-#    - cogito
+    - aws_windows_storage
+    - cogito_os
     - microsoft_sql

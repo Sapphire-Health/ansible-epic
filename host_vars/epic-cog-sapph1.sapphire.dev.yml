@@ -1,5 +1,12 @@
 user_sqlengine: sapphire\admin
 user_sqlagent: sapphire\admin
+caboodle_user_warehouse: sapphire\admin
+clarity_user_console: sapphire\admin
+clarity_user_datalink: sapphire\admin
+caboodle_user_execution_service: sapphire\admin
+caboodle_install_user: sapphire\admin
+slicerdicer_user: sapphire\admin
+
 
 volumes:
   clarsql00:
@@ -64,13 +71,13 @@ volumes:
 
 sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
 sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
-dsc_sqltempdbdir: 'S:\SQLData'
-dsc_sqltempdblogdir: 'S:\SQLData'
-dsc_installsqldatadir: 'S:'
+dsc_sqltempdbdir: 'S:\SQL\SQLData'
+dsc_sqltempdblogdir: 'S:\SQL\SQLData'
+dsc_installsqldatadir: 'S:\SQL\'
 dsc_instancename: MSSQLSERVER
-dsc_sqlbackupdir: 'S:\'
-dsc_sqluserdbdir: 'S:\SQLData'
-dsc_sqluserdblogdir: 'S:\SQLLogs'
+dsc_sqlbackupdir: 'S:\SQL\'
+dsc_sqluserdbdir: 'S:\SQL\SQLData'
+dsc_sqluserdblogdir: 'S:\SQL\SQLLogs'
 dsc_sqlsysadminaccounts: # The SQL setup requires at least one system administrator account
   - sapphire\admin
   # - .\ssm-user
@@ -79,7 +86,8 @@ smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-
 smss_install_file: SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 # sql_sa_password: # can be defined as env var SQL_SA_PASSWORD=''
-
+dsc_agtsvcaccount: sapphire\admin
+dsc_sqlsvcaccount: sapphire\admin
 
 ## Create Databases
 #sql_databases:

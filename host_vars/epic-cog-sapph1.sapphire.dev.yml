@@ -73,7 +73,7 @@ sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
 sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
 dsc_sqltempdbdir: 'S:\SQL\SQLData'
 dsc_sqltempdblogdir: 'S:\SQL\SQLData'
-dsc_installsqldatadir: 'S:\SQL\'
+dsc_installsqldatadir: 'S:\SQL\SQLinstall'
 dsc_instancename: MSSQLSERVER
 dsc_sqlbackupdir: 'S:\SQL\'
 dsc_sqluserdbdir: 'S:\SQL\SQLData'
@@ -89,65 +89,85 @@ ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 dsc_agtsvcaccount: sapphire\admin
 dsc_sqlsvcaccount: sapphire\admin
 
-## Create Databases
-#sql_databases:
-#  - name: 'Kuiper'
-#    db_size: 4096 MB
-#    db_max_size: 10240 MB
-#    db_growth: 256 MB
-#    log_size: 1024 MB
-#    log_max_size: 10240 MB
-#    log_growth: 500 MB
-#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
-#    # recovery_model: 'FULL'
-#    # log_path: 'H:\LOG'
-#    # data_path: 'G:\DATA'
-#    roles:
-#      - name: db_owner
-#        members:
-#          - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
-#          - sapphire\kuiper-gmsa$
-#      - name: db_ddladmin
-#        members:
-#          - sapphire\kuiper-gmsa$
-#      - name: db_datawriter
-#        members:
-#          - sapphire\kuiper-gmsa$
-#      - name: db_datareader
-#        members:
-#          - sapphire\kuiper-gmsa$
-#    users:
-#      - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
-#      - sapphire\kuiper-gmsa$
-#  - name: 'SystemPulse'
-#    db_size: 4096 MB
-#    db_max_size: 10240 MB
-#    db_growth: 256 MB
-#    log_size: 1024 MB
-#    log_max_size: 10240 MB
-#    log_growth: 500 MB
-#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
-#    # recovery_model: 'FULL'
-#    # log_path: 'H:\LOG'
-#    # data_path: 'G:\DATA'
-#    roles:
-#      - name: db_owner
-#        members:
-#          - spadmin
-#      - name: db_datawriter
-#        members:
-#          - spuser
-#      - name: db_datareader
-#        members:
-#          - spuser
-#      - name: sp_user
-#        members:
-#          - spuser
-#    users:
-#      # - sapphire\epicadmin
-#      - spadmin
-#      - spuser
-#
-## Local SQL accounts
-## SPAdmin
-## SPUser
+# use these for clarity
+Traceflags:
+  - 2467 
+  - 4139 
+  - 8086 
+  - 8121 
+  - 12502
+
+# use these for caboodle
+#Traceflags:
+#  - 2467 
+#  - 4139 
+#  - 8086 
+#  - 8121 
+#  - 12502
+#  - 11064
+#  - 11068
+#  - 11631
+#  - 11634
+
+# Create Databases
+sql_databases:
+  - name: 'Clarity_PRD'
+    db_size: 1024 MB
+    db_max_size: 4096 MB
+    db_growth: 256 MB
+    log_size: 512 MB
+    log_max_size: 2048 MB
+    log_growth: 128 MB
+    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+    recovery_model: 'SIMPLE'
+    # log_path: 'H:\LOG'
+    # data_path: 'G:\DATA'
+    roles:
+      - name: db_owner
+        members:
+          - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
+          - sapphire\kuiper-gmsa$
+      - name: db_ddladmin
+        members:
+          - sapphire\kuiper-gmsa$
+      - name: db_datawriter
+        members:
+          - sapphire\kuiper-gmsa$
+      - name: db_datareader
+        members:
+          - sapphire\kuiper-gmsa$
+    users:
+      - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
+      - sapphire\kuiper-gmsa$
+  - name: 'SystemPulse'
+    db_size: 4096 MB
+    db_max_size: 10240 MB
+    db_growth: 256 MB
+    log_size: 1024 MB
+    log_max_size: 10240 MB
+    log_growth: 500 MB
+    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+    # recovery_model: 'FULL'
+    # log_path: 'H:\LOG'
+    # data_path: 'G:\DATA'
+    roles:
+      - name: db_owner
+        members:
+          - spadmin
+      - name: db_datawriter
+        members:
+          - spuser
+      - name: db_datareader
+        members:
+          - spuser
+      - name: sp_user
+        members:
+          - spuser
+    users:
+      # - sapphire\epicadmin
+      - spadmin
+      - spuser
+
+# Local SQL accounts
+# SPAdmin
+# SPUser

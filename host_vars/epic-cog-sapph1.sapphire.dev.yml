@@ -109,65 +109,70 @@ Traceflags:
 #  - 11631
 #  - 11634
 
-# Create Databases
-sql_databases:
-  - name: 'Clarity_PRD'
-    db_size: 1024 MB
-    db_max_size: 4096 MB
-    db_growth: 256 MB
-    log_size: 512 MB
-    log_max_size: 2048 MB
-    log_growth: 128 MB
+# Create Databases. use unique variables so we don't overlap with microsoft_sql db creation (it uses sql_databases)
+# db_size, db_max_size, and db_growth are per file
+clarity_report_databases:
+  - name: 'Clarity_Report'
+    db_size: 1024MB
+    db_max_size: 4096MB
+    db_growth: 256MB
+    log_size: 512MB
+    log_max_size: 2048MB
+    log_growth: 128MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'SIMPLE'
-    # log_path: 'H:\LOG'
-    # data_path: 'G:\DATA'
-    roles:
-      - name: db_owner
-        members:
-          - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
-          - sapphire\kuiper-gmsa$
-      - name: db_ddladmin
-        members:
-          - sapphire\kuiper-gmsa$
-      - name: db_datawriter
-        members:
-          - sapphire\kuiper-gmsa$
-      - name: db_datareader
-        members:
-          - sapphire\kuiper-gmsa$
-    users:
-      - sapphire\epicadmin # required while running the Kuiper install for SQL test to succeed
-      - sapphire\kuiper-gmsa$
-  - name: 'SystemPulse'
-    db_size: 4096 MB
-    db_max_size: 10240 MB
-    db_growth: 256 MB
-    log_size: 1024 MB
-    log_max_size: 10240 MB
-    log_growth: 500 MB
+    log_path: 'M:\Clarity_ReportLog'
+    data_path: 'M:\Clarity_Report'
+    data_file_count: 8
+clarity_stage_databases:
+  - name: 'Clarity_Stage'
+    db_size: 1024MB
+    db_max_size: 4096MB
+    db_growth: 256MB
+    log_size: 512MB
+    log_max_size: 2048MB
+    log_growth: 128MB
     # collation: 'SQL_Latin1_General_CP1_CI_AS'
-    # recovery_model: 'FULL'
-    # log_path: 'H:\LOG'
-    # data_path: 'G:\DATA'
-    roles:
-      - name: db_owner
-        members:
-          - spadmin
-      - name: db_datawriter
-        members:
-          - spuser
-      - name: db_datareader
-        members:
-          - spuser
-      - name: sp_user
-        members:
-          - spuser
-    users:
-      # - sapphire\epicadmin
-      - spadmin
-      - spuser
-
-# Local SQL accounts
-# SPAdmin
-# SPUser
+    recovery_model: 'SIMPLE'
+    log_path: 'M:\Clarity_StageLog'
+    data_path: 'M:\Clarity_Stage'
+    data_file_count: 2
+#caboodle_report_databases:
+#  - name: 'Caboodle_Report'
+#    db_size: 1024MB
+#    db_max_size: 4096MB
+#    db_growth: 256MB
+#    log_size: 512MB
+#    log_max_size: 2048MB
+#    log_growth: 128MB
+#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+#    recovery_model: 'SIMPLE'
+#    log_path: M:\Warehouse_ReportLog
+#    data_path: M:\Warehouse_Report
+#    data_file_count: 8
+#caboodle_stage_databases:
+#  - name: 'Caboodle_Stage'
+#    db_size: 1024MB
+#    db_max_size: 4096MB
+#    db_growth: 256MB
+#    log_size: 512MB
+#    log_max_size: 2048MB
+#    log_growth: 128MB
+#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+#    recovery_model: 'SIMPLE'
+#    log_path: M:\Warehouse_StageLog
+#    data_path: M:\Warehouse_Stage
+#    data_file_count: 4
+#slicerdicer_databases:
+#  - name: 'SlicerDicer'
+#    db_size: 512MB
+#    db_max_size: 1024MB
+#    db_growth: 64MB
+#    log_size: 256MB
+#    log_max_size: 512MB
+#    log_growth: 32MB
+#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
+#    recovery_model: 'FULL'
+#    log_path: M:\SlicerDicer
+#    data_path: M:\SlicerDicer
+#    data_file_count: 4

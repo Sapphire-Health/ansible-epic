@@ -2,7 +2,7 @@ iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
 iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
 iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
 iris_key_file: iris.key.20250213
-hugepages: 2048
+hugepages: 2
 
 iris_instaserver_variables:
   # component: BuildPRD #default is BuildCustom
@@ -24,7 +24,7 @@ iris_instaserver_variables:
   PRDESMPRemoteHost: prdodb
   DRESMPRemoteHost: drodb
   # OtherRemoteServers:
-  #   - Hostname: localhost
+  #   - Hostname: localhost #MAKE THIS THE FQDN
   #     CheckSystemConfig: 0
   #     HostType: Epic database
   #     Port: 10443

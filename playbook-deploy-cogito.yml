@@ -4,4 +4,4 @@
   roles:
 #    - aws_windows_storage
 #    - microsoft_sql
-    - cogito_os
+    - cogito

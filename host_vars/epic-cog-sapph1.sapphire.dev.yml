@@ -111,7 +111,7 @@ Traceflags:
 
 # Create Databases. use unique variables so we don't overlap with microsoft_sql db creation (it uses sql_databases)
 # db_size, db_max_size, and db_growth are per file
-clarity_report_databases:
+sql_dbs:
   - name: 'Clarity_Report'
     db_size: 1024MB
     db_max_size: 4096MB
@@ -123,7 +123,7 @@ clarity_report_databases:
     log_path: 'M:\Clarity_ReportLog'
     data_path: 'M:\Clarity_Report'
     data_file_count: 8
-clarity_stage_databases:
+    filename: CLRpt
   - name: 'Clarity_Stage'
     db_size: 1024MB
     db_max_size: 4096MB
@@ -135,7 +135,7 @@ clarity_stage_databases:
     log_path: 'M:\Clarity_StageLog'
     data_path: 'M:\Clarity_Stage'
     data_file_count: 2
-#caboodle_report_databases:
+    filename: CLStg
 #  - name: 'Caboodle_Report'
 #    db_size: 1024MB
 #    db_max_size: 4096MB
@@ -147,7 +147,7 @@ clarity_stage_databases:
 #    log_path: M:\Warehouse_ReportLog
 #    data_path: M:\Warehouse_Report
 #    data_file_count: 8
-#caboodle_stage_databases:
+#    filename: CDWRpt
 #  - name: 'Caboodle_Stage'
 #    db_size: 1024MB
 #    db_max_size: 4096MB
@@ -159,7 +159,7 @@ clarity_stage_databases:
 #    log_path: M:\Warehouse_StageLog
 #    data_path: M:\Warehouse_Stage
 #    data_file_count: 4
-#slicerdicer_databases:
+#    filename: CDWStg
 #  - name: 'SlicerDicer'
 #    db_size: 512MB
 #    db_max_size: 1024MB
@@ -171,3 +171,4 @@ clarity_stage_databases:
 #    log_path: M:\SlicerDicer
 #    data_path: M:\SlicerDicer
 #    data_file_count: 4
+#    filename: SlicerDicer

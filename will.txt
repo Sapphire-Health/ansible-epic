@@ -1,0 +1,53 @@
+USE [master]
+GO
+CREATE DATABASE $(NAME)
+ON
+PRIMARY
+    (NAME = $(NAME)1,
+    FILENAME = '$(DATAPATH)1\mnt\CLStg1.mdf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)2,
+    FILENAME = '$(DATAPATH)2\mnt\CLStg2.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)3,
+    FILENAME = '$(DATAPATH)3\mnt\CLStg3.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)4,
+    FILENAME = '$(DATAPATH)4\mnt\CLStg4.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)5,
+    FILENAME = '$(DATAPATH)5\mnt\CLStg5.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)6,
+    FILENAME = '$(DATAPATH)6\mnt\CLStg6.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)7,
+    FILENAME = '$(DATAPATH)7\mnt\CLStg7.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH)),
+    (NAME = $(NAME)8,
+    FILENAME = '$(DATAPATH)8\mnt\CLStg8.ndf',
+    SIZE = $(SIZE),
+    MAXSIZE = $(MAXSIZE),
+    FILEGROWTH = $(FILEGROWTH))
+    
+LOG ON
+    (NAME = $(NAME)Log,
+    FILENAME = '$(LOGFILEPATH)\mnt\CLStg.ldf',
+    SIZE = $(LOGSIZE),
+    MAXSIZE = $(LOGMAXSIZE),
+    FILEGROWTH = $(LOGFILEGROWTH));
+GO

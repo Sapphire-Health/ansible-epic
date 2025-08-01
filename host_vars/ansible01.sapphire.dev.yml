@@ -83,3 +83,9 @@ users:
     shell: /bin/bash
     create_home: true
     ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrgOYUn33guVHwDF9xcjp8Ue+dLbXNJk0LZThF2RzeC azuread\aprilchien@SH-4029
+  - name: alisheikh
+    # groups: [sudo]
+    append: true
+    shell: /bin/bash
+    create_home: true
+    ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuLrFlaZhS1LLkhSlv+uwjzVBpULsOHRC38gsgaND36Yyrq5LFUcj6n/VU3D17D3U1jYkpNb0m/Jk4EuggpOeheQgl/3jWVU/pjaQkylTBgyRAra+aqFRzMAveAAEa5wOo5i+zgme0faFSNdZjrBAt72iZWHV2gRTXQaI/5+xWrZfSjKhW2q9IQR2ISIFk7J/2bIEsBExaWyPmZwDdFLX4Nx5iYifMEE2/TLLsxUZxf8D2rCCpTFK74f8MskcBuqTDTVLxgMcLvJlQl+/3hAtKk2J+iEkZ/FvTDfNWZylhvLgywSR4ta+eda1VJcH8vFoFWomYP5OAE5P9kJdZZaPNuID4IQ4AWY1WvvQpv4GIjp6J+u5x6iTstQokWRTaUDG6hQ25uBUgDa40pfciG5kljrBBm4GZmhrL0rXsE84pf6RF+BrM55lTf0amBGQCewyvRPoX8QoS36blE8VaHXTVkfH33w5nCPyr/8EGKOZeE/QD8BRUvbHrDqIWw02Ok9Z+9XsDmY6xtJ9kMPQcBEvPsRIdx0pbVWXjGiyTj2MI0guesi3XZ2IcQdsqyoirpb/Ijl2BjoZMT/0TtfOQMLB7piURyRlzKekbn3lCp7OpJStLz/xO8Qpyhf3HgxsezacVmKSh9ftoSdZJ85QUjLEhnfZfwf3rmRpr54Rwh4baXQ== asheikh@Ali-MacBook-Pro-14.local

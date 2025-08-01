@@ -2,7 +2,33 @@ iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
 iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
 iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
 iris_key_file: iris.key.20250213
-hugepages: 2048
+hugepages: 2
+
+iris_instaserver_variables:
+  # component: BuildPRD #default is BuildCustom
+  Instances:
+    - Instance: TST
+      # Directory: /epic/tst
+      # InstanceType: NONPROD #OLTP
+      # SuperServerPort: 1972
+      # WebServerPort: 57772
+    - Instance: REL
+  LicenseKey: /epic/tmp/iris.key.20250213
+  # Password: leave blank to randomly generate
+  SystemPulseServer: sp.tstdomain.org
+  KuiperServer: kp.tstdomain.org
+  SMTPServer: smtp.tstdomain.org
+  EmailFrom: admin_tstodb@tstdomain.org
+  EmailTo: odb_alerts@tstdomain.org
+  Organization: TST Health
+  PRDESMPRemoteHost: prdodb
+  DRESMPRemoteHost: drodb
+  # OtherRemoteServers:
+  #   - Hostname: localhost #MAKE THIS THE FQDN
+  #     CheckSystemConfig: 0
+  #     HostType: Epic database
+  #     Port: 10443
+  #     Queued: 0
 
 ssh_ca_additional_certificate_aliases:
   - epictst.sapphire.dev

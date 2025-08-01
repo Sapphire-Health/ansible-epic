@@ -119,7 +119,6 @@ clarity_report_databases:
     log_size: 512MB
     log_max_size: 2048MB
     log_growth: 128MB
-    # collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'SIMPLE'
     log_path: 'M:\Clarity_ReportLog'
     data_path: 'M:\Clarity_Report'
@@ -132,7 +131,6 @@ clarity_stage_databases:
     log_size: 512MB
     log_max_size: 2048MB
     log_growth: 128MB
-    # collation: 'SQL_Latin1_General_CP1_CI_AS'
     recovery_model: 'SIMPLE'
     log_path: 'M:\Clarity_StageLog'
     data_path: 'M:\Clarity_Stage'
@@ -145,7 +143,6 @@ clarity_stage_databases:
 #    log_size: 512MB
 #    log_max_size: 2048MB
 #    log_growth: 128MB
-#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
 #    recovery_model: 'SIMPLE'
 #    log_path: M:\Warehouse_ReportLog
 #    data_path: M:\Warehouse_Report
@@ -158,7 +155,6 @@ clarity_stage_databases:
 #    log_size: 512MB
 #    log_max_size: 2048MB
 #    log_growth: 128MB
-#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
 #    recovery_model: 'SIMPLE'
 #    log_path: M:\Warehouse_StageLog
 #    data_path: M:\Warehouse_Stage
@@ -171,7 +167,6 @@ clarity_stage_databases:
 #    log_size: 256MB
 #    log_max_size: 512MB
 #    log_growth: 32MB
-#    # collation: 'SQL_Latin1_General_CP1_CI_AS'
 #    recovery_model: 'FULL'
 #    log_path: M:\SlicerDicer
 #    data_path: M:\SlicerDicer

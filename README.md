@@ -1,5 +1,10 @@
 # Ansible Azure Inventory
 
+## Customer Deployment Instructions
+* Deploy an Ubuntu 24.04 VM
+* Log into the VM using SSM or Bastion
+* Create a user for yourself if you haven't already using `sudo adduser <firstlast>`
+
 ## Requirements
 * Set up dynamic inventory for Azure/AWS
     * An account with inventory access to Azure/AWS
@@ -29,6 +34,26 @@ pip3 install ansible-lint pypsrp pywinrm requests[socks]
 ansible-galaxy collection install azure.azcollection community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus trippsc2.cis
 pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
 # deactivate
+```
+
+### Install git and clone this repo
+```
+dnf/apt install git
+mkdir ~/source
+cd ~/source
+git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
+cd ansible-epic
+rm -rf .git
+```
+
+### Install git and clone this repo
+```
+dnf/apt install git
+mkdir ~/source
+cd ~/source
+git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
+cd ansible-epic
+rm -rf .git
 ```
 
 ### Install Ansible Roles

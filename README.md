@@ -253,10 +253,13 @@ curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-
 tar -xf vscode_cli.tar.gz
 cp code /usr/share/bin/
 
+tmux new -s vscode-tunnel
 code tunnel user login --provider microsoft
 code tunnel
-or
-code tunnel service install
+Ctrl + B, then D <exits the tmux shell but leaves it running>
+
+#If you need to re-attatch to the tmux shell to troubleshoot or restart the tunnel
+tmux attach -t vscode-tunnel
 ```
 
 ```

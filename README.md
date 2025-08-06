@@ -3,7 +3,7 @@
 ## Customer Deployment Instructions
 * Deploy an Ubuntu 24.04 VM
 * Log into the VM using SSM or Bastion
-* Create a user for yourself if you haven't already using `sudo adduser <firstlast>`
+* Create a user for yourself if you haven't already using `sudo adduser --disabled-password --shell /bin/bash <firstlast>`
 
 ## Requirements
 * Set up dynamic inventory for Azure/AWS

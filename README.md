@@ -46,16 +46,6 @@ cd ansible-epic
 rm -rf .git
 ```
 
-### Install git and clone this repo
-```
-dnf/apt install git
-mkdir ~/source
-cd ~/source
-git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
-cd ansible-epic
-rm -rf .git
-```
-
 ### Install Ansible Roles
 ```
 # for dev

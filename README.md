@@ -45,6 +45,7 @@ gh auth login
 git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
 cd ansible-epic
 rm -rf .git
+# create a repo for customer and push
 ```
 
 ### Install Ansible Roles

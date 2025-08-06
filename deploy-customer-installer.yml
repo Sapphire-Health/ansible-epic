@@ -1,0 +1,23 @@
+---
+- name: Deploy Installer silently on Windows
+  hosts: all
+  vars:
+    installer_name: placeholder-customer-install.msi
+    installer_args: "/quiet /norestart"
+
+  tasks:
+    - name: Copy installer
+      win_copy:
+        src: "files/{{ installer_name }}"
+        dest: "C:\\Temp\\{{ installer_name }}"
+
+    - name: Install
+      win_package:
+        path: "C:\\Temp\\{{ installer_name }}"
+        arguments: "{{ installer_args }}"
+        state: present
+
+    - name: Remove installer
+      win_file:
+        path: "C:\\Temp\\{{ installer_name }}"
+        state: absent

@@ -4,6 +4,7 @@
 * Deploy an Ubuntu 24.04 VM
 * Log into the VM using SSM or Bastion
 * Create a user for yourself if you haven't already using `sudo adduser --disabled-password --shell /bin/bash <firstlast>`
+* Install prerequisites `apt install python3-venv git`
 
 ## Requirements
 * Set up dynamic inventory for Azure/AWS
@@ -38,7 +39,6 @@ pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/re
 
 ### Install git and clone this repo
 ```
-dnf/apt install git
 mkdir ~/source
 cd ~/source
 git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic

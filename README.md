@@ -6,6 +6,12 @@
 * Create a user for yourself if you haven't already using `sudo adduser --disabled-password --shell /bin/bash <firstlast>`
 * Install prerequisites `apt install python3-venv git gh`
 
+## Create central files directory
+```
+mkdir /files
+chmod 777 /files
+```
+
 ## Requirements
 * Set up dynamic inventory for Azure/AWS
     * An account with inventory access to Azure/AWS
@@ -37,7 +43,7 @@ pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/re
 # deactivate
 ```
 
-### Install git and clone this repo
+### Install git, clone this repo, and create symlink to central files directory
 ```
 mkdir ~/source
 cd ~/source
@@ -45,6 +51,7 @@ gh auth login
 git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
 cd ansible-epic
 rm -rf .git
+ln -s /files ~/source/ansible-epic/files
 # create a repo for customer and push
 ```
 

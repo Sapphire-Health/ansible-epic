@@ -1,14 +1,18 @@
 volumes:
   disk1:
     DriveLetter: G
+    FSLabel: DB
   disk2:
     DriveLetter: H
+    FSLabel: LOG
 
-sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
-sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
-dsc_sqltempdbdir: 'H:\SQLDATA'
-dsc_sqltempdblogdir: 'H:\SQLDATA'
-dsc_installsqldatadir: 'G:'
+# sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+# sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
+sql_install_source_dir: files
+sql_install_iso: SQLEXPRADV_x64_ENU.exe
+dsc_sqltempdbdir: 'G:\TEMPDB'
+dsc_sqltempdblogdir: 'H:\TEMPDB_LOG'
+dsc_installsqldatadir: 'C:'
 dsc_instancename: MSSQLSERVER
 dsc_sqlbackupdir: 'H:\SQL_BACKUP'
 dsc_sqluserdbdir: 'G:\DATA'

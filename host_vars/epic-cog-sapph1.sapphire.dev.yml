@@ -71,8 +71,8 @@ volumes:
 
 sql_install_source_dir: files
 sql_install_iso: SQLServer2022-x64-ENU-Dev.iso
-dsc_sqltempdbdir: 'S:\SQL\SQLData'
-dsc_sqltempdblogdir: 'S:\SQL\SQLData'
+# dsc_sqltempdbdir: 'S:\SQL\SQLData'
+# dsc_sqltempdblogdir: 'S:\SQL\SQLData'
 dsc_installsqldatadir: 'S:\SQL\SQLinstall'
 dsc_instancename: MSSQLSERVER
 dsc_sqlbackupdir: 'S:\SQL\'

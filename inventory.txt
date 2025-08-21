@@ -1,0 +1,1840 @@
+all:
+  children:
+    _Linux_UNIX:
+      hosts:
+        alert-dev-bastion.sapphire.dev: {}
+    _Red_Hat_Enterprise_Linux:
+      hosts:
+        ansible01.sapphire.dev: {}
+        prdodb.sapphire.dev: {}
+        relodb.sapphire.dev: {}
+        tstodb.sapphire.dev: {}
+    _Windows:
+      hosts:
+        epic-cog-sapph1.sapphire.dev: {}
+        epic-cog-sapph2.sapphire.dev: {}
+        epic-kpr-sapph1.sapphire.dev: {}
+        epic-kpr-sapph2.sapphire.dev: {}
+        epic-msql-sapph.sapphire.dev: {}
+    _running:
+      hosts:
+        alert-dev-bastion.sapphire.dev: {}
+        ansible01.sapphire.dev: {}
+        epic-cog-sapph1.sapphire.dev: {}
+        epic-cog-sapph2.sapphire.dev: {}
+        epic-kpr-sapph1.sapphire.dev: {}
+        epic-kpr-sapph2.sapphire.dev: {}
+        epic-msql-sapph.sapphire.dev: {}
+        prdodb.sapphire.dev: {}
+        relodb.sapphire.dev: {}
+        tstodb.sapphire.dev: {}
+    aws_ec2:
+      hosts:
+        alert-dev-bastion.sapphire.dev:
+          ami_launch_index: 0
+          ansible_host: 10.44.1.95
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/xvda
+            ebs:
+              attach_time: 2025-06-30 19:55:44+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-0cb3fce358e729b79
+          boot_mode: uefi-preferred
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250630195534205600000001
+          cpu_options:
+            core_count: 2
+            threads_per_core: 1
+          current_instance_boot_mode: legacy-bios
+          ebs_optimized: false
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/alert-dev-Bastion-Profile
+            id: AIPAT6S4ZMP7OOWYV4E2Y
+          image_id: ami-05ffe3c48a9991133
+          instance_id: i-0f0072a8acfaa6fb8
+          instance_type: t2.medium
+          launch_time: 2025-06-30 19:55:43+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 2
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: disabled
+          network_interfaces:
+          - association:
+              ip_owner_id: amazon
+              public_dns_name: ec2-34-201-221-107.compute-1.amazonaws.com
+              public_ip: 34.201.221.107
+            attachment:
+              attach_time: 2025-06-30 19:55:43+00:00
+              attachment_id: eni-attach-09a8d22747ce39afb
+              delete_on_termination: true
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-0b3fa45274e9687c7
+              group_name: bastion-secg
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 0e:d3:a4:77:9d:85
+            network_interface_id: eni-0a2f41e1f464dfb03
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-44-1-95.ec2.internal
+            private_ip_address: 10.44.1.95
+            private_ip_addresses:
+            - association:
+                ip_owner_id: amazon
+                public_dns_name: ec2-34-201-221-107.compute-1.amazonaws.com
+                public_ip: 34.201.221.107
+              primary: true
+              private_dns_name: ip-10-44-1-95.ec2.internal
+              private_ip_address: 10.44.1.95
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0215507fb5b086a6b
+            vpc_id: vpc-0dcaddadbb80979fd
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-east-1a
+            group_name: ''
+            region: us-east-1
+            tenancy: default
+          platform_details: Linux/UNIX
+          private_dns_name: ip-10-44-1-95.ec2.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.44.1.95
+          product_codes: []
+          public_dns_name: ec2-34-201-221-107.compute-1.amazonaws.com
+          public_ip_address: 34.201.221.107
+          requester_id: ''
+          reservation_id: r-0201877051f071ee4
+          root_device_name: /dev/xvda
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-0b3fa45274e9687c7
+            group_name: bastion-secg
+          source_dest_check: true
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0215507fb5b086a6b
+          tags:
+            Name: alert-dev-bastion
+            Owner: Kris Tomaine
+            Project: alert-dev
+          usage_operation: RunInstances
+          usage_operation_update_time: 2025-06-30 19:55:43+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-0dcaddadbb80979fd
+        ansible01.sapphire.dev:
+          ami_launch_index: 0
+          ansible_host: 10.197.0.23
+          ansible_user: ec2-user
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-02-10 16:48:57+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-0d14bd6c998414610
+          boot_mode: uefi-preferred
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250210164854206500000002
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: uefi
+          domain_groups: &id001
+          - Domain Users
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-LyasInstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7H4GCOG32W
+          image_id: ami-0da4b082c0455e0a0
+          instance_id: i-0551dacff2ad8caac
+          instance_type: t3.large
+          key_name: EPC-lyas_keyAWSKP-C
+          launch_time: 2025-03-31 18:30:51+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - association:
+              ip_owner_id: '271851283454'
+              public_dns_name: ec2-34-208-130-180.us-west-2.compute.amazonaws.com
+              public_ip: 34.208.130.180
+            attachment:
+              attach_time: 2025-02-10 16:48:57+00:00
+              attachment_id: eni-attach-02fe10f1c8e6e9889
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-037b4b0f3c871ec13
+              group_name: terraform-20250124210432531100000001
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 06:d3:80:ff:de:b5
+            network_interface_id: eni-003876f735d093503
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-197-0-23.us-west-2.compute.internal
+            private_ip_address: 10.197.0.23
+            private_ip_addresses:
+            - association:
+                ip_owner_id: '271851283454'
+                public_dns_name: ec2-34-208-130-180.us-west-2.compute.amazonaws.com
+                public_ip: 34.208.130.180
+              primary: true
+              private_dns_name: ip-10-197-0-23.us-west-2.compute.internal
+              private_ip_address: 10.197.0.23
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0ba94effeab197e2d
+            vpc_id: vpc-0955c9f0b9dad2b3e
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2a
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform_details: Red Hat Enterprise Linux
+          private_dns_name: ip-10-197-0-23.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.197.0.23
+          product_codes: []
+          public_dns_name: ec2-34-208-130-180.us-west-2.compute.amazonaws.com
+          public_ip_address: 34.208.130.180
+          requester_id: ''
+          reservation_id: r-0e9d288ed05fde526
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-037b4b0f3c871ec13
+            group_name: terraform-20250124210432531100000001
+          source_dest_check: true
+          sssd_template: aws_sssd.j2
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0ba94effeab197e2d
+          tags:
+            Name: ansible01
+            Owner: Lyas
+            User: ec2-user
+            environment: ansible
+            repo: https://github.com/Sapphire-Health/Terraform-Github-AWS
+          usage_operation: RunInstances:0010
+          usage_operation_update_time: 2025-02-10 16:48:57+00:00
+          users:
+          - append: true
+            create_home: true
+            name: lyasspiehler
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUjpRGqqXd4z1tGR1fXVyk86n8RGpCzGs75OQBdKDK4TsMus7faoaBZtoWK86j9PPcVWPegGq31ftWXtONj8AqrtsBaN/Qn/jpYiYMXTkixTp09aXDZlSS/NCwYPIxybnj8npVua73BGQH5u34PpZXSB07ioTgKOC87Tas48iOKQArHuPpCmancAV7qWDkv51ALOijQZjydPHr/TPSzq4yXg3q+KD52DXoiusLShAHqmzmtQjNmW3FFxBAzrEP7yJfKctiRZpb7qm0wgvaS4E+XSyredwUbAuZr0O23OLGFTUupuuw2YQNBGJUEp1WgD+LRizTyW+sb3DUVivNS5GtYlbOHImfj0B/ecx9ztJreNR1N+e8jCpAGuDv0nbDD7I6rU5vKuK2IRorUKbVZuah8CRn6wmhRKsPNfYBGPSkInwcU7AebxF10ROzBQcf6bdSCXWhAHFAvKxWDq0jJJvnabsn9VSLd4AEOMLoOrNWPKm4lGsNndEXIdMSaQH/vyM=
+              EPC-lyasAWSKP-C
+          - append: true
+            create_home: true
+            name: taylorwegener
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRYME99FAZMwH4yOvDZ/l1EF21HAsILZFH9BxlP2rwqo2IBjh1oX/10JPzcKzy9tK8gTkyhSpuSpKs65lJj/77Cn81JsD/u01TphakePMu0a8JQsw7ymhXj+QGdBB7x6ZHUM+oj6HZElf5W2CykuG4cbKoEcA6JnqCPBN/TdBvgrUKekpio165H8d3yvrQPEmqXU90qf4M4zJowAtGB5nTSil9oKS8+5i3WjO3wCq52BpTEx0pU6352Jw9Ksm7rpnDGaNe/kgYppBWTTqD8L027UHN4anvbG01PCoXy7OVpSvCZrb9NRT+xHvfVwKjrdmaOA+MYGqsyUjNjgrKfdzqfY9rqobXJRwHQDHFlujmJe9BUJBxQU4gKRuQZZsB3M7B19jWKiCfKEMX+GNzQjvTZzLk5Q3N9a7L1rzQRs4iQlOOXCrcX5EkNijHbFMeujBFdNxT8nzMNs8OwVFjVKfhuW+WonW/uqugA1Z35/m7CyUpEI4/O9jliMfsuFf+ofc=
+              azuread\taylorwegener@SHLT-0Y1P
+          - append: true
+            create_home: true
+            name: giannirubio
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHj7JSm/ZSD7WwjnUAg1o1l4cJU61OhhhkM38tx5lfV5FSCBMdx7GyxrwWd0FmZwVlpn26p7OZlSLRtvGuo639cixe4UGnn5TI8gDB6Fm6SNictuL+WtHegqoE7Um0ZU95pEl5U9eEvrvpQdh0UZGj/u1S4XrLO7kZk2iDDFAJrL5RFvxsCsL+zHaDHch6Q8APf60ZCLVDr0dwO5ZiXzdgaEMocTFarCGp2Y82o8iwXpNMW/aXDgR1SJDIv2c8oPhZXa+mX0F8KZQ2m7DYVYxhIj9q+KoNxpntYkv1nhkyY0aWUEA/3Qb4H2XtuxzmrDuKCMBY8t4YjKRjNMQ6zrjDmiCsakKAtUSVgJKk9qrGUr3OFqpGOvX66xlXzeu8RuAUSmsu5aPXazaFymrxc/8dEWJARANNO7USVir2jVL8UFlpcxEJPC5pG8SXeRpaS+Lw3YdiFdf690N1UpcuUsUAMaY1+l1UhhbWH9zGSwYl7klMCTu2Y8qbHjBmSIgXd2c=
+              azuread\giannirubio@SH-4306
+          - append: true
+            create_home: true
+            name: tylerjordan
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvjEOXFf2iSvsndFrAm6pNxrB1Dzwg/IFGDj0WraYmS9a+z5fphH+VtNguS301L05mKZpIg8RmHZnMLBEyAjRPTdlIQHzTMjvspPtYpyaamWFMWQTL2B6f10f2W5tEY6Tc7A4TludR517lY3jFNSU/dQ1ZV/dHTHWyZx0MnWiNb165Y5pMd4MYfORX6JAolQUWMttqFejHVRT6hSAlAzJUAQMJtvIv1sFxrUELpGzBmWAuxzRO8z4UA1awRsgr7foadaYIU2odDkSqsPP+mQHe4/ejHDxH5I12ePUa0aBA5FidKYIQFCdcs/XH3A1O87RBEczuMObSy6sCmGDhoUZqX/w3r+89hm2Exbmtgdyzn8ReCtHK/nv4i4c2s37nG7lpMDayI7feYvjeKG0xEQsmsWnkWKurPT+6FibDnRAiLmFO03gsrlQTiJ22IQqDBhX395dU9i/9ef3k/hqltT3/PV9aiZNYrQnb8crOnXiHuVcoWleHfOIX+1F/o/4X8sU=
+              azuread\tylerjordan@Sapphy
+          - append: true
+            create_home: true
+            name: kristomaine
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDKvkJO6Q7iSM9X7gondTJN2h25rl/Y0lFTZjpDT/wUB
+              tomainek92@gmail.com
+          - append: true
+            create_home: true
+            name: chadaiena
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDt09jKwMF+DzkRKfYsCBfWJBV3/vAbR+/NKFyPrkpVHo76QBp8CUH7K4XaPB6nMlt8cssggbsX9FINK5lMu+In8tnZxqY4ROntp+bKaH07R9jZmsb6TjThaKi0qM8XzGiO+Sc1RyHXu22sVgIgogsh4p4g20A1qxdLrIIgaU/VPcMN+OJMVhRvHz8RK/u+J0BQt3jkzJ1t1y4F1U6b/mB7F3LE6Ms5RobWQZa3qfhs706JbJ/KeFv3Wdf9IaTcla6hJVh0KzvITRpSgnVziLkNz/4MceqZWHvyBkFyOxbMaHNbVAt0+G3HvdTLjikDK+3g4UX9E5k0XhB60AQIij9Qj5Lh2dC5aaLXo0L8BUwP6Cl/24/yMXn+1S2P2yxvHmnZIkOscJFRDYudqrlDlC/6s2HjfbYM/EF+BsFv0GtMhBGhSKfGwh5TCsMW4EliIfkmkCpUZ8G9arFlPUno9QhI0KwMKA0wbLr+4V8Nw/dtxBaHBhNcFa/Bk1key/LwR88=
+              azuread\chadaiena@SH-4474
+          - append: true
+            create_home: true
+            name: andresrealpozo
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZX+fLW+YiH1o9iVFddfAqkFYkkkMKFO5/YHzxLnWcu
+              azuread\andresrealpozo@DESKTOP-FRTT9VQ
+          - append: true
+            create_home: true
+            name: jeffkarle
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNVWA1Cuz4v0ZBQ9J0A/85FNMknuZNBQ+GmZ5KbzNYO
+              azuread\jeffkarle@SHLT-4332
+          - append: true
+            create_home: true
+            name: joselopez
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJj8qevdlEm8bNWhbbHZtAVPwxCdq0cAJL/lBMfgPYTO
+              AzureAD+JoseLopez@SH-4304
+          - append: true
+            create_home: true
+            name: kimberlytodaro
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCxL5FgLgYBIm8AVdS1RXF46RaNq/vE0dMCLkUPxQjN1jIZP8SKhvLwWYcUOMJWlYqQN06LBapjsyXf4qz/1IH3mo8su3K4H7puM7kTERM0fX5dYMMJmO7+UFDc3YAKLVa777h5rACijtN6L6rrQEAdVIfq1RkeFMSMN5abUjUiS/i7qZdnJSzysvVVox8b3kkrMWzTQypIZhKU3pq42cSQ8joi2Sol6kWMNuZ7aLlkPdMf8a5WD/ocnQqyu8K4OgDVRhadIHui0wxro7bVK4VdX/H20tvM6wrCdMxETeWYKsZQIHTAWcro1EeP/ey7ITZ9NaRgwNOJmwjlV9ma0x+UO8DqU20b2KF9TSsfguoFpOJLww9g3l6enm8rt2Hz92PFRxV2GzhauzX5j6ZM+I3IaTRgPLIuipGGe86Vjh/33mn1iqQCXip5MXMFZxa9p+eKtFakamSuHcMOfNfp8q/nCs8MA5yWKcnA8ZG7+5EdD1t1mnC/0GW3SGV+axwonbM=
+              kimbe@kit-desktop
+          - append: true
+            create_home: true
+            name: willstrayer
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICubLg9sLW2392Ec1NKtRkigd/IHCAv2lj60XyK+lXrC
+              azuread\willstrayer@SH-4040
+          - append: true
+            create_home: true
+            name: kristomaine
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDKvkJO6Q7iSM9X7gondTJN2h25rl/Y0lFTZjpDT/wUB
+              tomainek92@gmail.com
+          - append: true
+            create_home: true
+            name: christopherlamb
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDupSKJoHeicTdlqYkNprhA2YT/+eqxZ3lXS4GNaPBXT
+              azuread\christopherlamb@SH-4035 ssh-ed25519
+          - append: true
+            create_home: true
+            name: aprilchien
+            shell: /bin/bash
+            ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrgOYUn33guVHwDF9xcjp8Ue+dLbXNJk0LZThF2RzeC
+              azuread\aprilchien@SH-4029
+          - append: true
+            create_home: true
+            name: alisheikh
+            shell: /bin/bash
+            ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuLrFlaZhS1LLkhSlv+uwjzVBpULsOHRC38gsgaND36Yyrq5LFUcj6n/VU3D17D3U1jYkpNb0m/Jk4EuggpOeheQgl/3jWVU/pjaQkylTBgyRAra+aqFRzMAveAAEa5wOo5i+zgme0faFSNdZjrBAt72iZWHV2gRTXQaI/5+xWrZfSjKhW2q9IQR2ISIFk7J/2bIEsBExaWyPmZwDdFLX4Nx5iYifMEE2/TLLsxUZxf8D2rCCpTFK74f8MskcBuqTDTVLxgMcLvJlQl+/3hAtKk2J+iEkZ/FvTDfNWZylhvLgywSR4ta+eda1VJcH8vFoFWomYP5OAE5P9kJdZZaPNuID4IQ4AWY1WvvQpv4GIjp6J+u5x6iTstQokWRTaUDG6hQ25uBUgDa40pfciG5kljrBBm4GZmhrL0rXsE84pf6RF+BrM55lTf0amBGQCewyvRPoX8QoS36blE8VaHXTVkfH33w5nCPyr/8EGKOZeE/QD8BRUvbHrDqIWw02Ok9Z+9XsDmY6xtJ9kMPQcBEvPsRIdx0pbVWXjGiyTj2MI0guesi3XZ2IcQdsqyoirpb/Ijl2BjoZMT/0TtfOQMLB7piURyRlzKekbn3lCp7OpJStLz/xO8Qpyhf3HgxsezacVmKSh9ftoSdZJ85QUjLEhnfZfwf3rmRpr54Rwh4baXQ==
+              asheikh@Ali-MacBook-Pro-14.local
+          virtualization_type: hvm
+          vpc_id: vpc-0955c9f0b9dad2b3e
+        epic-cog-sapph1.sapphire.dev:
+          Traceflags:
+          - 2467
+          - 4139
+          - 8086
+          - 8121
+          - 12502
+          ami_launch_index: 0
+          ansible_connection: psrp
+          ansible_host: 10.248.13.70
+          ansible_password: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_PASSWORD'')
+            }}'
+          ansible_port: 5985
+          ansible_shell_type: powershell
+          ansible_user: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_USER'')
+            }}'
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-08fb1f8b55a01c51f
+          - device_name: xvdf
+            ebs:
+              attach_time: 2025-08-13 11:04:52.422000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-01922527a802cb0f1
+          - device_name: xvdg
+            ebs:
+              attach_time: 2025-08-13 11:06:19.232000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0356332cf9c215a32
+          - device_name: xvdh
+            ebs:
+              attach_time: 2025-08-13 11:05:35.901000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-08747e1a0ee8ab4f6
+          - device_name: xvdi
+            ebs:
+              attach_time: 2025-08-13 11:06:27.368000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-087f74c0ccf0b6853
+          - device_name: xvdj
+            ebs:
+              attach_time: 2025-08-13 11:04:54.268000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0da9023bcb3eef326
+          - device_name: xvdk
+            ebs:
+              attach_time: 2025-08-13 11:05:58.077000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0835c14bd2f43eedd
+          - device_name: xvdl
+            ebs:
+              attach_time: 2025-08-13 11:05:15.530000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-03591138c5dc47cff
+          - device_name: xvdm
+            ebs:
+              attach_time: 2025-08-13 11:05:14.147000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0a2bc1debc299a39a
+          - device_name: xvdn
+            ebs:
+              attach_time: 2025-08-13 11:04:30.719000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0a29b5863e2aac926
+          - device_name: xvdo
+            ebs:
+              attach_time: 2025-08-13 11:05:15.408000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-004e607f262982eb9
+          - device_name: xvdp
+            ebs:
+              attach_time: 2025-08-13 11:05:36.607000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0863bfdf583f29efc
+          - device_name: xvdq
+            ebs:
+              attach_time: 2025-08-13 11:05:57.517000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0c445953427f21a28
+          - device_name: xvdr
+            ebs:
+              attach_time: 2025-08-13 11:04:52.382000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-058d4dfbba9f28ef0
+          - device_name: xvds
+            ebs:
+              attach_time: 2025-08-13 11:06:06.142000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-08a9c2e773df9a0f2
+          - device_name: xvdt
+            ebs:
+              attach_time: 2025-08-13 11:06:05.001000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-086c532d0de840c29
+          caboodle_install_user: sapphire\admin
+          caboodle_user_execution_service: sapphire\admin
+          caboodle_user_warehouse: sapphire\admin
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          clarity_user_console: sapphire\admin
+          clarity_user_datalink: sapphire\admin
+          client_token: terraform-2025081311032269920000001a
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: legacy-bios
+          dsc_agtsvcaccount: sapphire\admin
+          dsc_installsqldatadir: S:\SQL\SQLinstall
+          dsc_instancename: MSSQLSERVER
+          dsc_sqlbackupdir: S:\SQL\
+          dsc_sqlsvcaccount: sapphire\admin
+          dsc_sqlsysadminaccounts:
+          - sapphire\admin
+          dsc_sqltempdbdir: S:\SQL\SQLData
+          dsc_sqltempdblogdir: S:\SQL\SQLData
+          dsc_sqluserdbdir: S:\SQL\SQLData
+          dsc_sqluserdblogdir: S:\SQL\SQLLogs
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0b91c4400195d38cc
+          instance_id: i-07e19e7be538d47d8
+          instance_type: t3.medium
+          key_name: EPC-SapphAutomationAWSKP-C
+          launch_time: 2025-08-13 11:03:24+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:24+00:00
+              attachment_id: eni-attach-07c654d390ce1d736
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-013a8b9e293f327f8
+              group_name: terraform-20250813110317513100000009
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 02:eb:22:09:66:21
+            network_interface_id: eni-0696107b24f863573
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-70.us-west-2.compute.internal
+            private_ip_address: 10.248.13.70
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-70.us-west-2.compute.internal
+              private_ip_address: 10.248.13.70
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0b719050feab8c5c9
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2b
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform: windows
+          platform_details: Windows
+          private_dns_name: ip-10-248-13-70.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.70
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-096cc0d95d73dbdc9
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-013a8b9e293f327f8
+            group_name: terraform-20250813110317513100000009
+          slicerdicer_user: sapphire\admin
+          smss_install_file: SSMS-Setup-ENU.exe
+          smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28
+          source_dest_check: true
+          sql_dbs:
+          - data_file_count: 8
+            data_path: M:\Clarity_Report
+            db_growth: 256MB
+            db_max_size: 4096MB
+            db_size: 1024MB
+            filename: CLRpt
+            log_growth: 128MB
+            log_max_size: 2048MB
+            log_path: M:\Clarity_ReportLog
+            log_size: 512MB
+            name: Clarity_Report
+            recovery_model: SIMPLE
+          - data_file_count: 2
+            data_path: M:\Clarity_Stage
+            db_growth: 256MB
+            db_max_size: 4096MB
+            db_size: 1024MB
+            filename: CLStg
+            log_growth: 128MB
+            log_max_size: 2048MB
+            log_path: M:\Clarity_StageLog
+            log_size: 512MB
+            name: Clarity_Stage
+            recovery_model: SIMPLE
+          sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
+          sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+          ssms_product_id: '{98566bce-3110-4bc9-b372-a014a6eb5b58}'
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0b719050feab8c5c9
+          tags:
+            Name: epic-cog-sapph1
+            Owner: Taylor
+          usage_operation: RunInstances:0002
+          usage_operation_update_time: 2025-08-13 11:03:24+00:00
+          user_sqlagent: sapphire\admin
+          user_sqlengine: sapphire\admin
+          virtualization_type: hvm
+          volumes:
+            claraudit00:
+              AllocationUnitSize: 65536
+              DriveLetter: F
+              FSLabel: Clarity_Audit
+            clarlog00:
+              AccessPath: M:\Clarity_ReportLog
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_ReportLog
+            clarlog01:
+              AccessPath: M:\Clarity_StageLog
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_StageLog
+            clarmount00:
+              AllocationUnitSize: 65536
+              DriveLetter: M
+              FSLabel: null
+            clarrpt00:
+              AccessPath: M:\Clarity_Report1
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report1
+            clarrpt01:
+              AccessPath: M:\Clarity_Report2
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report2
+            clarrpt02:
+              AccessPath: M:\Clarity_Report3
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report3
+            clarrpt03:
+              AccessPath: M:\Clarity_Report4
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report4
+            clarrpt04:
+              AccessPath: M:\Clarity_Report5
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report5
+            clarrpt05:
+              AccessPath: M:\Clarity_Report6
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report6
+            clarrpt06:
+              AccessPath: M:\Clarity_Report7
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report7
+            clarrpt07:
+              AccessPath: M:\Clarity_Report8
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Report8
+            clarsql00:
+              DriveLetter: S
+              FSLabel: Clarity_SQL
+            clarstg00:
+              AccessPath: M:\Clarity_Stage1
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Stage1
+            clarstg01:
+              AccessPath: M:\Clarity_Stage2
+              AllocationUnitSize: 65536
+              FSLabel: Clarity_Stage2
+          vpc_id: vpc-04a515daa7855c390
+        epic-cog-sapph2.sapphire.dev:
+          ami_launch_index: 0
+          ansible_connection: psrp
+          ansible_host: 10.248.13.71
+          ansible_password: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_PASSWORD'')
+            }}'
+          ansible_port: 5985
+          ansible_shell_type: powershell
+          ansible_user: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_USER'')
+            }}'
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-060ab3576f741fbea
+          - device_name: xvdf
+            ebs:
+              attach_time: 2025-08-13 11:05:36.790000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0501b7c03b37c72a8
+          - device_name: xvdg
+            ebs:
+              attach_time: 2025-08-13 11:06:17.004000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0ed6f30ac51ac9699
+          - device_name: xvdh
+            ebs:
+              attach_time: 2025-08-13 11:04:30.700000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-04687c0974ef70a2e
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322396800000013
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: legacy-bios
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0b91c4400195d38cc
+          instance_id: i-0e30c510215c3727b
+          instance_type: t3.medium
+          key_name: EPC-SapphAutomationAWSKP-C
+          launch_time: 2025-08-13 11:03:23+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:23+00:00
+              attachment_id: eni-attach-0d6c3848662240d16
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-013a8b9e293f327f8
+              group_name: terraform-20250813110317513100000009
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 02:6e:3d:d2:b7:0f
+            network_interface_id: eni-07e1462a3c9a56c1f
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-71.us-west-2.compute.internal
+            private_ip_address: 10.248.13.71
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-71.us-west-2.compute.internal
+              private_ip_address: 10.248.13.71
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0b719050feab8c5c9
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2b
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform: windows
+          platform_details: Windows
+          private_dns_name: ip-10-248-13-71.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.71
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-0d60a8781748781c2
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-013a8b9e293f327f8
+            group_name: terraform-20250813110317513100000009
+          source_dest_check: true
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0b719050feab8c5c9
+          tags:
+            Name: epic-cog-sapph2
+            Owner: Taylor
+          usage_operation: RunInstances:0002
+          usage_operation_update_time: 2025-08-13 11:03:23+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390
+        epic-kpr-sapph1.sapphire.dev:
+          ami_launch_index: 0
+          ansible_connection: psrp
+          ansible_host: 10.248.13.7
+          ansible_password: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_PASSWORD'')
+            }}'
+          ansible_port: 5985
+          ansible_shell_type: powershell
+          ansible_user: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_USER'')
+            }}'
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-008e281127220e294
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322578900000019
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: legacy-bios
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0b91c4400195d38cc
+          instance_id: i-02dee12575dfdbc55
+          instance_type: t3.medium
+          key_name: EPC-SapphAutomationAWSKP-C
+          kpr_gmsa_user: sapphire\kuiper-gmsa$
+          kpr_install_files_path: C:\Temp
+          kpr_install_source_dir: files
+          kpr_install_source_file: Epic November 2024 Kuiper Fix Package 6.msi
+          kpr_msi_args: SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated
+            Security=True" ADDLOCAL="ALL"
+          launch_time: 2025-08-13 11:03:23+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:23+00:00
+              attachment_id: eni-attach-01ae4e03e861157ec
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-0a7edfc92fe2f375e
+              group_name: terraform-20250813110317302000000006
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 06:0b:a3:9b:b3:a3
+            network_interface_id: eni-0fa9d9917c983bf2e
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-7.us-west-2.compute.internal
+            private_ip_address: 10.248.13.7
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-7.us-west-2.compute.internal
+              private_ip_address: 10.248.13.7
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-003a68eb9fb16bf27
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2a
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform: windows
+          platform_details: Windows
+          private_dns_name: ip-10-248-13-7.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.7
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-09afbcb5fe51457f0
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-0a7edfc92fe2f375e
+            group_name: terraform-20250813110317302000000006
+          source_dest_check: true
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-003a68eb9fb16bf27
+          tags:
+            Name: epic-kpr-sapph1
+            Owner: Taylor
+          usage_operation: RunInstances:0002
+          usage_operation_update_time: 2025-08-13 11:03:23+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390
+        epic-kpr-sapph2.sapphire.dev:
+          ami_launch_index: 0
+          ansible_connection: psrp
+          ansible_host: 10.248.13.8
+          ansible_password: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_PASSWORD'')
+            }}'
+          ansible_port: 5985
+          ansible_shell_type: powershell
+          ansible_user: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_USER'')
+            }}'
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-046b4db639622f619
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322546400000016
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: legacy-bios
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0b91c4400195d38cc
+          instance_id: i-0563c7b3bd5e6192d
+          instance_type: t3.medium
+          key_name: EPC-SapphAutomationAWSKP-C
+          kpr_gmsa_user: sapphire\kuiper-gmsa$
+          kpr_install_files_path: C:\Temp
+          kpr_install_source_dir: files
+          kpr_install_source_file: Epic November 2024 Kuiper Fix Package 6.msi
+          kpr_msi_args: SQL_STRING="Server=epic-msql-sapph.sapphire.dev;Database=Kuiper;Integrated
+            Security=True" ADDLOCAL="ALL"
+          launch_time: 2025-08-13 11:03:24+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:24+00:00
+              attachment_id: eni-attach-049c80fa32e55785a
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-0a7edfc92fe2f375e
+              group_name: terraform-20250813110317302000000006
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 06:73:24:11:d7:97
+            network_interface_id: eni-06e6f227e4dd4ea25
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-8.us-west-2.compute.internal
+            private_ip_address: 10.248.13.8
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-8.us-west-2.compute.internal
+              private_ip_address: 10.248.13.8
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-003a68eb9fb16bf27
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2a
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform: windows
+          platform_details: Windows
+          private_dns_name: ip-10-248-13-8.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.8
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-054867d453acc2410
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-0a7edfc92fe2f375e
+            group_name: terraform-20250813110317302000000006
+          source_dest_check: true
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-003a68eb9fb16bf27
+          tags:
+            Name: epic-kpr-sapph2
+            Owner: Taylor
+          usage_operation: RunInstances:0002
+          usage_operation_update_time: 2025-08-13 11:03:24+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390
+        epic-msql-sapph.sapphire.dev:
+          ami_launch_index: 0
+          ansible_connection: psrp
+          ansible_host: 10.248.13.11
+          ansible_password: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_PASSWORD'')
+            }}'
+          ansible_port: 5985
+          ansible_shell_type: powershell
+          ansible_user: '{{ lookup(''ansible.builtin.env'', ''DOMAIN_ADMIN_USER'')
+            }}'
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-0f34c92b2fe76aa7e
+          - device_name: xvdf
+            ebs:
+              attach_time: 2025-08-13 11:06:19.346000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-03a864fe36eb03955
+          - device_name: xvdg
+            ebs:
+              attach_time: 2025-08-13 11:06:19.305000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0d40e52fe027a920c
+          - device_name: xvdh
+            ebs:
+              attach_time: 2025-08-13 15:43:00.356000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0941137880ac43db5
+          - device_name: xvdi
+            ebs:
+              attach_time: 2025-08-13 15:43:00.392000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0605b48e050506fad
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322566100000017
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: legacy-bios
+          dsc_installsqldatadir: 'C:'
+          dsc_instancename: MSSQLSERVER
+          dsc_sqlbackupdir: H:\SQL_BACKUP
+          dsc_sqlsysadminaccounts:
+          - sapphire\epicadmin
+          dsc_sqltempdbdir: G:\TEMPDB
+          dsc_sqltempdblogdir: H:\TEMPDB_LOG
+          dsc_sqluserdbdir: G:\DATA
+          dsc_sqluserdblogdir: H:\LOG
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0b91c4400195d38cc
+          instance_id: i-065ec19f1713cc59e
+          instance_type: t3.medium
+          key_name: EPC-SapphAutomationAWSKP-C
+          launch_time: 2025-08-13 11:03:24+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:24+00:00
+              attachment_id: eni-attach-0dc0c8207e5742969
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-013a8b9e293f327f8
+              group_name: terraform-20250813110317513100000009
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 06:3d:2c:82:25:39
+            network_interface_id: eni-0c7ef773006bc4cb3
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-11.us-west-2.compute.internal
+            private_ip_address: 10.248.13.11
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-11.us-west-2.compute.internal
+              private_ip_address: 10.248.13.11
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-003a68eb9fb16bf27
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2a
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform: windows
+          platform_details: Windows
+          private_dns_name: ip-10-248-13-11.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.11
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-0eb5c71628e3da8a4
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-013a8b9e293f327f8
+            group_name: terraform-20250813110317513100000009
+          service_username: sapphire\kuiper-gmsa$
+          smss_install_file: SSMS-Setup-ENU.exe
+          smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-2ee2-429a-9462-c9bc1ce14c28
+          source_dest_check: true
+          sql_databases:
+          - db_growth: 256 MB
+            db_max_size: 10240 MB
+            db_size: 4096 MB
+            log_growth: 500 MB
+            log_max_size: 10240 MB
+            log_size: 1024 MB
+            name: Kuiper
+            roles:
+            - members:
+              - sapphire\epicadmin
+              - sapphire\kuiper-gmsa$
+              name: db_owner
+            - members:
+              - sapphire\kuiper-gmsa$
+              name: db_ddladmin
+            - members:
+              - sapphire\kuiper-gmsa$
+              name: db_datawriter
+            - members:
+              - sapphire\kuiper-gmsa$
+              name: db_datareader
+            users:
+            - sapphire\epicadmin
+            - sapphire\kuiper-gmsa$
+          - db_growth: 256 MB
+            db_max_size: 10240 MB
+            db_size: 4096 MB
+            log_growth: 500 MB
+            log_max_size: 10240 MB
+            log_size: 1024 MB
+            name: SystemPulse
+            roles:
+            - members:
+              - spadmin
+              name: db_owner
+            - members:
+              - spuser
+              name: db_datawriter
+            - members:
+              - spuser
+              name: db_datareader
+            - members:
+              - spuser
+              name: sp_user
+            users:
+            - spadmin
+            - spuser
+          sql_install_iso: SQLEXPRADV_x64_ENU.exe
+          sql_install_source_dir: files
+          ssms_product_id: '{98566bce-3110-4bc9-b372-a014a6eb5b58}'
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-003a68eb9fb16bf27
+          tags:
+            Name: epic-msql-sapph
+            Owner: Taylor
+          usage_operation: RunInstances:0002
+          usage_operation_update_time: 2025-08-13 11:03:24+00:00
+          virtualization_type: hvm
+          volumes:
+            disk1:
+              DriveLetter: G
+              FSLabel: DB
+            disk2:
+              DriveLetter: H
+              FSLabel: LOG
+          vpc_id: vpc-04a515daa7855c390
+        prdodb.sapphire.dev:
+          ami_launch_index: 0
+          ansible_host: 10.248.13.72
+          ansible_user: ec2-user
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-012b2738ff82b5dc0
+          boot_mode: uefi-preferred
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322497900000014
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: uefi
+          domain_groups: *id001
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hugepages: 2048
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0f7197c592205b389
+          instance_id: i-00398846d2f395077
+          instance_type: t3.medium
+          iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
+          iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+          iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
+          iris_key_file: iris.key.20250213
+          key_name: EPC-ansible_keyAWSKP-C
+          launch_time: 2025-08-13 11:03:23+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:24+00:00
+              attachment_id: eni-attach-0a69de826cf9bf7b2
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-01acdb67f2eb04319
+              group_name: terraform-20250813110316577600000002
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 02:b9:31:e6:9f:eb
+            network_interface_id: eni-0a7f1bb8b30322bb0
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-72.us-west-2.compute.internal
+            private_ip_address: 10.248.13.72
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-72.us-west-2.compute.internal
+              private_ip_address: 10.248.13.72
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0b719050feab8c5c9
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2b
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform_details: Red Hat Enterprise Linux
+          private_dns_name: ip-10-248-13-72.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.72
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-0fe4c444d050b5460
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-01acdb67f2eb04319
+            group_name: terraform-20250813110316577600000002
+          source_dest_check: true
+          sssd_template: aws_sssd.j2
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0b719050feab8c5c9
+          tags:
+            Name: prdodb
+            Owner: Taylor
+          usage_operation: RunInstances:0010
+          usage_operation_update_time: 2025-08-13 11:03:24+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390
+        relodb.sapphire.dev:
+          ami_launch_index: 0
+          ansible_host: 10.248.13.73
+          ansible_user: ec2-user
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-00f4b267e37c60905
+          boot_mode: uefi-preferred
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322538600000015
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: uefi
+          domain_groups: *id001
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hugepages: 2048
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0f7197c592205b389
+          instance_id: i-048b42ebbdad7dc80
+          instance_type: t3.medium
+          iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
+          iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+          iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
+          iris_key_file: iris.key.20250213
+          key_name: EPC-ansible_keyAWSKP-C
+          launch_time: 2025-08-13 11:03:23+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:23+00:00
+              attachment_id: eni-attach-079dbc26147fbf4e9
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-01acdb67f2eb04319
+              group_name: terraform-20250813110316577600000002
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 02:f2:8b:14:e2:45
+            network_interface_id: eni-08a305356ed61a96a
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-73.us-west-2.compute.internal
+            private_ip_address: 10.248.13.73
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-73.us-west-2.compute.internal
+              private_ip_address: 10.248.13.73
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-0b719050feab8c5c9
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2b
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform_details: Red Hat Enterprise Linux
+          private_dns_name: ip-10-248-13-73.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.73
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-04030cf5f4f0a126a
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-01acdb67f2eb04319
+            group_name: terraform-20250813110316577600000002
+          source_dest_check: true
+          sssd_template: aws_sssd.j2
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          subnet_id: subnet-0b719050feab8c5c9
+          tags:
+            Name: relodb
+            Owner: Taylor
+          usage_operation: RunInstances:0010
+          usage_operation_update_time: 2025-08-13 11:03:23+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390
+        tstodb.sapphire.dev:
+          ami_launch_index: 0
+          ansible_host: 10.248.13.10
+          ansible_user: ec2-user
+          architecture: x86_64
+          block_device_mappings:
+          - device_name: /dev/sda1
+            ebs:
+              attach_time: 2025-08-13 11:03:24+00:00
+              delete_on_termination: true
+              status: attached
+              volume_id: vol-00c4f1e0c4d2640ef
+          - device_name: /dev/sdb
+            ebs:
+              attach_time: 2025-08-13 11:06:19.186000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0907383b4b2d00eda
+          - device_name: /dev/sdc
+            ebs:
+              attach_time: 2025-08-13 11:05:14.128000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-018a1a299735af3e2
+          - device_name: /dev/sdd
+            ebs:
+              attach_time: 2025-08-13 11:04:54.226000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0a18cfe83e9a91898
+          - device_name: /dev/sde
+            ebs:
+              attach_time: 2025-08-13 11:06:19.274000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0f5aa08b9d1dce818
+          - device_name: /dev/sdf
+            ebs:
+              attach_time: 2025-08-13 11:05:35.920000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0bf71c4ca5d37440c
+          - device_name: /dev/sdg
+            ebs:
+              attach_time: 2025-08-13 11:05:57.584000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0b44f387fc2cadb39
+          - device_name: /dev/sdh
+            ebs:
+              attach_time: 2025-08-13 11:05:35.881000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0c3cd79a0dc6f11b8
+          - device_name: /dev/sdi
+            ebs:
+              attach_time: 2025-08-13 11:05:55.823000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0bc33dd303e0c3b6b
+          - device_name: /dev/sdj
+            ebs:
+              attach_time: 2025-08-13 11:06:26.160000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0f494c847635d1c65
+          - device_name: /dev/sdk
+            ebs:
+              attach_time: 2025-08-13 11:05:57.520000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0e86a9a3d73db59a0
+          - device_name: /dev/sdl
+            ebs:
+              attach_time: 2025-08-13 11:05:14.096000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-0b7f1061fce1f0b8b
+          - device_name: /dev/sdm
+            ebs:
+              attach_time: 2025-08-13 11:04:30.648000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-06b0bcd99b5f91997
+          - device_name: /dev/sdn
+            ebs:
+              attach_time: 2025-08-13 11:05:57.980000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-06f08db0e9d999e79
+          - device_name: /dev/sdo
+            ebs:
+              attach_time: 2025-08-13 11:04:52.381000+00:00
+              delete_on_termination: false
+              status: attached
+              volume_id: vol-037d39ec91d2993c1
+          boot_mode: uefi-preferred
+          capacity_reservation_specification:
+            capacity_reservation_preference: open
+          client_token: terraform-20250813110322572600000018
+          cpu_options:
+            core_count: 1
+            threads_per_core: 2
+          current_instance_boot_mode: uefi
+          domain_groups: *id001
+          ebs_optimized: true
+          ena_support: true
+          enclave_options:
+            enabled: false
+          hibernation_options:
+            configured: false
+          hugepages: 2
+          hypervisor: xen
+          iam_instance_profile:
+            arn: arn:aws:iam::271851283454:instance-profile/IAM-EC2InstanceProfileAWSProfile-C
+            id: AIPAT6S4ZMP7LUIN7T4DO
+          image_id: ami-0f7197c592205b389
+          instance_id: i-0fafc4efa7978d9fb
+          instance_type: t3.medium
+          iris_install_file: IRIS-2024.1.1.347.0-lnxrh9x64.tar.gz
+          iris_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+          iris_instaserver_file: InstaServerEpicFebruary2025-139365.sh
+          iris_instaserver_variables:
+            DRESMPRemoteHost: drodb
+            EmailFrom: admin_tstodb@tstdomain.org
+            EmailTo: odb_alerts@tstdomain.org
+            Instances:
+            - Instance: TST
+            - Instance: REL
+            KuiperServer: kp.tstdomain.org
+            LicenseKey: /epic/tmp/iris.key.20250213
+            Organization: TST Health
+            PRDESMPRemoteHost: prdodb
+            SMTPServer: smtp.tstdomain.org
+            SystemPulseServer: sp.tstdomain.org
+          iris_key_file: iris.key.20250213
+          key_name: EPC-ansible_keyAWSKP-C
+          launch_time: 2025-08-13 11:03:24+00:00
+          maintenance_options:
+            auto_recovery: default
+            reboot_migration: default
+          metadata_options:
+            http_endpoint: enabled
+            http_protocol_ipv6: disabled
+            http_put_response_hop_limit: 1
+            http_tokens: required
+            instance_metadata_tags: disabled
+            state: applied
+          monitoring:
+            state: enabled
+          network_interfaces:
+          - attachment:
+              attach_time: 2025-08-13 11:03:24+00:00
+              attachment_id: eni-attach-092ddb50f378747b9
+              delete_on_termination: false
+              device_index: 0
+              network_card_index: 0
+              status: attached
+            description: ''
+            groups:
+            - group_id: sg-01acdb67f2eb04319
+              group_name: terraform-20250813110316577600000002
+            interface_type: interface
+            ipv6_addresses: []
+            mac_address: 06:62:d6:98:5f:2f
+            network_interface_id: eni-0c64688d2385e909b
+            operator:
+              managed: false
+            owner_id: '271851283454'
+            private_dns_name: ip-10-248-13-10.us-west-2.compute.internal
+            private_ip_address: 10.248.13.10
+            private_ip_addresses:
+            - primary: true
+              private_dns_name: ip-10-248-13-10.us-west-2.compute.internal
+              private_ip_address: 10.248.13.10
+            source_dest_check: true
+            status: in-use
+            subnet_id: subnet-003a68eb9fb16bf27
+            vpc_id: vpc-04a515daa7855c390
+          network_performance_options:
+            bandwidth_weighting: default
+          operator:
+            managed: false
+          owner_id: '271851283454'
+          placement:
+            availability_zone: us-west-2a
+            group_name: ''
+            region: us-west-2
+            tenancy: default
+          platform_details: Red Hat Enterprise Linux
+          private_dns_name: ip-10-248-13-10.us-west-2.compute.internal
+          private_dns_name_options:
+            enable_resource_name_dns_a_record: false
+            enable_resource_name_dns_aaaa_record: false
+            hostname_type: ip-name
+          private_ip_address: 10.248.13.10
+          product_codes: []
+          public_dns_name: ''
+          requester_id: ''
+          reservation_id: r-0fef0853e52bd7d3e
+          root_device_name: /dev/sda1
+          root_device_type: ebs
+          security_groups:
+          - group_id: sg-01acdb67f2eb04319
+            group_name: terraform-20250813110316577600000002
+          source_dest_check: true
+          ssh_ca_additional_certificate_aliases:
+          - epictst.sapphire.dev
+          - epictst
+          sssd_template: aws_sssd.j2
+          state:
+            code: 16
+            name: running
+          state_transition_reason: ''
+          storage_layout:
+          - disks:
+            - tstodb.epic
+            name: epic_vg
+            volumes:
+            - fs_type: xfs
+              mount_point: /epic
+              name: epic_lv
+              size: 35g
+              state: present
+            - fs_type: xfs
+              mount_point: /epic/tmp
+              name: epictmp_lv
+              size: 10g
+              state: present
+            - fs_type: xfs
+              mount_point: /epic_core
+              name: epic_core_lv
+              size: 5g
+              state: present
+            - fs_type: xfs
+              mount_point: /epic/tst
+              name: tst_lv
+              size: 20g
+              state: present
+          - disks:
+            - tstodb.inst_tst_01
+            - tstodb.inst_tst_02
+            - tstodb.inst_tst_03
+            - tstodb.inst_tst_04
+            - tstodb.inst_tst_05
+            - tstodb.inst_tst_06
+            - tstodb.inst_tst_07
+            - tstodb.inst_tst_08
+            - tstodb.inst_tst_09
+            - tstodb.inst_tst_10
+            - tstodb.inst_tst_11
+            - tstodb.inst_tst_12
+            grow_to_fill: false
+            name: tst_vg
+            type: lvm
+            volumes:
+            - fs_type: xfs
+              mount_point: /epic/tst01
+              name: tst01_lv
+              raid_level: striped
+              raid_stripe_size: 4M
+              size: 500g
+              state: present
+          - disks:
+            - tstodb.nonprdfiles
+            name: jrn_vg
+            volumes:
+            - fs_type: xfs
+              mount_point: /epic/jrn
+              name: jrn_lv
+              size: 20g
+              state: present
+            - fs_type: xfs
+              mount_point: /epicfiles/nonprdfiles
+              name: epictmp_lv
+              size: 60g
+              state: present
+          storage_safe_mode: true
+          subnet_id: subnet-003a68eb9fb16bf27
+          tags:
+            Name: tstodb
+            Owner: Taylor
+          usage_operation: RunInstances:0010
+          usage_operation_update_time: 2025-08-13 11:03:24+00:00
+          virtualization_type: hvm
+          vpc_id: vpc-04a515daa7855c390

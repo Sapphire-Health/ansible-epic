@@ -1,4 +1,4 @@
-user_sqlengine: sapphire\admin
+vauser_sqlengine: sapphire\admin
 user_sqlagent: sapphire\admin
 caboodle_user_warehouse: sapphire\admin
 clarity_user_console: sapphire\admin
@@ -69,8 +69,8 @@ volumes:
     FSLabel: Clarity_Audit
     AllocationUnitSize: 65536
 
-sql_install_source_dir: files
-sql_install_iso: SQLServer2022-x64-ENU-Dev.iso
+sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
 dsc_sqltempdbdir: 'S:\SQL\SQLData'
 dsc_sqltempdblogdir: 'S:\SQL\SQLData'
 dsc_installsqldatadir: 'S:\SQL\SQLinstall'

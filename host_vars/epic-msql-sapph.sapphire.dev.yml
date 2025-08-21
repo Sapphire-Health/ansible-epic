@@ -1,22 +1,28 @@
 volumes:
   disk1:
     DriveLetter: G
-    FSLabel: DB
+    FSLabel: Data
   disk2:
     DriveLetter: H
-    FSLabel: LOG
+    FSLabel: Log
+  disk3:
+    DriveLetter: I
+    FSLabel: TempDB
+  disk4:
+    DriveLetter: S
+    FSLabel: SQL_Server
 
-# sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
-# sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
-sql_install_source_dir: files
-sql_install_iso: SQLEXPRADV_x64_ENU.exe
-dsc_sqltempdbdir: 'G:\TEMPDB'
-dsc_sqltempdblogdir: 'H:\TEMPDB_LOG'
-dsc_installsqldatadir: 'C:'
+sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
+sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
+# sql_install_source_dir: files
+# sql_install_iso: SQLEXPRADV_x64_ENU.exe
+dsc_sqltempdbdir: 'I:\TempDB'
+dsc_sqltempdblogdir: 'I:\TempDB'
+dsc_installsqldatadir: 'S:\SQL Server Data'
 dsc_instancename: MSSQLSERVER
-dsc_sqlbackupdir: 'H:\SQL_BACKUP'
-dsc_sqluserdbdir: 'G:\DATA'
-dsc_sqluserdblogdir: 'H:\LOG'
+dsc_sqlbackupdir: 'S:\SQL Server Backups'
+dsc_sqluserdbdir: 'G:\Data'
+dsc_sqluserdblogdir: 'H:\Log'
 dsc_sqlsysadminaccounts: # The SQL setup requires at least one system administrator account
   - sapphire\epicadmin
   # - .\ssm-user

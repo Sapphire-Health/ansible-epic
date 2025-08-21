@@ -34,8 +34,8 @@
         managed_by: "{{managed_by | default(omit) }}"
         scope: global
         category: security
-        domain_username: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_USER', default=domain_admin_user) }}"
-        domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{ domain }}"
         path: "{{ security_group_path | default(omit) }}"
         members:
@@ -57,8 +57,8 @@
       microsoft.ad.service_account:
         name: "{{ item.name }}"
         description: "Group Managed Service Account for {{ item.name }}"
-        domain_username: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_USER', default=domain_admin_user) }}"
-        domain_password: "{{ lookup('ansible.builtin.env', 'SERVER_ADMIN_PASSWORD', default=domain_admin_password) }}"
+        domain_username: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_USER', default=domain_admin_user) }}"
+        domain_password: "{{ lookup('ansible.builtin.env', 'DOMAIN_ADMIN_PASSWORD', default=domain_admin_password) }}"
         domain_server: "{{domain}}"
         dns_hostname: "{{ item.name }}{{domain}}"
         path: "{{ service_account_path | default(omit) }}"

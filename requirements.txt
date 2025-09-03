@@ -1,0 +1,7 @@
+botocore
+boto3
+ansible-lint
+pypsrp
+pywinrm
+requests[socks]
+pywinrm[kerberos]

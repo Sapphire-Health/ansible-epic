@@ -14,7 +14,7 @@ chmod 777 /files
 
 ## Requirements
 * Set up dynamic inventory for Azure/AWS
-    * An account with inventory access to Azure/AWS
+* An account with inventory access to Azure/AWS
 
 ## Create venvs for Azure and AWS
 ```
@@ -28,7 +28,7 @@ python3 -m venv ~/venv/azure
 ```
 source ~/venv/aws/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/aws/bin/activate
-pip3 install botocore boto3 ansible-lint pypsrp pywinrm requests[socks]
+pip3 install botocore boto3 ansible-lint pypsrp pywinrm requests[socks] pywinrm[kerberos]
 ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus trippsc2.cis
 # deactivate
 ```
@@ -51,6 +51,8 @@ gh auth login
 git clone https://github.com/Sapphire-Health/ansible-aws-epic.git ansible-epic
 cd ansible-epic
 rm -rf .git
+mkdir /files
+chmod 777 /files
 ln -s /files ~/source/ansible-epic/files
 # create a repo for customer and push
 ```
@@ -136,27 +138,30 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=ansible01.sapphire.dev -e "ans
 ## AD Provisioning
 ```
 # set up users and groups
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-provision-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev playbook-provision-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev playbook-create-gmsa.yml
+#reboot the hosts to apply gMSA
+ansible -i inventory.aws_ec2.yml -m win_reboot all --limit=epic-msql-sapph.sapphire.dev,epic-kpr-*
 # remove computer from AD
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev -e computer=epic-msql-sapph playbook-remove-computer-ad.yml
 ```
 
 ## Provision Storage
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
-ansible-playbook -i inventory.azure_rm.yml --limit=clarity playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev playbook-provision-storage.yml
 ```
 
 ## Install SQL
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph playbook-deploy-microsoft-sql.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev playbook-deploy-microsoft-sql.yml
 ```
 
 ## Install Kuiper
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph1 playbook-deploy-kuiper.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph2 playbook-deploy-kuiper.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph1.sapphire.dev playbook-deploy-kuiper.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph2.sapphire.dev playbook-deploy-kuiper.yml
 ```
 
 ## Install System Pulse

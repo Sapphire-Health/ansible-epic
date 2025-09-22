@@ -254,6 +254,11 @@ ssh -D 12346 lyasspiehler@34.208.130.180
 ssh ec2-user@10.248.13.10 -i ~/.ssh/id_rsa_provision
 ```
 
+## Configure Windows Proxy
+```
+ansible-playbook -i inventory.aws_ec2.yml --limit='_Windows' playbook-configure-windows-proxy.yml
+```
+
 # VSCode Tunnel Notes
 ```
 https://code.visualstudio.com/docs/setup/linux#_install-vs-code-on-linux
@@ -290,4 +295,7 @@ sudo su -
 cd /epic/tmp
 ./InstaServerEpicFebruary2025-139365.sh --list_components # (often "BuildCustom")
 ./InstaServerEpicFebruary2025-139365.sh -vb --component BuildNPTST
+
+
+ansible-playbook -i inventory.aws_ec2.yml --limit='epic-cog-sapph1.sapphire.dev' playbook-test-outbound-web.yml
 ```

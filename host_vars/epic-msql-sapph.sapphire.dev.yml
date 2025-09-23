@@ -6,18 +6,18 @@ volumes:
     DriveLetter: H
     FSLabel: Log
   disk3:
-    DriveLetter: I
+    DriveLetter: T
     FSLabel: TempDB
   disk4:
     DriveLetter: S
     FSLabel: SQL_Server
 
-sql_install_source_dir: https://sapphirefilerepo.blob.core.windows.net/public
-sql_install_iso: SW_DVD9_SQL_Svr_Enterprise_Edtn_2022_64Bit_English_MLF_X23-28423.ISO
+sql_install_source_dir: files
+sql_install_iso: SQLServer2022-x64-ENU-Dev.iso
 # sql_install_source_dir: files
 # sql_install_iso: SQLEXPRADV_x64_ENU.exe
-dsc_sqltempdbdir: 'I:\TempDB'
-dsc_sqltempdblogdir: 'I:\TempDB'
+dsc_sqltempdbdir: 'T:\TempDB'
+dsc_sqltempdblogdir: 'T:\TempDB'
 dsc_installsqldatadir: 'S:\SQL Server Data'
 dsc_instancename: MSSQLSERVER
 dsc_sqlbackupdir: 'S:\SQL Server Backups'
@@ -31,6 +31,7 @@ smss_install_source_dir: https://download.microsoft.com/download/9/b/e/9bee9f00-
 smss_install_file: SSMS-Setup-ENU.exe
 ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 # sql_sa_password: # can be defined as env var SQL_SA_PASSWORD=''
+user_sqlengine: sapphire\admin
 
 service_username: sapphire\kuiper-gmsa$
 

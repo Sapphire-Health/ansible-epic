@@ -148,7 +148,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev -
 
 ## Provision Storage
 ```
-ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=tstodb.sapphire.dev -e @extra_vars/proxy.yml playbook-provision-storage.yml
 # ansible-playbook -i inventory.azure_rm.yml --limit=has_managed_disks playbook-provision-storage.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev playbook-provision-storage.yml
 ```
@@ -284,18 +284,15 @@ tmux attach -t vscode-tunnel
 # authenticate aws
 # define env vars
 . devnotes.txt
-ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' playbook-provision-storage.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb*' -e @extra_vars/proxy.yml playbook-provision-storage.yml
 # ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-populate-known_hosts.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-configure-linux-search-suffix.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-linux-join-domain.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' -e @extra_vars/proxy.yml playbook-configure-linux-search-suffix.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' -e @extra_vars/proxy.yml playbook-linux-join-domain.yml
 ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-ssh-ca.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags known_hosts
-ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml --skip-tags iris,known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='tstodb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml -e @extra_vars/proxy.yml --skip-tags known_hosts
+ansible-playbook -i inventory.aws_ec2.yml --limit='*odb.sapphire.dev' playbook-deploy-iris.yml --become -e @extra_vars/users.yml -e @extra_vars/proxy.yml --skip-tags iris,known_hosts
 sudo su -
 cd /epic/tmp
 ./InstaServerEpicFebruary2025-139365.sh --list_components # (often "BuildCustom")
 ./InstaServerEpicFebruary2025-139365.sh -vb --component BuildNPTST
-
-
-ansible-playbook -i inventory.aws_ec2.yml --limit='epic-cog-sapph1.sapphire.dev' playbook-test-outbound-web.yml
 ```

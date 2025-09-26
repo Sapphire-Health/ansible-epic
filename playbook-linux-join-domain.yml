@@ -2,5 +2,9 @@
 - name: Playbook to join Linux machines to an AD domain
   hosts: all
   become: true
+  environment:
+    HTTP_PROXY: "{{ lookup('env','HTTP_PROXY', default=http_proxy | default('')) }}"
+    HTTPS_PROXY: "{{ lookup('env','HTTPS_PROXY', default=https_proxy | default('')) }}"
+    NO_PROXY: "{{ lookup('env','NO_PROXY', default=no_proxy | default('')) }}"
   roles:
     - domain_join

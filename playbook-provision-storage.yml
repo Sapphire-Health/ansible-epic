@@ -1,6 +1,10 @@
 ---
 - name: Provision Storage
   hosts: all
+  environment:
+    HTTP_PROXY: "{{ lookup('env','HTTP_PROXY', default=http_proxy | default('')) }}"
+    HTTPS_PROXY: "{{ lookup('env','HTTPS_PROXY', default=https_proxy | default('')) }}"
+    NO_PROXY: "{{ lookup('env','NO_PROXY', default=no_proxy | default('')) }}"
   tasks:
     # run the AWS windows storage role if the host is in the default aws_ec2 group created by the AWS inventory plugin and os is windows
     - name: Provision AWS windows storage

@@ -71,8 +71,11 @@ volumes:
 
 sql_install_source_dir: files
 sql_install_iso: SQLServer2022-x64-ENU-Dev.iso
-# dsc_sqltempdbdir: 'S:\SQL\SQLData'
-# dsc_sqltempdblogdir: 'S:\SQL\SQLData'
+
+# the tempdbdir and tempdblogdir values are for the lab - this AWS machine doesn't have an instance store, and so has no T: drive (used by the microsoft_sql role)
+dsc_sqltempdbdir: 'S:\SQL\SQLData'
+dsc_sqltempdblogdir: 'S:\SQL\SQLData'
+
 dsc_installsqldatadir: 'S:\SQL\SQLinstall'
 dsc_instancename: MSSQLSERVER
 dsc_sqlbackupdir: 'S:\SQL\'
@@ -88,6 +91,8 @@ ssms_product_id: "{98566bce-3110-4bc9-b372-a014a6eb5b58}"
 # sql_sa_password: # can be defined as env var SQL_SA_PASSWORD=''
 dsc_agtsvcaccount: sapphire\admin
 dsc_sqlsvcaccount: sapphire\admin
+# use this to install features required for Caboodle
+dsc_features: SQLENGINE,FULLTEXT,IS
 
 # use these for clarity
 Traceflags:

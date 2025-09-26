@@ -6,6 +6,16 @@
 * Create a user for yourself if you haven't already using `sudo adduser --disabled-password --shell /bin/bash <firstlast>`
 * Install prerequisites `apt install python3-venv git gh`
 
+## RHEL 9 Deployment for Ansible 2.18
+```
+dnf install python3.11
+# dnf group install "Development Tools" <-- might not be needed
+dnf install python3.11-devel
+python3.11 -m venv ~/venv/aws
+source ~/venv/aws/bin/activate
+pip install --upgrade pip
+```
+
 ## Create central files directory
 ```
 mkdir /files
@@ -28,7 +38,7 @@ python3 -m venv ~/venv/azure
 ```
 source ~/venv/aws/bin/activate
 # set vscode ansible.python.activationScript to ~/venv/aws/bin/activate
-pip3 install botocore boto3 ansible-lint pypsrp pywinrm requests[socks] pywinrm[kerberos]
+pip3 install botocore boto3 "ansible-core>=2.18,<2.19" ansible-lint pypsrp pywinrm requests[socks] pywinrm[kerberos]
 ansible-galaxy collection install amazon.aws community.aws ansible.utils community.windows ansible.windows ansible.posix community.general microsoft.ad community.crypto prometheus.prometheus trippsc2.cis
 # deactivate
 ```

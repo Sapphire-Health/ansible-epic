@@ -171,7 +171,7 @@ ansible-playbook -i inventory.aws_ec2.yml --limit=epic-msql-sapph.sapphire.dev p
 ## Install Kuiper
 ```
 ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph1.sapphire.dev playbook-deploy-kuiper.yml
-ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-sapph2.sapphire.dev playbook-deploy-kuiper.yml
+ansible-playbook -i inventory.aws_ec2.yml --limit=epic-kpr-* playbook-deploy-kuiper.yml
 ```
 
 ## Install System Pulse
